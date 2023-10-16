@@ -7,11 +7,11 @@ import Header from "./components/header/Header";
 const App = () => {
   return (
     <React.Fragment>
-      <Header />
+      {/* <Header /> */}
       <Router>
         <AppRoute></AppRoute>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </React.Fragment>
   );
 };

@@ -8,7 +8,6 @@ const DashboardScreen = () => {
         <React.Fragment>
             <Header />
             <Outlet />
-            
             <Footer />
         </React.Fragment>
     )
