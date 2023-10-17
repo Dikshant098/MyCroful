@@ -1,8 +1,32 @@
-.login{
-    font-size: 55px;
-}
+.login {
+    background-color: #f5f5f5;
 
-.btn{
-    background-color: yellow;
-}
+    .container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
+        .card {
+            width: 400px;
+            border: 0px;
+
+
+            .paddingTopBottom {
+                padding-top: 80px;
+                padding-bottom: 80px;
+
+            }
+
+            .forgot_password:hover {
+                cursor: pointer;
+
+            }
+
+            .register:hover {
+                cursor: pointer;
+            }
+        }
+
+    }
+}
