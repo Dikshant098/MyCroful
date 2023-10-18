@@ -7,6 +7,7 @@ import Sidebar from '../../components/dashboard/sidebar/Sidebar'
 const DashboardScreen = () => {
     return (
         <React.Fragment>
+            
             <Header />
             <Outlet />
             <Sidebar/>
