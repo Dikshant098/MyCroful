@@ -13,15 +13,3 @@ option{
 .header{
     position:fixed;
 }
-
-.sidebar {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar.closed {
-    transform: translateX(100%);
-  }
