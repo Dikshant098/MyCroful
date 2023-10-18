@@ -6,6 +6,7 @@ import Footer from '../../components/footer/Footer'
 const DashboardScreen = () => {
     return (
         <React.Fragment>
+            
             <Header />
             <Outlet />
             <Footer />

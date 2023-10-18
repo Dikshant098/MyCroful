@@ -1,0 +1,40 @@
+.product_list {
+    .product_card {
+        box-shadow: 0 2px 15px -3px black;
+        width: 100%;
+        // transition: all 0.3s linear;
+
+
+        .seller_name {
+            color: #747d84;
+            font-size: small;
+
+        }
+
+        .prize {
+            font-size: small;
+            padding-top: 7px;
+            font-weight: bold;
+        }
+    }
+
+    .product_card:hover {
+        cursor: pointer;
+    }
+
+    // .product_card:hover {
+    //     background-color: black;
+
+    //     .product_title {
+    //         color: #ffff;
+    //     }
+    //     .prize{
+    //         color: #ffff;
+    //     }
+
+    //     .add_to_Cart {
+    //         background-color: #ffff;
+    //         color: black;
+    //     }
+    // }
+}
