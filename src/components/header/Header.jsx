@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../header/header.scss";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -9,39 +10,39 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 const Header = () => {
   return (
-    <div className="container mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw" }}>
+    <div className="header container mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary" style={{ maxWidth: "100vw" }}>
       <div className="d-flex justify-content-between m-2 align-items-center">
         <div className="h1" style={{fontFamily: "Ubuntu"}}>Croful</div>
         <div className="d-flex gap-5">
-          <a href="#" className="text-decoration-none text-dark">
+          <Link to="#" className="text-decoration-none text-dark">
             Home
-          </a>
-          <a href="#" className="text-decoration-none text-dark">
+          </Link>
+          <Link to="#" className="text-decoration-none text-dark">
             Navratri Special
-          </a>
-          <a href="#" className="text-decoration-none text-dark">
+          </Link>
+          <Link to="#" className="text-decoration-none text-dark">
             Diwali Special
-          </a>
+          </Link>
         </div>
         <div className="d-flex gap-4 align-items-center">
           <div className="fw-bold d-flex">
-            <a href="/login" className="text-decoration-none text-dark">
+            <Link to="/login" className="text-decoration-none text-dark" >
               <AiOutlineUser
                 className="gap-1"
                 style={{ fontSize: "28px" }}
               />
               Login
-            </a>
+            </Link>
           </div>
 
           <div className="fw-bold d-flex gap-1">
-            <a href="#" className="text-decoration-none text-dark">
+            <Link to="#" className="text-decoration-none text-dark">
               <HiOutlineShoppingBag
                 className="gap-1"
                 style={{ fontSize: "28px" }}
               />
               Your Cart
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -59,7 +60,7 @@ const Header = () => {
                 <RxHamburgerMenu style={{ fontSize: "25px" }} />
                 Browse Category
               </a>
-              <ul className="dropdown-menu dropdown-menu-dark">
+              <ul className="dropdown-menu dropdown-menu-dark" style={{zIndex:"999"}}>
                 <li>
                   <a className="dropdown-item" href="#">
                     Action
@@ -145,7 +146,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
