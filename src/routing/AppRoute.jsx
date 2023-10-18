@@ -6,7 +6,7 @@ import DashboardScreen from '../screens/dashboard/DashboardScreen'
 // import DashboardScreen from '../screens/dashboard/DashboardScreen'
 // import DashboardRoute from './dashboard/DashboardRoute'
 import ProductList from '../components/dashboard/product/productList/ProductList'
-import ProductDetails from '../components/dashboard/product/productDetails.jsx/ProductDetails'
+import ProductDetails from '../components/dashboard/product/productDetails/ProductDetails'
 import RedirectScreen from '../screens/Redirect/RedirectScreen'
 
 const AppRoute = () => {
