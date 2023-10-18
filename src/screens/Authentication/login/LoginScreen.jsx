@@ -6,9 +6,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const LoginScreen = () => {
 
-  const [bgColor, setBgColor] = useState(true);
-  const [numberArray, setNumberArray] = useState([4, 6, 7, 7]);
-  const [click, setClick] = useState(false);
+  // const [bgColor, setBgColor] = useState(true);
+  // const [numberArray, setNumberArray] = useState([4, 6, 7, 7]);
+  // const [click, setClick] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,13 +26,13 @@ const LoginScreen = () => {
 
   })
 
-  const printList = () => {
-    setClick(!click)
-  }
+  // const printList = () => {
+  //   setClick(!click)
+  // }
 
-  const onClick = () => {
-    setBgColor(!bgColor)
-  }
+  // const onClick = () => {
+  //   setBgColor(!bgColor)
+  // }
 
   return (
     <div class='login'>
@@ -40,7 +40,7 @@ const LoginScreen = () => {
         <div className="card rounded-0">
           <div className="card-body paddingTopBottom px-5">
             <div className='d-flex flex-column align-items-center '>
-              <div className='fw-bold'>Croful</div>
+              <div className='fw-bold h2'>Croful</div>
               <div className='fw-bold mt-1'>Welcome Back</div>
               <div>Please enter your details</div>
             </div>

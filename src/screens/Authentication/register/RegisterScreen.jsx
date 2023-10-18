@@ -25,7 +25,7 @@ const RegisterScreen = () => {
         <div className="card rounded-0">
           <div className="card-body paddingTopBottom px-5">
             <div className='d-flex flex-column align-items-center '>
-              <div className='fw-bold'>Croful</div>
+              <div className='fw-bold h2'>Croful</div>
               <div className='fw-bold mt-1'>Welcome Back</div>
               <div>Please enter your details</div>
             </div>
