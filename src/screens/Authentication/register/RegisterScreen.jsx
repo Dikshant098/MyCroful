@@ -1,23 +1,49 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../register/registerScreen.scss'
+// import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../../redux/userAuthentication/userAuthenticationActions";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 const RegisterScreen = () => {
+  // const navigation = useNavigation();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();
-  const signUp = () => {
-    console.log(name, email, number, password);
-    if (true) {
+  const userRegister = useSelector((state) => state.userRegister);
+  if (userRegister) {
+    const { error, loading, payload, success } = userRegister;
+  }
 
+  const signUp = () => {
+    console.log({ name, email, number, password });
+    if (true) {
+      // navigation.navigate('LoginVerificationScreen', {
+      //   phone: phone
+      // });
+      dispatch(register(name, email, number, password))
       navigate("/dashboard");
     }
   }
 
+  // useEffect(() => {
+  //   if (!loading && payload && success) {
+  //     // navigation.navigate('LoginVerificationScreen', {
+  //     //   phone: phone
+  //     // });
+  //     alert('Api done')
+  //   }
+  //   else if (error) {
+  //     // console.warn(error.response.data.msg);
 
+  //   }
+  // }, [payload, loading, error, success])
 
   return (
     <div class='register'>

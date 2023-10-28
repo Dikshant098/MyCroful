@@ -1,15 +1,18 @@
-ul{
-    list-style-type: none; 
+ul {
+    list-style-type: none;
 }
 
-option{
+option {
     background-color: rgb(104, 104, 104);
 }
 
-.dropdown-menu{
+.dropdown-menu {
     background-color: rgb(104, 104, 104);
 }
 
-.header{
-    position:fixed;
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%
+    
 }

@@ -3,15 +3,17 @@ import "../header/header.scss";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { RxHamburgerMenu } from "react-icons/rx";
+import Sidebar from '../dashboard/sidebar/Sidebar'
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
 </style>
 
 const Header = () => {
   return (
-    <div className="container mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw" }}>
+    <div className="container header mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw" }}>
       <div className="d-flex justify-content-between m-2 align-items-center">
-        <div className="h1" style={{fontFamily: "Ubuntu"}}>Croful</div>
+        <div className="h1" style={{ fontFamily: "Ubuntu" }}>Croful</div>
         <div className="d-flex gap-5">
           <a href="#" className="text-decoration-none text-dark">
             Home
@@ -145,6 +147,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Sidebar />
     </div >
   );
 };

@@ -2,15 +2,17 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
-import Sidebar from '../../components/dashboard/sidebar/Sidebar'
+// import Sidebar from '../../components/dashboard/sidebar/Sidebar'
 
 const DashboardScreen = () => {
     return (
         <React.Fragment>
-            
+
             <Header />
-            <Outlet />
-            <Sidebar/>
+            <div style={{ marginTop: '110px' }}>
+                <Outlet />
+            </div>
+
             {/* <Footer /> */}
         </React.Fragment>
     )
