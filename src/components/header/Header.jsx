@@ -3,8 +3,10 @@ import "../header/header.scss";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { AiOutlineMenuFold } from "react-icons/ai";
 import Sidebar from "../dashboard/sidebar/Sidebar";
 import { Link } from "react-router-dom";
+import Location from "../Location/Location";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
@@ -14,17 +16,11 @@ const Header = () => {
   return (
     <div className="container header mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw" }}>
       <div className="d-flex justify-content-between m-2 align-items-center">
-        <div className="h1" style={{fontFamily: "Ubuntu"}}>Croful</div>
-        <div className="d-flex gap-5">
-          <Link to="#" className="text-decoration-none text-dark">
-            Home
-          </Link>
-          <Link to="#" className="text-decoration-none text-dark">
-            Navratri Special
-          </Link>
-          <Link to="#" className="text-decoration-none text-dark">
-            Diwali Special
-          </Link>
+        <Link
+        to='/dashboard/Home'
+         className="h1" style={{ fontFamily: "Ubuntu", textDecoration:"none" }}>Croful</Link>
+        <div className="d-flex">
+          <Location />
         </div>
         <div className="d-flex gap-4 align-items-center">
           <div className="fw-bold d-flex">
@@ -38,17 +34,14 @@ const Header = () => {
           </div>
 
           <div className="fw-bold d-flex">
-            <div id="Profile" className="text-decoration-none text-dark" >
-              <AiOutlineUser
-                className="gap-1"
-                style={{ fontSize: "28px" }}
-              />
+            <div id="Profile" className="text-decoration-none right-2 text-dark" >
+              <AiOutlineMenuFold className="gap-2" style={{ fontSize: "28px" }} />
               Profile
             </div>
           </div>
 
           <div className="fw-bold d-flex gap-1">
-            <Link to="#" className="text-decoration-none text-dark">
+            <Link to="/dashboard/productDetails" className="text-decoration-none text-dark">
               <HiOutlineShoppingBag
                 className="gap-1"
                 style={{ fontSize: "28px" }}
@@ -75,17 +68,17 @@ const Header = () => {
               <ul className="dropdown-menu dropdown-menu-dark">
                 <li>
                   <a className="dropdown-item" href="#">
-                    Action
+                    Food
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Another action
+                    Electronics
                   </a>
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Something else here
+                    Wearabel
                   </a>
                 </li>
               </ul>
@@ -147,18 +140,19 @@ const Header = () => {
             </div>
             <div>
               <form className="d-flex">
-                <button
+                <Link
+                to="/dashboard/productlist"
                   className="btn bg-black text-white rounded-0"
                   type="submit"
                 >
                   Search
-                </button>
+                </Link>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <Sidebar/>
+      <Sidebar />
     </div>
   );
 };

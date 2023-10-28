@@ -11,77 +11,77 @@ const ProductList = () => {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - KRUNALS Restaurant',
       prize: 161.9,
-      imageUrl: 'https://media.istockphoto.com/id/1459715799/photo/pizza-with-ham-and-cheese.webp?b=1&s=170667a&w=0&k=20&c=rI5CZUykAT3ipDLiAztjhtMhUiDXVobCnWhA_aA2abg='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Kadiyal-Paithani-300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - SohelS Restaurant',
       prize: 200.9,
-      imageUrl: 'https://media.istockphoto.com/id/1414575281/photo/a-delicious-and-tasty-italian-pizza-margherita-with-tomatoes-and-buffalo-mozzarella.webp?b=1&s=170667a&w=0&k=20&c=pobf9fs5EsiNZMuyrq_44Y3LT8c4cz7_jmxvgQPclY4='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Lotous-Brocade-Paithani-300x300.jpeg'
 
     },
     {
       title: 'Margherita Pizza Small 6 Inch',
       sellerName: "Seller -  Luigi's Pizza",
       prize: 130.9,
-      imageUrl: 'https://media.istockphoto.com/id/1442417585/photo/person-getting-a-piece-of-cheesy-pepperoni-pizza.webp?b=1&s=170667a&w=0&k=20&c=27qSFEznalRWqZ5iAgm4fnM6u_TgIqsgUWb3qLTn-Hk='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Diwali-Special-Earrings1-1-300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - KRUNALS Restaurant',
       prize: 161.9,
-      imageUrl: 'https://media.istockphoto.com/id/1459715799/photo/pizza-with-ham-and-cheese.webp?b=1&s=170667a&w=0&k=20&c=rI5CZUykAT3ipDLiAztjhtMhUiDXVobCnWhA_aA2abg='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Designer-Party-Wear-New-Navratri-Chaniya-Choli-.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - SohelS Restaurant',
       prize: 200.9,
-      imageUrl: 'https://media.istockphoto.com/id/1414575281/photo/a-delicious-and-tasty-italian-pizza-margherita-with-tomatoes-and-buffalo-mozzarella.webp?b=1&s=170667a&w=0&k=20&c=pobf9fs5EsiNZMuyrq_44Y3LT8c4cz7_jmxvgQPclY4='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Gold-Plated-Earrings-300x300.jpeg'
 
     },
     {
       title: 'Margherita Pizza Small 6 Inch',
       sellerName: "Seller -  Luigi's Pizza",
       prize: 130.9,
-      imageUrl: 'https://media.istockphoto.com/id/1442417585/photo/person-getting-a-piece-of-cheesy-pepperoni-pizza.webp?b=1&s=170667a&w=0&k=20&c=27qSFEznalRWqZ5iAgm4fnM6u_TgIqsgUWb3qLTn-Hk='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Stone-Bird-Stud-Earrings--300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - KRUNALS Restaurant',
       prize: 161.9,
-      imageUrl: 'https://media.istockphoto.com/id/1459715799/photo/pizza-with-ham-and-cheese.webp?b=1&s=170667a&w=0&k=20&c=rI5CZUykAT3ipDLiAztjhtMhUiDXVobCnWhA_aA2abg='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Gold-Plated-Earrings-2-300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - SohelS Restaurant',
       prize: 200.9,
-      imageUrl: 'https://media.istockphoto.com/id/1414575281/photo/a-delicious-and-tasty-italian-pizza-margherita-with-tomatoes-and-buffalo-mozzarella.webp?b=1&s=170667a&w=0&k=20&c=pobf9fs5EsiNZMuyrq_44Y3LT8c4cz7_jmxvgQPclY4='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/New-Designer-Siqwans-Lehenga-Choli-With-Dupatt-Set-300x300.jpeg'
 
     },
     {
       title: 'Margherita Pizza Small 6 Inch',
       sellerName: "Seller -  Luigi's Pizza",
       prize: 130.9,
-      imageUrl: 'https://media.istockphoto.com/id/1442417585/photo/person-getting-a-piece-of-cheesy-pepperoni-pizza.webp?b=1&s=170667a&w=0&k=20&c=27qSFEznalRWqZ5iAgm4fnM6u_TgIqsgUWb3qLTn-Hk='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Banarasi-Kora-Taunchoi-Saree--300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - KRUNALS Restaurant',
       prize: 161.9,
-      imageUrl: 'https://media.istockphoto.com/id/1459715799/photo/pizza-with-ham-and-cheese.webp?b=1&s=170667a&w=0&k=20&c=rI5CZUykAT3ipDLiAztjhtMhUiDXVobCnWhA_aA2abg='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/New-exclusive-Design-Cotton-Silk-Zari-Maheswari-Saree-300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
       sellerName: 'Seller - SohelS Restaurant',
       prize: 200.9,
-      imageUrl: 'https://media.istockphoto.com/id/1414575281/photo/a-delicious-and-tasty-italian-pizza-margherita-with-tomatoes-and-buffalo-mozzarella.webp?b=1&s=170667a&w=0&k=20&c=pobf9fs5EsiNZMuyrq_44Y3LT8c4cz7_jmxvgQPclY4='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/10/Saree-With-Contrast-Blouse-Combo-Set--300x300.jpeg'
 
     },
     {
       title: 'Margherita Pizza Small 6 Inch',
       sellerName: "Seller -  Luigi's Pizza",
       prize: 130.9,
-      imageUrl: 'https://media.istockphoto.com/id/1442417585/photo/person-getting-a-piece-of-cheesy-pepperoni-pizza.webp?b=1&s=170667a&w=0&k=20&c=27qSFEznalRWqZ5iAgm4fnM6u_TgIqsgUWb3qLTn-Hk='
+      imageUrl: 'https://croful.com/wp-content/uploads/2023/09/Linen-Saree-1--300x300.jpeg'
     },
     {
       title: 'Pizza Sandwich',
