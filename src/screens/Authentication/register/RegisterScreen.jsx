@@ -77,11 +77,7 @@ const RegisterScreen = () => {
                 <label className='mb-1' htmlFor="confirmPassword">Confirm Password</label>
                 <input type="password" className='form-control' placeholder='Confirm password' />
               </div> */}
-              <div className='d-flex justify-content-end'>
-                {/* <div>Remember me</div> */}
-                <div className='fw-bold my-3 text-decoration-underline forgot_password'>Forgot password</div>
-              </div>
-              <div className='d-grid mb-2'>
+              <div className='d-grid mt-2 mb-2'>
                 <button className='btn btn-dark' onClick={signUp}>Sign up</button>
               </div>
               <div className='text-center'>
