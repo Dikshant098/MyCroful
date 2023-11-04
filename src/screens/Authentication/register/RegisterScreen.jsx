@@ -22,12 +22,19 @@ const RegisterScreen = () => {
   }
 
   const signUp = () => {
-    console.log({ name, email, number, password });
+    console.log();
+    const payload = { name, email, number, password }
     if (true) {
       // navigation.navigate('LoginVerificationScreen', {
       //   phone: phone
       // });
-      dispatch(register(name, email, number, password))
+      //   const payload ={
+      //     name: "harshal",
+      //     email: "dsjhk ",
+      //     number: "745",
+      //     password: "k"
+      // }
+      dispatch(register(payload))
       navigate("/dashboard");
     }
   }

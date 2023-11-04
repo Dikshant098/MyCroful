@@ -19,7 +19,7 @@ const AppRoute = () => {
             <Route exact={true} path='/dashboard' element={<DashboardScreen />}>
 
                 <Route exact={true} path='home' element={<Home />}></Route>
-                <Route exact={true} path='productList' element={<ProductList />}></Route>
+                <Route exact={true} path='productList/:search' element={<ProductList />}></Route>
                 <Route exact={true} path='productDetails' element={<ProductDetails />}></Route>
                 <Route path='*' element={<RedirectScreen />}></Route>
             </Route>

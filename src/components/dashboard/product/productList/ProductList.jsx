@@ -1,10 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import '../productList/ProductList.scss'
 import dummyImg from '../../../../assets/images/dummy_img.jpg'
+import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { searchProduct } from '../../../../redux/search/searchAction'
 
 const ProductList = () => {
 
   const [productList, setProductList] = useState()
+  const params = useParams()
+  const dispatch = useDispatch()
+
+
+  console.log(params.search);
+
+  const searchResponse = useSelector((state) => state.searchReducer);
+  const { loading, success, payload } = searchResponse;
+
+
+  useEffect(() => {
+    if (payload) {
+      setProductList(payload);
+    }
+  }, [])
+
+  useEffect(() => {
+    setProductList(payload);
+    console.log(productList?.data);
+  }, [payload])
+
+  useEffect(() => {
+    dispatch(searchProduct(params.search))
+  }, [])
 
   const arr = [
     {
@@ -104,9 +131,9 @@ const ProductList = () => {
     },
   ]
 
-  useEffect(() => {
-    setProductList(arr)
-  }, [])
+  // useEffect(() => {
+  //   setProductList(arr)
+  // }, [])
 
   return (
     <div className='product_list my-3'>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../header/header.scss";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
@@ -7,18 +7,50 @@ import { AiOutlineMenuFold } from "react-icons/ai";
 import Sidebar from "../dashboard/sidebar/Sidebar";
 import { Link } from "react-router-dom";
 import Location from "../Location/Location";
+import { searchProduct, searchCategory } from "../../redux/search/searchAction";
+import { useDispatch, useSelector } from "react-redux";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
 </style>
 
 const Header = () => {
+
+  const [search, setSearch] = useState();
+  // const dispatch = useDispatch()
+  // const [searchData, setSearchData] = useState()
+
+  // const searchResponse = useSelector((state) => state.searchReducer);
+  // const { loading, success, payload } = searchResponse;
+  // setSearchData(payload);
+  
+
+  // const getOrder = useSelector((state) => state.getOrder)
+  // const { loading, success, payload } = getOrder
+
+  // useEffect(() => {
+  //   dispatch(searchProduct(search));
+  // }, [dispatch]);
+  // const navigation = useNavigate()
+
+  // useEffect(() => {
+  //   if (payload) {
+  //     setSearchData(payload);
+  //     // console.log(searchData);
+  //   }
+  // }, [])
+
+
+  // const searchHandler = () => {
+  //   dispatch(searchProduct(search))
+  // }
+
   return (
     <div className="container header mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw" }}>
       <div className="d-flex justify-content-between m-2 align-items-center">
         <Link
-        to='/dashboard/Home'
-         className="h1" style={{ fontFamily: "Ubuntu", textDecoration:"none" }}>Croful</Link>
+          to='/dashboard/Home'
+          className="h1" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -93,6 +125,10 @@ const Header = () => {
                 placeholder="Search for Products"
                 className="form-control rounded-0"
                 aria-label="Text input with dropdown button"
+                onChange={(event) => {
+                  setSearch(event.target.value)
+                }}
+                value={search}
               />
               <select name="product_cat" className="category-dropdown bg-black text-white ">
                 <option value="">All Categories</option>
@@ -141,9 +177,10 @@ const Header = () => {
             <div>
               <form className="d-flex">
                 <Link
-                to="/dashboard/productlist"
+                  to={"/dashboard/productlist/"+search} 
                   className="btn bg-black text-white rounded-0"
                   type="submit"
+                  // onClick={searchHandler}
                 >
                   Search
                 </Link>
