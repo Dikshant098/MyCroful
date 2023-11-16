@@ -7,28 +7,29 @@ import { searchProduct } from '../../../../redux/search/searchAction'
 
 const ProductList = () => {
 
-  const [productList, setProductList] = useState()
+  const [productList, setProductList] = useState([])
   const params = useParams()
   const dispatch = useDispatch()
-
-
+  // const imgUrl = "https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/6533ba7d2576cc75c2dfd966/bitbox-ram-8gb.jpg"
+  
   console.log(params.search);
-
+  
   const searchResponse = useSelector((state) => state.searchReducer);
   const { loading, success, payload } = searchResponse;
-
-
+  
+  
   useEffect(() => {
     if (payload) {
       setProductList(payload);
     }
   }, [])
-
+  
   useEffect(() => {
-    setProductList(payload);
-    console.log(productList?.data);
+    setProductList(payload?.data);
+    console.log(productList);
   }, [payload])
-
+  
+  const imgUrl = "https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/"
   useEffect(() => {
     dispatch(searchProduct(params.search))
   }, [])
@@ -134,25 +135,25 @@ const ProductList = () => {
   // useEffect(() => {
   //   setProductList(arr)
   // }, [])
-
+  
   return (
     <div className='product_list my-3'>
       <div className="container">
         <div className="row">
           {
-            arr.map(p => {
+            productList?.map(p => {
               return (
                 <div className="col-lg-3 col-md-6 my-3">
                   <div className="product_card rounded-0">
                     <div className="product_card_body p-2">
-                      <img src={p.imageUrl} className='img-fluid product_img' alt="" />
+                      <img src={imgUrl + p.images[0].image} className='img-fluid product_img' alt="" />
                       <div className='py-2'>
-                        <div className='fw-bold product_title'>{p.title}</div>
+                        <div className='fw-bold product_title'>{p.name}</div>
                         <div className='seller_name'>
-                          Seller -{p.sellerName}
+                          Seller -{p.seller_name}
                         </div>
                         <div className='prize'>
-                          ₹{p.prize}
+                          ₹{p.price}
                         </div>
                       </div>
                     </div>

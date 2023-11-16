@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
 
   const [search, setSearch] = useState();
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   // const [searchData, setSearchData] = useState()
 
   // const searchResponse = useSelector((state) => state.searchReducer);
@@ -41,9 +41,9 @@ const Header = () => {
   // }, [])
 
 
-  // const searchHandler = () => {
-  //   dispatch(searchProduct(search))
-  // }
+  const searchHandler = () => {
+    dispatch(searchProduct(search))
+  }
 
   return (
     <div className="container header mx-0 ps-0 bg-white shadow p- pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw" }}>
@@ -180,7 +180,7 @@ const Header = () => {
                   to={"/dashboard/productlist/"+search} 
                   className="btn bg-black text-white rounded-0"
                   type="submit"
-                  // onClick={searchHandler}
+                  onClick={searchHandler}
                 >
                   Search
                 </Link>
