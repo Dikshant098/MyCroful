@@ -20,7 +20,7 @@ const AppRoute = () => {
 
                 <Route exact={true} path='home' element={<Home />}></Route>
                 <Route exact={true} path='productList/:search' element={<ProductList />}></Route>
-                <Route exact={true} path='productDetails' element={<ProductDetails />}></Route>
+                <Route exact={true} path='productDetails/:id' element={<ProductDetails />}></Route>
                 <Route path='*' element={<RedirectScreen />}></Route>
             </Route>
             <Route path='*' element={<RedirectScreen />}></Route>
