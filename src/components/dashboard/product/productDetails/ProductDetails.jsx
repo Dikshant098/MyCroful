@@ -1,7 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../productDetails/ProductDetails.scss'
+import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
+
 
 const ProductDetails = () => {
+  const dispatch = useDispatch()
+  const productDetailsResponse = useSelector((state) => state.productDetailsReducer);
+  const { loading, success, payload } = productDetailsResponse;
+  const [productDetails, setProductDetails] = useState({})
+  const [imgUrl, setImgUrl] = useState("")
+
+  useEffect(() => {
+    if (payload) {
+      setProductDetails(payload);
+      setImgUrl(payload?.images[0].image);
+      console.log(imgUrl);
+      // console.log(productDetails);
+    }
+
+  }, [payload, imgUrl])
+
+  const params = useParams()
+  // const imgUrl = params.id
+
+  console.log(params.imgUrl);
+
+  // useEffect(() => {
+  //   dispatch(getProductDetails(params.id))
+  // }, [])
+
+  // const imgUrl = "https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/"
+
   return (
     // <div className='product_details' >
     //   <div className='image_div'>
@@ -23,21 +54,19 @@ const ProductDetails = () => {
 
 
     <div className='product_details'>
-      <div className="container">
+      <div className="container ">
         <div className='row my-5'>
           <div className='col-lg-4 col-md-6 col-sm-12'>
             <div className='box'>
-              <img src='https://croful.com/wp-content/uploads/2023/10/Diwali-Special-Earrings1-1.jpeg
-           ' alt='Product' className='zoom-on-hover img-fluid' />
-
+              <img src={"https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/"+imgUrl} className='img-fluid product_img' alt="" />
             </div>
           </div>
           <div className='col-lg-4 col-md-6 col-sm-12'>
             <div className='box'>
-              <h3 className='text-uppercase'>Sadi Kudta Salver</h3>
-              <h3 className='text-uppercase price my-3' > ₹3,500.00</h3>
-              <h3 className='seller_name mb-4'>Seller - Krunal's Restaurent</h3>
-              <div className="input-group"> 
+              <h3 className='text-uppercase'>{productDetails?.name}</h3>
+              <h3 className='text-uppercase price my-3' > {"₹ "+ productDetails?.price}</h3>
+              <h3 className='seller_name mb-4'>{productDetails?.seller_name}</h3>
+              <div className="input-group">
                 <input type="number" className='quantity p-3' value={1} />
                 <button className='text-uppercase btn btn-dark rounded-0 add_to_cart'>Add To cart</button>
               </div>
@@ -51,7 +80,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

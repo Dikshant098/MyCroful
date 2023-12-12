@@ -3,12 +3,15 @@ import thunk from "redux-thunk";
 
 import userRegisterReducer from "./redux/userAuthentication";
 import { searchReducer } from "./redux/search/searchReducer";
+import { productDetailsReducer } from "./redux/productDetails/productDetailsReducer";
+
 
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const reducer = combineReducers({
     userRegisterReducer,
-    searchReducer
+    searchReducer,
+    productDetailsReducer
 });
 
 // const userInfoFromStorage = localStorage.getItem("userInfo")
