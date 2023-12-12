@@ -1,22 +1,22 @@
 import React from 'react'
-import dummy from '../../../assets/images/jeremy-thomas-E0AHdsENmDg-unsplash.jpg'
-import dummy2 from '../../../assets/images/paul-earle-wVjd0eWNqI8-unsplash.jpg'
-import dummy3 from '../../../assets/images/abstract-1779559_1280.jpg'
+import dummy from '../../../assets/images/Hori image 4.jpg'
+import dummy2 from '../../../assets/images/Hori image 2.jpg'
+import dummy3 from '../../../assets/images/Hori image 5.jpg'
 import "../slider/horizonslider.scss";
 
 function Horizonslider() {
   return (
     <div className="container myslider">
-      <div id="carouselExample" className="carousel slide bg-black p-2">
-        <div className="carousel-inner d-flex ">
+      <div id="carouselExample" className="carousel slide bg-black p-2" style={{width:"100%", margin:"auto", overflow:"hidden"}}>
+        <div className="carousel-inner d-flex">
           <div className="carousel-item active">
-            <img src={dummy} className="dummy-img d-block" alt="..." />
+            <img src={dummy} className="dummy-img d-block " alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
           </div>
           <div className="carousel-item">
-            <img src={dummy2} className="dummy-img d-block" alt="..." />
+            <img src={dummy2} className="dummy-img d-block" alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
           </div>
           <div className="carousel-item">
-            <img src={dummy3} className="dummy-img d-block" alt="..." />
+            <img src={dummy3} className="dummy-img d-block" alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
           </div>
         </div>
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

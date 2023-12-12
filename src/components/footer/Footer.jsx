@@ -10,7 +10,7 @@ function Footer() {
       height: '50%',
       backgroundColor: 'pink',
     }}>
-      <div className="row">
+      <div className="row" style={{marginTop:"40px"}}>
         <div className="col-lg-3"> <ul className='p-2'>
           <li className='d-flex flex-column'>
             <a href="" style={{ textDecoration: "none", color: 'black', fontWeight: 'bold', fontSize: '23px', fontFamily: "Ubuntu" }}> Quick Links </a>

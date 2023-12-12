@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import Header from '../../components/header/Header'
 // import Home from '../../components/home/Home'
 import Footer from '../../components/footer/Footer'
+import Home from '../../components/home/Home'
 // import Sidebar from '../../components/dashboard/sidebar/Sidebar'
 
 const DashboardScreen = () => {
@@ -14,7 +15,7 @@ const DashboardScreen = () => {
             {/* <Home/> */}
             <Outlet />
             </div>
-            <Footer />
+            <Footer/>
         </React.Fragment>
     )
 }
