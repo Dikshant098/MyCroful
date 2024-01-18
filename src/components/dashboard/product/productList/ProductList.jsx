@@ -170,7 +170,7 @@ const ProductList = () => {
                         to={`/dashboard/productDetails/${p._id}`}
                         type="submit"
                         className='btn btn-dark rounded-0 add_to_Cart'
-                        onClick={()=>addToCart(p._id)}
+                        onClick={() => addToCart(p._id)}
                       >
                         Add to Cart
 

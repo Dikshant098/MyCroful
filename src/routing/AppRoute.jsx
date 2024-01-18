@@ -17,7 +17,6 @@ const AppRoute = () => {
             <Route exact={true} path='/login' element={<LoginScreen />}></Route>
             <Route exact={true} path='/register' element={<RegisterScreen />}></Route>
             <Route exact={true} path='/dashboard' element={<DashboardScreen />}>
-
                 <Route exact={true} path='home' element={<Home />}></Route>
                 <Route exact={true} path='productList/:search' element={<ProductList />}></Route>
                 <Route exact={true} path='productDetails/:id' element={<ProductDetails />}></Route>
