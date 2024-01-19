@@ -110,25 +110,25 @@ const Header = () => {
               <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Fashion
               </ul>
-              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Grocery
               </ul>
-              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='inverter-and-stabilizer&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Electronics
               </ul>
               <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold"  onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold"  id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold"  onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='health-devices&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Beauty & Personal Care
               </ul>
-              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
-                Agriculture
+              <ul className="fw-semibold" id='automotive&filters 'onClick={(e) => searchCategoryHandler(e.target.id)}>
+                Automotive
               </ul>
-              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='health-and-wellness&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Health & Wellness
               </ul>
             </li>
