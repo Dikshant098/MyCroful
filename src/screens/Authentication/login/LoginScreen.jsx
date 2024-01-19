@@ -2,7 +2,9 @@ import React from 'react'
 import '../login/loginScreen.scss'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
+</style>
 
 const LoginScreen = () => {
 
@@ -35,40 +37,38 @@ const LoginScreen = () => {
   // }
 
   return (
-    <div class='login'>
+    <div class='login' style={{
+      background: "linear-gradient(to top, rgba(195, 192, 255, 1), rgba(0, 0, 0, 0))"
+    }}>
       <div className="container">
-        <div className="card rounded-0">
-          <div className="card-body paddingTopBottom px-5">
+        <div className="card rounded-top-5" style={{
+          background: "linear-gradient(to bottom, rgba(220, 221, 222, 0.9), rgba(0, 0, 0, 0))"
+        }}>
+          <div className="card-body paddingTopBottom px-5" style={{ paddingTop: "40px", paddingBottom: "50px" }}>
             <div className='d-flex flex-column align-items-center '>
-              <div className='fw-bold h2'>Croful</div>
-              <div className='fw-bold mt-1'>Welcome Back</div>
-              <div>Please enter your details</div>
+              <div className='fw-bold h1' style={{ fontFamily: "Ubuntu", textDecoration: "none", textShadow: "4px 0 4px rgba(255, 255, 255, 0.7)" }}>Croful</div>
+              <div className='fw-semibold h4' style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Please enter your details</div>
             </div>
             <div>
               <div className='my-2'>
-                <label className='mb-1' htmlFor="email">Email</label>
-                <input type="email" className='form-control' value={email} placeholder='example@gmail.com' onChange={(e) => setEmail(e.target.value)} />
-              </div>
-              <div className='mt-2'>
-                <label className='mb-1' htmlFor="password">Password</label>
-                <input type="password" className='form-control' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-              </div>
-              <div className='d-flex justify-content-end'>
-                {/* <div>Remember me</div> */}
-                <div className='fw-bold my-3 text-decoration-underline forgot_password'>Forgot password</div>
+                <label className='mb-1 fw-semibold' htmlFor="mobile">Mobile Number</label>
+                <input type="email" className='form-control' value={email} placeholder='Enter Mobile Number' onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div className='d-grid mb-2'>
-                <button className='btn btn-dark' onClick={submitHandler}>Sign in</button>
+                <button className='btn btn-dark' onClick={submitHandler}>Send OTP</button>
               </div>
-              <div className='text-center'>
-                Don't have an account? <span className='fw-bold text-decoration-underline register'>
-                  <Link to="/register" className='text-dark'>Register</Link></span>
+              <div className='mt-3'>
+                <label className='mb-1 fw-semibold' htmlFor="otp">Enter OTP</label>
+                <input type="password" className='form-control' placeholder='Enter OTP' onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <div className='d-grid mt-2'>
+                <button className='btn btn-dark' onClick={submitHandler}>Sign in</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

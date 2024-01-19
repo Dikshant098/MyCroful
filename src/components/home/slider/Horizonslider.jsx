@@ -8,7 +8,7 @@ function Horizonslider() {
   return (
     <div className="container myslider">
       <div id="carouselExample" className="carousel slide bg-black p-2" style={{width:"100%", margin:"auto", overflow:"hidden"}}>
-        <div className="carousel-inner d-flex">
+        <div className="carousel-inner d-flex ">
           <div className="carousel-item active">
             <img src={dummy} className="dummy-img d-block " alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
           </div>

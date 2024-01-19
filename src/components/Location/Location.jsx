@@ -3,25 +3,17 @@ import { GrLocation } from "react-icons/gr";
 
 function Location() {
     return (
-        <div className='location d-flex align-items-center justify-content-center' style={{
-            position: "relative",
-        }}>
-            <input
-                type="search"
-                placeholder="Search for Location"
-                className="form-control rounded-0"
-                aria-label="Text input with dropdown button"
-                style={{
-                    position:"relative",
-                    left:"-9px"
-                }}
-            />
-                <GrLocation className="gap-1 "
-                    style={{
-                        fontSize: "28px",
-                        position:"relative",
-                        left:"-38px"
-                    }} />
+        <div>
+            <div className="d-flex text-center rounded-5" style={{border:"1px solid black"}}>
+                <button className="btn d-flex align-items-center justify-content-center" style={{border:"none"}}>
+                    <GrLocation className="gap-5"
+                        style={{ fontSize: "30px" }} />
+                    <div className="mt-0">
+                        <p className="mb-0 fw-semibold">Nagpur: </p>
+                        <p className="mb-1 fw-semibold">441001 </p>
+                    </div>
+                </button>
+            </div>
         </div>
     )
 }
