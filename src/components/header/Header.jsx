@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
 
   const [search, setSearch] = useState();
+  const [searchByCategory, setSearchByCategory] = useState();
   const dispatch = useDispatch()
   // const [searchData, setSearchData] = useState()
 
@@ -26,25 +27,20 @@ const Header = () => {
   // setSearchData(payload);
 
 
-  // const getOrder = useSelector((state) => state.getOrder)
-  // const { loading, success, payload } = getOrder
-
-  // useEffect(() => {
-  //   dispatch(searchProduct(search));
-  // }, [dispatch]);
-  // const navigation = useNavigate()
-
-  // useEffect(() => {
-  //   if (payload) {
-  //     setSearchData(payload);
-  //     // console.log(searchData);
-  //   }
-  // }, [])
-
 
   const searchHandler = () => {
+    setSearch()
     dispatch(searchProduct(search))
   }
+
+  const searchCategoryHandler = (value) => {
+    setSearchByCategory(value)
+    dispatch(searchCategory(value))
+
+
+  }
+
+
 
   return (
     <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
@@ -66,12 +62,12 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    style={{border:"1px solid gray", marginRight:"5px"}}
+                    style={{border:"1px solid gray"}}
                   />
-                  <button className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
+                  <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
-                      style={{ fontSize: "28px"}} />
-                  </button>
+                      style={{ fontSize: "28px" }} />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -88,12 +84,12 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="fw-bold d-flex">
+          {/* <div className="fw-bold d-flex">
             <div id="Profile" className="text-decoration-none right-2 text-dark" >
               <AiOutlineMenuFold className="gap-2" style={{ fontSize: "28px" }} />
               Profile
             </div>
-          </div>
+          </div> */}
 
           <div className="fw-bold d-flex gap-1">
             <Link to="/dashboard/productDetails" className="text-decoration-none text-dark">
@@ -110,35 +106,35 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-center">
           <div className="p-2">
             <li className="d-flex">
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Fashion
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Grocery
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='inverter-and-stabilizer&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Electronics
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold"  id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='health-devices&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Beauty & Personal Care
               </ul>
-              <ul className="fw-semibold">
-                Agriculture
+              <ul className="fw-semibold" id='automotive&filters 'onClick={(e) => searchCategoryHandler(e.target.id)}>
+                Automotive
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='health-and-wellness&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Health & Wellness
               </ul>
             </li>
           </div>
         </div>
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 };
