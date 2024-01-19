@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
 
   const [search, setSearch] = useState();
+  const [searchByCategory, setSearchByCategory] = useState();
   const dispatch = useDispatch()
   // const [searchData, setSearchData] = useState()
 
@@ -26,25 +27,20 @@ const Header = () => {
   // setSearchData(payload);
 
 
-  // const getOrder = useSelector((state) => state.getOrder)
-  // const { loading, success, payload } = getOrder
-
-  // useEffect(() => {
-  //   dispatch(searchProduct(search));
-  // }, [dispatch]);
-  // const navigation = useNavigate()
-
-  // useEffect(() => {
-  //   if (payload) {
-  //     setSearchData(payload);
-  //     // console.log(searchData);
-  //   }
-  // }, [])
-
 
   const searchHandler = () => {
+    setSearch()
     dispatch(searchProduct(search))
   }
+
+  const searchCategoryHandler = (value) => {
+    setSearchByCategory(value)
+    dispatch(searchCategory(value))
+
+
+  }
+
+
 
   return (
     <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
@@ -66,12 +62,13 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    style={{border:"1px solid gray"}}
+                    style={{ border: "1px solid gray" }}
+                    onChange={(e) => setSearch(e.target.value)}
                   />
-                  <button className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
+                  <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
                       style={{ fontSize: "28px" }} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -110,28 +107,28 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-center">
           <div className="p-2">
             <li className="d-flex">
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Fashion
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Grocery
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Electronics
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold"  onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold"  onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Beauty & Personal Care
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Agriculture
               </ul>
-              <ul className="fw-semibold">
+              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Health & Wellness
               </ul>
             </li>
