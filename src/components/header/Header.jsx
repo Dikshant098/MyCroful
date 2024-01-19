@@ -66,11 +66,11 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    style={{border:"1px solid gray"}}
+                    style={{border:"1px solid gray", marginRight:"5px"}}
                   />
                   <button className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
-                      style={{ fontSize: "28px" }} />
+                      style={{ fontSize: "28px"}} />
                   </button>
                 </div>
               </div>
