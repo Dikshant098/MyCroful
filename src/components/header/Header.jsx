@@ -10,12 +10,15 @@ import { Link } from "react-router-dom";
 import Location from "../Location/Location";
 import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
 </style>
 
 const Header = () => {
+  // const axios = require('axios')
 
   const [search, setSearch] = useState();
   const [searchByCategory, setSearchByCategory] = useState();
@@ -26,6 +29,32 @@ const Header = () => {
   // const { loading, success, payload } = searchResponse;
   // setSearchData(payload);
 
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0');
+        // setData(response.data);
+        console.log(response);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+
+  }, [search])
+
+
+  const searchList = async () => {
+    const searchUrl = `https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0`
+
+    // const data = await axios.get(searchUrl)
+  }
 
 
   const searchHandler = () => {
@@ -119,10 +148,10 @@ const Header = () => {
               <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold"  onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold"  onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Beauty & Personal Care
               </ul>
               <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -131,6 +160,9 @@ const Header = () => {
               <ul className="fw-semibold" onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Health & Wellness
               </ul>
+              {/* <ul className="fw-semibold" onClick={searchList}>
+                clickkkkkkkk
+              </ul> */}
             </li>
           </div>
         </div>
