@@ -3,46 +3,20 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { GrLocation } from "react-icons/gr";
 import { geolocated } from "react-geolocated";
+import axios from 'axios'
 
 function Location() {
 
-    // const [location, setLocation] = useState({
-    //     loaded: false,
-    //     coordinates: { lat: "", lng: "" }
-    // })
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get('http://localhost:2023/api/location/getLocation')
+            console.log(response.data)
+        }
+        fetchData();
+    }, [])
 
-    // const apiKey = "8f155424f95e18b18b9169c786e9bed8";
-    // const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    const [location, setLocation]= useState({''})
 
-
-
-    // const onSuccess = location => {
-    //     setLocation({
-    //         loaded: true,
-    //         coordinates: {
-    //             lat: location.coords.latitude,
-    //             lng: location.coords.longitude,
-    //         }
-    //     })
-    // }
-
-    // const onError = error => {
-    //     setLocation({
-    //         loaded: true,
-    //         error
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     if (!("geolocation" in navigator)) {
-    //         onError({
-    //             code: 0,
-    //             message: "geolocation is not supported"
-    //         })
-    //     }
-
-    //     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    // }, [])
 
 
     return (
@@ -62,6 +36,7 @@ function Location() {
             </div>
         </div>
     )
+
 }
 
 export default Location

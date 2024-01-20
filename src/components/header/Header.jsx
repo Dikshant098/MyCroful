@@ -10,12 +10,15 @@ import { Link } from "react-router-dom";
 import Location from "../Location/Location";
 import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
 </style>
 
 const Header = () => {
+  // const axios = require('axios')
 
   const [search, setSearch] = useState();
   const [searchByCategory, setSearchByCategory] = useState();
@@ -26,6 +29,32 @@ const Header = () => {
   // const { loading, success, payload } = searchResponse;
   // setSearchData(payload);
 
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0');
+        // setData(response.data);
+        console.log(response);
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+
+
+  }, [search])
+
+
+  const searchList = async () => {
+    const searchUrl = `https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0`
+
+    // const data = await axios.get(searchUrl)
+  }
 
 
   const searchHandler = () => {
@@ -40,14 +69,12 @@ const Header = () => {
 
   }
 
-
-
   return (
     <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
       <div className="d-flex justify-content-between m-2 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="h1" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
+          className="h1 fw-semibold" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -62,7 +89,7 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    style={{border:"1px solid gray"}}
+                    style={{ border: "1px solid gray", marginRight:"3px" }}
                   />
                   <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
@@ -103,7 +130,7 @@ const Header = () => {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex align-items-center justify-content-center">
+        <div className="d-flex align-items-center justify-content-center" style={{cursor:"pointer"}}>
           <div className="p-2">
             <li className="d-flex">
               <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -118,18 +145,21 @@ const Header = () => {
               <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold"  id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold" id='health-devices&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='health-devices&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Beauty & Personal Care
               </ul>
-              <ul className="fw-semibold" id='automotive&filters 'onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='automotive&filters ' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Automotive
               </ul>
-              <ul className="fw-semibold" id='health-and-wellness&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='health-and-wellness&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Health & Wellness
               </ul>
+              {/* <ul className="fw-semibold" onClick={searchList}>
+                clickkkkkkkk
+              </ul> */}
             </li>
           </div>
         </div>
