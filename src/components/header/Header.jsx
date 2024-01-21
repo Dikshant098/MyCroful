@@ -64,14 +64,12 @@ const Header = () => {
 
   }
 
-
-
   return (
     <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
       <div className="d-flex justify-content-between m-2 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="h1" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
+          className="h1 fw-semibold" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -86,8 +84,8 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    style={{ border: "1px solid gray" }}
-                    onChange={(e) => setSearch(e.target.value)}
+                    onChange={(e)=> setSearch(e.target.value)}
+                    style={{ border: "1px solid gray", marginRight:"3px" }}
                   />
                   <div class="searchDropDown rounded-2 border border-secondary" >
                     {
@@ -120,12 +118,12 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="fw-bold d-flex">
+          {/* <div className="fw-bold d-flex">
             <div id="Profile" className="text-decoration-none right-2 text-dark" >
               <AiOutlineMenuFold className="gap-2" style={{ fontSize: "28px" }} />
               Profile
             </div>
-          </div>
+          </div> */}
 
           <div className="fw-bold d-flex gap-1">
             <Link to="/dashboard/productDetails" className="text-decoration-none text-dark">
@@ -139,7 +137,7 @@ const Header = () => {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex align-items-center justify-content-center">
+        <div className="d-flex align-items-center justify-content-center" style={{cursor:"pointer"}}>
           <div className="p-2">
             <li className="d-flex">
               <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -173,7 +171,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   );
 };

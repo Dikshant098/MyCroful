@@ -7,16 +7,16 @@ import "../slider/horizonslider.scss";
 function Horizonslider() {
   return (
     <div className="container myslider">
-      <div id="carouselExample" className="carousel slide bg-black p-2" style={{width:"100%", margin:"auto", overflow:"hidden"}}>
+      <div id="carouselExample" className="carousel slide p-1" style={{ width: "100%", margin: "auto", overflow: "hidden", background: "linear-gradient(to bottom, rgba(210, 208, 255, 2), rgba(210, 208, 255, 0.8))" }}>
         <div className="carousel-inner d-flex ">
           <div className="carousel-item active">
-            <img src={dummy} className="dummy-img d-block " alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
+            <img src={dummy} className="dummy-img d-block " alt="..." style={{ backgroundSize: "cover", width: "100%", height: "70vh" }} />
           </div>
           <div className="carousel-item">
-            <img src={dummy2} className="dummy-img d-block" alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
+            <img src={dummy2} className="dummy-img d-block" alt="..." style={{ backgroundSize: "cover", width: "100%", height: "70vh" }} />
           </div>
           <div className="carousel-item">
-            <img src={dummy3} className="dummy-img d-block" alt="..." style={{backgroundSize:"cover", width:"100%", height:"300px"}} />
+            <img src={dummy3} className="dummy-img d-block" alt="..." style={{ backgroundSize: "cover", width: "100%", height: "70vh" }} />
           </div>
         </div>
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

@@ -35,9 +35,15 @@ const ProductList = () => {
     // dispatch(searchProduct(params.search))
   }, [])
 
-
   const addToCart = (id) => {
     dispatch(getProductDetails(id))
+  }
+
+  const handleProductDetails = (name) => {
+    console.log(name.split(' '));
+    name = 
+    
+    dispatch(getProductDetails(name.toString()))
   }
 
   return (
@@ -49,7 +55,7 @@ const ProductList = () => {
               return (
                 <div className="col-lg-3 col-md-6 my-3">
                   <div className="product_card rounded-0">
-                    <div className="product_card_body p-2">
+                    <div className="product_card_body p-2" onClick={() => handleProductDetails(p.name)}>
                       <img src={imgUrl + p.images[0].image} className='img-fluid product_img' alt="" />
                       <div className='py-2'>
                         <div className='fw-bold product_title'>{p.name}</div>

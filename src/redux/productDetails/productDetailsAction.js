@@ -19,7 +19,7 @@ export const getProductDetails = (params) => async (dispatch) => {
             type: PRODUCT_DETAILS_SUCCESS,
             payload: data
         })
-
+        
     } catch (error) {
         // console.log("error", error);
         dispatch({
