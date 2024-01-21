@@ -16,7 +16,7 @@ export const searchProduct = (params) => async (dispatch) => {
         const { data } = await axios.get("http://localhost:2023/api/search/searchByProduct/" + params, config);
 
         dispatch({
-            type: SEARCH_SUCCESS,
+            type: SEARCH_SUCCESS,  
             payload: data
         })
 

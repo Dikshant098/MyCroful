@@ -20,8 +20,10 @@ import axios from 'axios';
 const Header = () => {
   // const axios = require('axios')
 
+  const { BASE_URL } = require('../../constants/baseUrl')
   const [search, setSearch] = useState();
-  const [searchByCategory, setSearchByCategory] = useState();
+  const [searchListData, setSearchListData] = useState();
+  const [searchByCategory, setSearchByCategory] = useState([]);
   const dispatch = useDispatch()
   // const [searchData, setSearchData] = useState()
 
@@ -29,31 +31,24 @@ const Header = () => {
   // const { loading, success, payload } = searchResponse;
   // setSearchData(payload);
 
-
-
   useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0');
-        // setData(response.data);
-        console.log(response);
-        
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-
+    // console.log(BASE_URL);
+    searchList()
 
   }, [search])
 
 
   const searchList = async () => {
-    const searchUrl = `https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0`
+    try {
+      const url = BASE_URL + 'search/searchList/' + search
+      const response = await axios.get(url);
+      // setData(response.data);
+      setSearchListData(response.data)
+      console.log("searchListData===>", searchListData);
 
-    // const data = await axios.get(searchUrl)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    };
   }
 
 
@@ -94,6 +89,17 @@ const Header = () => {
                     style={{ border: "1px solid gray" }}
                     onChange={(e) => setSearch(e.target.value)}
                   />
+                  <div class="searchDropDown rounded-2 border border-secondary" >
+                    {
+                      searchListData?.map((s) => {
+                        return (
+                          search ? <a className="dropdown-item p-2" href="#">{s.title}</a> : ""
+                        )
+                      })
+                    }
+
+                  </div>
+
                   <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
                       style={{ fontSize: "28px" }} />
@@ -148,16 +154,16 @@ const Header = () => {
               <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold"  id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold" id='health-devices&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='health-devices&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Beauty & Personal Care
               </ul>
-              <ul className="fw-semibold" id='automotive&filters 'onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='automotive&filters ' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Automotive
               </ul>
-              <ul className="fw-semibold" id='health-and-wellness&filters'onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold" id='health-and-wellness&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Health & Wellness
               </ul>
               {/* <ul className="fw-semibold" onClick={searchList}>
