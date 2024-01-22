@@ -22,7 +22,10 @@ function Location() {
             }
         }
         fetchData();
-    }, []);
+    }, [])
+
+
+
 
     return (
         <div>
