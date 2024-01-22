@@ -50,7 +50,7 @@ function Collections() {
       <div className='h1 d-flex justify-content-center mt-5'>Popular Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {secondSetCardData.map((card, index) => (
-          <div key={index} className='card' style={{ width: '180px', border: 'none', boxShadow: '2px 0px 10px linear-gradient(to top, rgba(152, 210, 236, 1), rgba(0, 0, 0, 0))' }}>
+          <div key={index} className='card' style={{ width: '180px', border: 'none', boxShadow: '2px 0px 10px linear-gradient(to right, rgba(152, 210, 236, 1), rgba(0, 0, 0, 0))' }}>
             <img src={card.img} className='card-img-top' alt={`Card ${index + 6}`} />
             <div className='card-body'>
               <h5 className='card-title'>{card.title}</h5>
