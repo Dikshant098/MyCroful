@@ -1,0 +1,35 @@
+ul {
+  list-style-type: none;
+}
+
+option {
+  background-color: rgb(104, 104, 104);
+}
+
+.dropdown-menu {
+  background-color: rgb(104, 104, 104);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+#Profile {
+  cursor: pointer;
+}
+
+.searchDropDown {
+  position: absolute;
+  left: 15px;
+  top: 45px;
+  background-color: white;
+  width: 88%;
+  max-height: 30vh;
+  overflow: scroll;
+}
+.searchDropDown ::-webkit-scrollbar {
+  display: none;
+}/*# sourceMappingURL=header.css.map */

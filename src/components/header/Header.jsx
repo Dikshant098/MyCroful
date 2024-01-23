@@ -6,7 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import Sidebar from "../dashboard/sidebar/Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Location from "../Location/Location";
 import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,9 +22,10 @@ const Header = () => {
 
   const { BASE_URL } = require('../../constants/baseUrl')
   const [search, setSearch] = useState();
-  const [searchListData, setSearchListData] = useState();
+  const [searchListData, setSearchListData] = useState([]);
   const [searchByCategory, setSearchByCategory] = useState([]);
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // const [searchData, setSearchData] = useState()
 
   // const searchResponse = useSelector((state) => state.searchReducer);
@@ -40,28 +41,29 @@ const Header = () => {
 
   const searchList = async () => {
     try {
-      const url = BASE_URL + 'search/searchList/' + search
-      const response = await axios.get(url);
-      // setData(response.data);
-      setSearchListData(response.data)
-      console.log("searchListData===>", searchListData);
-
+      if (search) {
+        const url = BASE_URL + 'search/searchList/' + search
+        const response = await axios.get(url);
+        // setData(response.data);
+        setSearchListData(response.data)
+        console.log("searchListData===>", searchListData);
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     };
   }
 
 
-  const searchHandler = () => {
-    setSearch()
-    dispatch(searchProduct(search))
+  const searchHandler = (id) => {
+    navigate('/dashboard/productShopDetails/' + id)
+    setSearchListData(null)
+    setSearch('')
   }
 
   const searchCategoryHandler = (value) => {
-    setSearchByCategory(value)
+    // setSearchByCategory(value)
     dispatch(searchCategory(value))
-
-
+    navigate('/dashboard/productListCategory/' + value)
   }
 
   return (
@@ -84,24 +86,23 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    onChange={(e)=> setSearch(e.target.value)}
-                    style={{ border: "1px solid gray", marginRight:"3px" }}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{ border: "1px solid gray", marginRight: "3px" }}
                   />
                   <div class="searchDropDown rounded-2 border border-secondary" >
                     {
-                      searchListData?.map((s) => {
-                        return (
-                          search ? <a className="dropdown-item p-2" href="#">{s.title}</a> : ""
-                        )
-                      })
+                      Array.isArray(searchListData) &&
+                      searchListData.map((s, key) => (
+                        search ? <a onClick={() => searchHandler(s._id)} className="dropdown-item p-2" href="#" key={key}>{s.title}</a> : ""
+                      ))
                     }
-
                   </div>
 
-                  <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
+                  {/* <Link to={'/dashboard/productListCategory/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
                       style={{ fontSize: "28px" }} />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -137,7 +138,7 @@ const Header = () => {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex align-items-center justify-content-center" style={{cursor:"pointer"}}>
+        <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
           <div className="p-2">
             <li className="d-flex">
               <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
