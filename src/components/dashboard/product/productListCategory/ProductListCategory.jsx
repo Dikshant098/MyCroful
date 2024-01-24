@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import '../productList/ProductList.scss'
+import '../productListCategory/ProductListCategory.scss'
 import dummyImg from '../../../../assets/images/dummy_img.jpg'
 import { Link, useNavigate, useNavigation, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { searchProduct } from '../../../../redux/search/searchAction'
 import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
 
-const ProductList = () => {
+const ProductListCategory = () => {
   const [productList, setProductList] = useState([])
   const params = useParams()
   const dispatch = useDispatch()
@@ -35,15 +35,16 @@ const ProductList = () => {
     // dispatch(searchProduct(params.search))
   }, [])
 
+
   const addToCart = (id) => {
     dispatch(getProductDetails(id))
   }
 
   const handleProductDetails = (name) => {
     console.log(name.split(' '));
-    name = 
-    
-    dispatch(getProductDetails(name.toString()))
+    name =
+
+      dispatch(getProductDetails(name.toString()))
   }
 
   return (
@@ -53,31 +54,35 @@ const ProductList = () => {
           {
             productList?.map(p => {
               return (
-                <div className="col-lg-3 col-md-6 my-3">
-                  <div className="product_card rounded-0">
-                    <div className="product_card_body p-2" onClick={() => handleProductDetails(p.name)}>
-                      <img src={imgUrl + p.images[0].image} className='img-fluid product_img' alt="" />
-                      <div className='py-2'>
-                        <div className='fw-bold product_title'>{p.name}</div>
-                        <div className='seller_name'>
-                          Seller -{p.seller_name}
+                <div className="col-lg-3 col-md-6 my-3 card border-0">
+                  <div className="card-body p-1 border border-1 ">
+                    <div className="product_card rounded-0">
+                      <div className="product_card_body " onClick={() => handleProductDetails(p.name)}>
+                        <div className="img_box">
+                          <img src={imgUrl + p.images[0].image} className=' product_img' alt="" />
                         </div>
-                        <div className='prize'>
-                          ₹{p.price}
+                        <div className='py-2 px-2'>
+                          <div className='fw-bold product_title'>{p.name.length < 55 ? p.name : p.name.slice(0, 53)+ '....'}</div>
+                          <div className='seller_name'>
+                            Seller -{p.seller_name}
+                          </div>
+                          <div className='prize'>
+                            ₹{p.price}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="product_card_footer d-grid p-2 ">
-                      <Link
-                        to={`/dashboard/productDetails/${p._id}`}
-                        type="submit"
-                        className='btn btn-dark rounded-0 add_to_Cart'
-                        onClick={() => addToCart(p._id)}
-                      >
-                        Add to Cart
+                      <div className="product_card_footer d-grid p-2 add_to_cart ">
+                        <Link
+                          to={`/dashboard/productDetails/${p._id}`}
+                          type="submit"
+                          className='btn btn-dark rounded-0 add_to_Cart'
+                          onClick={() => addToCart(p._id)}
+                        >
+                          Add to Cart
 
-                      </Link>
-                      {/* <button onClick={() => addToCart(p)}></button> */}
+                        </Link>
+                        {/* <button onClick={() => addToCart(p)}></button> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -90,4 +95,4 @@ const ProductList = () => {
   )
 }
 
-export default ProductList
+export default ProductListCategory

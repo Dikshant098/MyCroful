@@ -1,0 +1,16 @@
+.product_list .product_card {
+  box-shadow: 0 2px 15px -3px black;
+  width: 100%;
+}
+.product_list .product_card .seller_name {
+  color: #747d84;
+  font-size: small;
+}
+.product_list .product_card .prize {
+  font-size: small;
+  padding-top: 7px;
+  font-weight: bold;
+}
+.product_list .product_card:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=ProductList.css.map */

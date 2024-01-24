@@ -1,6 +1,6 @@
 .product_list {
     .product_card {
-        box-shadow: 0 2px 15px -3px black;
+        // box-shadow: 0 2px 15px -3px black;
         width: 100%;
         // transition: all 0.3s linear;
 
@@ -37,4 +37,33 @@
     //         color: black;
     //     }
     // }
+}
+
+.card {
+    min-height: 500px;
+    position: relative;
+
+    .img_box {
+        text-align: center;
+        padding-top: 10px;
+
+        img {
+            width: 80%;
+        }
+    }
+
+    .prize {
+        position: absolute;
+        bottom: 50px;
+        left: 25px;
+        color: green;
+    }
+
+    .add_to_cart {
+        position: absolute;
+        width: 87%;
+        bottom: 0;
+
+
+    }
 }
