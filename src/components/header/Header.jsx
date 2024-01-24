@@ -84,10 +84,16 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    onChange={(e)=> setSearch(e.target.value)}
-                    style={{ border: "1px solid gray", marginRight:"3px" }}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{ border: "1px solid gray", marginRight: "3px" }}
                   />
-                  <div class="searchDropDown rounded-2 border border-secondary" >
+                  <div className="rounded-2 border" style={{
+                    overflowY: 'scroll', width:'42vw', position: 'absolute',
+                    left: '15px',
+                    top: '45px',
+                    maxHeight: ' 30vh',
+                    backgroundColor:'rgb(233, 245, 251)'
+                  }}>
                     {
                       searchListData?.map((s) => {
                         return (
@@ -95,7 +101,6 @@ const Header = () => {
                         )
                       })
                     }
-
                   </div>
 
                   <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
@@ -126,7 +131,7 @@ const Header = () => {
           </div> */}
 
           <div className="fw-bold d-flex gap-1">
-            <Link to="/dashboard/productDetails" className="text-decoration-none text-dark">
+            <Link to="/dashboard/cart/Cart" className="text-decoration-none text-dark">
               <HiOutlineShoppingBag
                 className="gap-1"
                 style={{ fontSize: "28px" }}
@@ -137,7 +142,7 @@ const Header = () => {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex align-items-center justify-content-center" style={{cursor:"pointer"}}>
+        <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
           <div className="p-2">
             <li className="d-flex">
               <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -172,7 +177,7 @@ const Header = () => {
         </div>
       </div>
       {/* <Sidebar /> */}
-    </div>
+    </div >
   );
 };
 

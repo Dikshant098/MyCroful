@@ -1,6 +1,7 @@
 import React from 'react';
 import dummy from '../../../assets/images/dummy_img.jpg';
 import { useState } from 'react';
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 function Checkout() {
   const [formData, setFormData] = useState({
@@ -110,20 +111,23 @@ function Checkout() {
                   required
                 />
               </div>
+
+
+
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="country" className="form-label d-flex">
                   Country / Region
                 </label>
-                <input
-                  type="text"
+                <CountryDropdown
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
+                  id="country"
+                  name="country"
+                  value={formData.country}
+                  onChange={(value) => handleChange({ target: { name: 'country', value } })}
                   required
                 />
               </div>
+
               <div className="col-md-12 mb-3">
                 <label htmlFor="lastName" className="form-label d-flex">
                   Street address
