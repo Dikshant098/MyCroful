@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { GrLocation } from "react-icons/gr";
-import { geolocated } from "react-geolocated";
+// import { geolocated } from "react-geolocated";
 import axios from 'axios'
 
 function Location() {
@@ -15,7 +15,7 @@ function Location() {
         fetchData();
     }, [])
 
-    const [location, setLocation]= useState({''})
+    const [location, setLocation]= useState({})
 
 
 
