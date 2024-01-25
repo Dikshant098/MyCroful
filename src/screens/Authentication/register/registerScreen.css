@@ -1,0 +1,23 @@
+.register {
+  background-color: #f5f5f5;
+}
+.register .container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register .container .card {
+  width: 400px;
+  border: 0px;
+}
+.register .container .card .paddingTopBottom {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.register .container .card .forgot_password:hover {
+  cursor: pointer;
+}
+.register .container .card .register:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=registerScreen.css.map */

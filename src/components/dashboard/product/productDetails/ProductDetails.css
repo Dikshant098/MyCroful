@@ -1,0 +1,28 @@
+.product_details {
+  /* In your CSS stylesheet */
+}
+.product_details .zoom-on-hover {
+  transition: transform 0.3s;
+  /* Add a smooth transition effect */
+}
+.product_details .zoom-on-hover:hover {
+  transform: scale(1.2);
+  /* Increase the scale to zoom in (1.2 means 120% of the original size) */
+}
+.product_details .quantity {
+  width: 20% !important;
+  margin-right: 5px;
+  text-align: center;
+  color: #999999;
+  border: 1px solid #999999;
+}
+.product_details .price {
+  color: #999999;
+  font-size: medium;
+}
+.product_details .add_to_cart {
+  font-size: small;
+}
+.product_details .seller_name {
+  font-size: medium;
+}/*# sourceMappingURL=ProductDetails.css.map */

@@ -10,13 +10,31 @@ option {
     background-color: rgb(104, 104, 104);
 }
 
-.header{
-    position:fixed;
-    top:0;
+.header {
+    position: fixed;
+    top: 0;
     width: 100%;
     z-index: 3;
 }
 
-#Profile{
+#Profile {
     cursor: pointer
+}
+
+.searchDropDown {
+    position: absolute;
+    left: 15px;
+    top: 45px;
+    background-color: #ffff;
+    width: 88%;
+    max-height: 30vh;
+    overflow: scroll;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    .dropdown-item {}
+
 }

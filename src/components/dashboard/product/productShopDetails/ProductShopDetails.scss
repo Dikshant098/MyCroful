@@ -1,0 +1,27 @@
+.container {
+    .imgBox {
+        img {
+            border-radius: 50%;
+        }
+
+    }
+
+    .card {
+        min-height: 460px;
+        position: relative;
+
+        .prize {
+            position: absolute;
+            bottom: 50px;
+            color: green;
+        }
+
+        .add_to_cart {
+            position: absolute;
+            width: 87%;
+            bottom: 0;
+
+           
+        }
+    }
+}

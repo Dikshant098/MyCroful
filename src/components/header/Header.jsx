@@ -6,7 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import Sidebar from "../dashboard/sidebar/Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Location from "../Location/Location";
 import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,53 +20,50 @@ import axios from 'axios';
 const Header = () => {
   // const axios = require('axios')
 
+  const { BASE_URL } = require('../../constants/baseUrl')
   const [search, setSearch] = useState();
-  const [searchByCategory, setSearchByCategory] = useState();
+  const [searchListData, setSearchListData] = useState([]);
+  const [searchByCategory, setSearchByCategory] = useState([]);
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   // const [searchData, setSearchData] = useState()
 
   // const searchResponse = useSelector((state) => state.searchReducer);
   // const { loading, success, payload } = searchResponse;
   // setSearchData(payload);
 
-
-
   useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0');
-        // setData(response.data);
-        console.log(response);
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-
+    // console.log(BASE_URL);
+    searchList()
 
   }, [search])
 
 
   const searchList = async () => {
-    const searchUrl = `https://www.mystore.in/api/1/entity/ms.sellers?search=a&search_fuzzy=1&search_score_log=1&limit=20&latitude=28.4594842&longitude=77.0199782&new_search=1&hyperlocal=1&filters[0][field]=available_published_product_count&filters[0][operator]=greater_than&filters[0][value]=0`
-
-    // const data = await axios.get(searchUrl)
+    try {
+      if (search) {
+        const url = BASE_URL + 'search/searchList/' + search
+        const response = await axios.get(url);
+        // setData(response.data);
+        setSearchListData(response.data)
+        console.log("searchListData===>", searchListData);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    };
   }
 
 
-  const searchHandler = () => {
-    setSearch()
-    dispatch(searchProduct(search))
+  const searchHandler = (id) => {
+    navigate('/dashboard/productShopDetails/' + id)
+    setSearchListData(null)
+    setSearch('')
   }
 
   const searchCategoryHandler = (value) => {
-    setSearchByCategory(value)
+    // setSearchByCategory(value)
     dispatch(searchCategory(value))
-
-
+    navigate('/dashboard/productListCategory/' + value)
   }
 
   return (
@@ -89,12 +86,38 @@ const Header = () => {
                     placeholder="Search..."
                     aria-label="Search"
                     aria-describedby="search-addon"
-                    style={{ border: "1px solid gray", marginRight:"3px" }}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{ border: "1px solid gray", marginRight: "3px" }}
                   />
-                  <Link to={'/dashboard/productList/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
+                  <div className="rounded-2 border" style={{
+                    overflowY: 'scroll', width: '42vw', position: 'absolute',
+                    left: '15px',
+                    top: '45px',
+                    maxHeight: ' 30vh',
+                    backgroundColor: 'rgb(233, 245, 251)'
+                  }}>
+                    {
+                      Array.isArray(searchListData) &&
+                      searchListData.map((s, key) => (
+
+                        search ? <div className="d-flex ">
+                          <span onClick={() => searchHandler(s._id)} className="dropdown-item p-2" href="#" key={key}>{s.title}</span>
+                          <span className='text-success pe-4'>{s?.address.slice(0,9)} </span>
+                          <span className='text-success'>{s?.is_open ? <span className='text-success'>Open </span> : <span className='text-danger'>Closed </span>}</span>
+                          <span className='text-success'>{s?.is_deliverable ? <span className='text-success ps-2'> Deliverable</span> : <span className=' ps-2 text-danger'> undeliverable</span>}</span>
+                        </div> : ""
+                      ))
+                    }
+                  </div>
+
+                  
+                  
+
+                  {/* <Link to={'/dashboard/productListCategory/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
                       style={{ fontSize: "28px" }} />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -119,7 +142,7 @@ const Header = () => {
           </div> */}
 
           <div className="fw-bold d-flex gap-1">
-            <Link to="/dashboard/productDetails" className="text-decoration-none text-dark">
+            <Link to="/dashboard/cart/Cart" className="text-decoration-none text-dark">
               <HiOutlineShoppingBag
                 className="gap-1"
                 style={{ fontSize: "28px" }}
@@ -130,7 +153,7 @@ const Header = () => {
         </div>
       </div>
       <div className="row">
-        <div className="d-flex align-items-center justify-content-center" style={{cursor:"pointer"}}>
+        <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
           <div className="p-2">
             <li className="d-flex">
               <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -165,7 +188,7 @@ const Header = () => {
         </div>
       </div>
       {/* <Sidebar /> */}
-    </div>
+    </div >
   );
 };
 

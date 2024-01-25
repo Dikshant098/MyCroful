@@ -1,0 +1,12 @@
+.dummy-img {
+  width: 100vw;
+  height: 60vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.myslider {
+  z-index: -1;
+}/*# sourceMappingURL=horizonslider.css.map */
