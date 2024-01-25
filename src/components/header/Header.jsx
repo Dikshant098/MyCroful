@@ -103,7 +103,7 @@ const Header = () => {
 
                         search ? <div className="d-flex ">
                           <span onClick={() => searchHandler(s._id)} className="dropdown-item p-2" href="#" key={key}>{s.title}</span>
-                          <span className='text-success pe-4'>{s?.address.slice(0,9)} </span>
+                          <span className='text-success pe-4'>{s?.address?.slice(0, 9)} </span>
                           <span className='text-success'>{s?.is_open ? <span className='text-success'>Open </span> : <span className='text-danger'>Closed </span>}</span>
                           <span className='text-success'>{s?.is_deliverable ? <span className='text-success ps-2'> Deliverable</span> : <span className=' ps-2 text-danger'> undeliverable</span>}</span>
                         </div> : ""
@@ -111,8 +111,8 @@ const Header = () => {
                     }
                   </div>
 
-                  
-                  
+
+
 
                   {/* <Link to={'/dashboard/productListCategory/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"

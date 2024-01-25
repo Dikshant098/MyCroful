@@ -42,7 +42,6 @@ const ProductListCategory = () => {
 
   const handleProductDetails = (name) => {
     console.log(name.split(' '));
-    name =
 
       dispatch(getProductDetails(name.toString()))
   }
