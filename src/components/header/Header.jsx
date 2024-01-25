@@ -53,7 +53,6 @@ const Header = () => {
     };
   }
 
-
   const searchHandler = (id) => {
     navigate('/dashboard/productShopDetails/' + id)
     setSearchListData(null)
@@ -142,7 +141,7 @@ const Header = () => {
           </div> */}
 
           <div className="fw-bold d-flex gap-1">
-            <Link to="/dashboard/cart/Cart" className="text-decoration-none text-dark">
+            <Link to="/dashboard/cart/cart" className="text-decoration-none text-dark">
               <HiOutlineShoppingBag
                 className="gap-1"
                 style={{ fontSize: "28px" }}
@@ -188,7 +187,7 @@ const Header = () => {
         </div>
       </div>
       {/* <Sidebar /> */}
-    </div >
+    </div>
   );
 };
 
