@@ -72,10 +72,10 @@ const ProductListCategory = () => {
                       </div>
                       <div className="product_card_footer d-grid p-2 add_to_cart ">
                         <Link
-                          to={`/dashboard/productDetails/${p._id}`}
+                          to={`/dashboard/productDetails`}
                           type="submit"
                           className='btn btn-dark rounded-0 add_to_Cart'
-                          onClick={() => addToCart(p._id)}
+                          // onClick={() => addToCart(p._id)}
                         >
                           Add to Cart
 

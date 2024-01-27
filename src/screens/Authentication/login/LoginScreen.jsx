@@ -74,7 +74,7 @@ const LoginScreen = () => {
       const { data } = await axios.post(url, obj)
       console.log(data);
       if (data.success) {
-        navigate("/dashboard");
+        navigate("/dashboard/Home");
         alert('success done login !!')
         setOtp(null)
         setMobile(null)
