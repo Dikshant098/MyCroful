@@ -43,11 +43,10 @@ function Cart() {
 
                 {/* second block */}
                 <div className='Product-detail2 d-flex justify-content-between align-items-center' style={{ marginTop: '5%' }}>
+                    {/* Cross button at the beginning */}
                     <button type="button" className="btn-close" aria-label="Close" style={{ marginLeft: '20px' }}>
-
                     </button>
                     <div className='col d-flex flex-row align-items-center justify-content-center fw-semibold' style={{ flex: '36%' }}>
-                        {/* Cross button at the beginning */}
                         <div className="d-flex flex-row align-items-center">
                             <img src={dummy} alt="" srcSet="" className='mb-2' style={{ width: '150px' }} />
                             <p className="mb-0" style={{ marginLeft: '20px' }}>Product name</p>
@@ -68,41 +67,43 @@ function Cart() {
                     </div>
                     <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>2,500</div>
                 </div>
-            </div>
+                <button className='btn btn-dark mt-3 me-auto' style={{ width: '22%' }} > Update Changes</button>
+            </div>  
 
             {/* Crad Total */}
             <div className='container-fluid mt-5'>
                 <h2 className=''>Cart Totals</h2>
                 <div className="card mt-3" style={{
-                    width: '18rem', minHeight: '350px',
+                    width: '18rem', minHeight: '200px',
                     position: 'relative',
                 }}>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item mr-5">Subtotal
-                            <div className='mb-0'>
+                        <li className="list-group-item d-flex flex-row">
+                            <span className="me-2 col">Subtotal</span>
+                            <div className='col'>
                                 ₹999.00
                             </div>
                         </li>
-                        <li className="list-group-item mr-5">Shipping
-                            <div className='mb-0'>
+                        <li className="list-group-item d-flex flex-row">
+                            <span className="me-2 col">Shipping</span>
+                            <div className='col'>
                                 Flat rate
                                 Shipping to Maharashtra.
 
                                 Change address
                             </div>
                         </li>
-                        <li className="list-group-item mr-5">Total
-                            <div className='mb-0'>
+                        <li className="list-group-item d-flex flex-row">
+                            <span className="me-2 col">Total</span>
+                            <div className='col'>
                                 ₹999.00
                             </div>
                         </li>
                     </ul>
                 </div>
+                <button className='btn btn-dark mt-3' style={{ width: '22%' }} > Proceed To Checkout</button>
             </div>
-
         </div>
-
-        // </div >
     )
 }
 

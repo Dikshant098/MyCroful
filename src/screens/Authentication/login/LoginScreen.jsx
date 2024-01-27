@@ -20,7 +20,7 @@ const LoginScreen = () => {
     console.log(email, password);
     if (true) {
 
-      navigate("/dashboard");
+      navigate("/dashboard/Home");
     }
   }
 
