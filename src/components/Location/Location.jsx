@@ -6,6 +6,7 @@ import { GrLocation } from "react-icons/gr";
 import axios from 'axios'
 import '../Location/location.scss'
 
+
 function Location() {
 
     const [locationData, setLocationData] = useState(null);
@@ -27,14 +28,14 @@ function Location() {
 
     return (
         <div>
-            <div className="d-flex text-center rounded-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ border: '1px solid black' }}>
+            <div className="d-flex text-center rounded-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ border: '0.5px solid gray' }}>
                 <button className="btn d-flex align-items-center justify-content-center" style={{ border: 'none' }}>
-                    <GrLocation className="gap-5" style={{ fontSize: '30px' }} />
+                    <GrLocation className="gap-5 me-2" style={{ fontSize: '25px', fontWeight: '400' }} />
                     <div className="mt-0 d-flex">
                         {locationData ? (
                             <>
-                                <p className="mb-0 fw-semibold ml-2">{locationData.school}</p>
-                                <p className="mb-1 fw-semibold"> :{locationData.postcode}</p>
+                                <p className="mb-0  ml-2" style={{ fontWeight: '400' }}>{locationData.school.slice(0, 10) + '..'}</p>
+                                <p className="mb-1 " style={{ fontWeight: '400' }}> : {locationData.postcode}</p>
                             </>
                         ) : (
                             <p className="mb-0">Loading location...</p>

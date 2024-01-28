@@ -14,9 +14,8 @@ import axios from 'axios';
 
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 </style>
-
 const Header = () => {
   // const axios = require('axios')
 
@@ -70,7 +69,7 @@ const Header = () => {
       <div className="d-flex justify-content-between m-2 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="h1 fw-semibold" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
+          className="h1 fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none" }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -87,7 +86,7 @@ const Header = () => {
                     aria-describedby="search-addon"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    style={{ border: "1px solid gray", marginRight: "3px" }}
+                    style={{ border: "1px solid gray", marginRight: "3px", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}
                   />
                   <div className="rounded-2 border" style={{
                     overflowY: 'scroll', width: '42vw', position: 'absolute',
@@ -102,7 +101,7 @@ const Header = () => {
 
                         search ? <div className="d-flex ">
                           <span onClick={() => searchHandler(s._id)} className="dropdown-item p-2" href="#" key={key}>{s.title}</span>
-                          <span className='text-success pe-4'>{s?.address?.slice(0,9)} </span>
+                          <span className='text-success pe-4'>{s?.address?.slice(0, 9)} </span>
                           <span className='text-success'>{s?.is_open ? <span className='text-success'>Open </span> : <span className='text-danger'>Closed </span>}</span>
                           <span className='text-success'>{s?.is_deliverable ? <span className='text-success ps-2'> Deliverable</span> : <span className=' ps-2 text-danger'> undeliverable</span>}</span>
                         </div> : ""
@@ -110,7 +109,7 @@ const Header = () => {
                     }
                   </div>
 
-                  
+
                   {/* <Link to={'/dashboard/productListCategory/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
                       style={{ fontSize: "28px" }} />
