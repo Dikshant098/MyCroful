@@ -68,7 +68,7 @@ const LoginScreen = () => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 
