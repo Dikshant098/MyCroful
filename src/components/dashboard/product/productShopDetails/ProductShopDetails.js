@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../../../../constants/baseUrl';
 import { icons } from 'react-icons';
@@ -10,6 +10,7 @@ import './ProductShopDetails.scss'
 const ProductShopDetails = () => {
     const param = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [id, setId] = useState();
     const [shopData, setShopData] = useState()
     const [sellerName, setSellerName] = useState()
@@ -84,6 +85,10 @@ const ProductShopDetails = () => {
 
     // }
 
+    const handleProductDetails = (alias) => {
+        navigate('/dashboard/productDetails/'+ alias)
+    }
+
 
 
 
@@ -93,7 +98,7 @@ const ProductShopDetails = () => {
                 <div className="row">
                     <div className="col-md-2">
                         <div className="imgBox">
-                            <img src={shopImgUrl ? shopImgUrl: '#'} className='img-fluid' alt="This is an img" />
+                            <img src={shopImgUrl ? shopImgUrl : '#'} className='img-fluid' alt="This is an img" />
                         </div>
                     </div>
                     <div className="col-md-9 d-flex flex-column justify-content-center">
@@ -115,7 +120,7 @@ const ProductShopDetails = () => {
                                     <div className="card-body p-1 border border-1 ">
                                         <div className="product_card rounded-0">
                                             <div className="product_card_body p-2"
-                                            //  onClick={() => handleProductDetails(p.name)}
+                                                onClick={() => handleProductDetails(p.alias)}
                                             >
                                                 <img src={firebaseURl + p?.images[0]?.image} className='img-fluid product_img' alt="" />
                                                 <div className='py-2'>
@@ -126,7 +131,7 @@ const ProductShopDetails = () => {
                                                     <div className='prize'>
                                                         ₹{p?.price}
                                                     </div>
-                                                
+
                                                 </div>
                                             </div>
                                             <div className="product_card_footer d-grid p-2 add_to_cart ">

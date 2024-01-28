@@ -3,9 +3,12 @@ import '../productDetails/ProductDetails.scss'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
+import { BASE_URL } from '../../../../constants/baseUrl'
+import axios from 'axios'
 
 
 const ProductDetails = () => {
+  const param = useParams();
   const dispatch = useDispatch()
   const productDetailsResponse = useSelector((state) => state.productDetailsReducer);
   const { loading, success, payload } = productDetailsResponse;
@@ -13,19 +16,26 @@ const ProductDetails = () => {
   const [imgUrl, setImgUrl] = useState("")
 
   useEffect(() => {
-    if (payload) {
-      setProductDetails(payload);
-      setImgUrl(payload?.images[0].image);
-      console.log(imgUrl);
-      // console.log(productDetails);
-    }
+    getProdDetailsByAlias(param?.alias)
+  }, [param])
 
-  }, [payload, imgUrl])
 
-  const params = useParams()
-  // const imgUrl = params.id
+  const getProdDetailsByAlias = async (alias) => {
+    const { data } = await axios.get(BASE_URL + 'search/getProductDetailsAlias/' + alias)
+    setProductDetails(...data.data)
+  }
 
-  console.log(params.imgUrl);
+  // useEffect(() => {
+  //   if (payload) {
+  //     setProductDetails(payload);
+  //     setImgUrl(payload?.images[0].image);
+  //     console.log(imgUrl);
+  //   }
+
+  // }, [payload, imgUrl])
+
+  // const params = useParams()
+  // console.log(params.imgUrl);
 
   // useEffect(() => {
   //   dispatch(getProductDetails(params.id))
@@ -58,13 +68,13 @@ const ProductDetails = () => {
         <div className='row my-5'>
           <div className='col-lg-4 col-md-6 col-sm-12'>
             <div className='box'>
-              <img src={"https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/"+imgUrl} className='img-fluid product_img' alt="" />
+              <img src={"https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/" + imgUrl} className='img-fluid product_img' alt="" />
             </div>
           </div>
           <div className='col-lg-4 col-md-6 col-sm-12'>
             <div className='box'>
               <h3 className='text-uppercase'>{productDetails?.name}</h3>
-              <h3 className='text-uppercase price my-3' > {"₹ "+ productDetails?.price}</h3>
+              <h3 className='text-uppercase price my-3' > {"₹ " + productDetails?.price}</h3>
               <h3 className='seller_name mb-4'>{productDetails?.seller_name}</h3>
               <div className="input-group">
                 <input type="number" className='quantity p-3' value={1} />
