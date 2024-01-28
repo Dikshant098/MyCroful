@@ -59,6 +59,7 @@ export const searchCategory = (params) => async (dispatch) => {
     }
 
 }
+
 export const searchShopDetails = (params) => async (dispatch) => {
     console.log(params);
     try {
@@ -72,7 +73,7 @@ export const searchShopDetails = (params) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.get("http://localhost:2023/api/search/getProductDetailsById/" + params, config);
+        const { data } = await axios.get("http://localhost:2023/api/search/getSellerProductDetailsById/" + params, config);
 
         dispatch({
             type: SEARCH_PRODUCT_SHOP_DETAILS_SUCCESS,

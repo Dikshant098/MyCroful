@@ -10,7 +10,7 @@ const ProductListCategory = () => {
   const [productList, setProductList] = useState([])
   const params = useParams()
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // const imgUrl = "https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/6533ba7d2576cc75c2dfd966/bitbox-ram-8gb.jpg"
 
@@ -40,10 +40,14 @@ const ProductListCategory = () => {
     dispatch(getProductDetails(id))
   }
 
-  const handleProductDetails = (name) => {
-    console.log(name.split(' '));
+  // const handleProductDetails = (name) => {
+  //   console.log(name.split(' '));
 
-      dispatch(getProductDetails(name.toString()))
+  //   dispatch(getProductDetails(name.toString()))
+  // }
+
+  const handleProductDetails = (alias) => {
+    navigate('/dashboard/productDetails/' + alias)
   }
 
   return (
@@ -56,12 +60,14 @@ const ProductListCategory = () => {
                 <div className="col-lg-3 col-md-6 my-3 card border-0">
                   <div className="card-body p-1 border border-1 ">
                     <div className="product_card rounded-0">
-                      <div className="product_card_body " onClick={() => handleProductDetails(p.name)}>
-                        <div className="img_box">0
+                      <div className="product_card_body "
+                        onClick={() => handleProductDetails(p.alias)}
+                      >
+                        <div className="img_box">
                           <img src={imgUrl + p.images[0].image} className=' product_img' alt="" />
                         </div>
                         <div className='py-2 px-2'>
-                          <div className='fw-bold product_title'>{p.name.length < 55 ? p.name : p.name.slice(0, 53)+ '....'}</div>
+                          <div className='fw-bold product_title'>{p.name.length < 55 ? p.name : p.name.slice(0, 53) + '....'}</div>
                           <div className='seller_name'>
                             Seller -{p.seller_name}
                           </div>
@@ -75,7 +81,7 @@ const ProductListCategory = () => {
                           to={`/dashboard/productDetails`}
                           type="submit"
                           className='btn btn-dark rounded-0 add_to_Cart'
-                          // onClick={() => addToCart(p._id)}
+                        // onClick={() => addToCart(p._id)}
                         >
                           Add to Cart
 

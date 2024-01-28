@@ -1,4 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import '../productDetails/ProductDetails.scss'
+import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
+import { BASE_URL } from '../../../../constants/baseUrl'
+import axios from 'axios'
 import Madhuri from '../../../../assets/images/Products/Yeola-Meenakari-Kalanjali-Paithani-scaled.jpeg'
 import one from '../../../../assets/images/sarees/saree-1.jpeg';
 import two from '../../../../assets/images/sarees/saree-2.jpeg';
@@ -8,6 +14,23 @@ import five from '../../../../assets/images/sarees/saree-5.jpeg';
 
 
 function ProductDetails() {
+  const param = useParams();
+  const dispatch = useDispatch()
+  const productDetailsResponse = useSelector((state) => state.productDetailsReducer);
+  const { loading, success, payload } = productDetailsResponse;
+  const [productDetails, setProductDetails] = useState({})
+  const [imgUrl, setImgUrl] = useState("")
+
+  useEffect(() => {
+    getProdDetailsByAlias(param?.alias)
+  }, [param])
+
+
+  const getProdDetailsByAlias = async (alias) => {
+    const { data } = await axios.get(BASE_URL + 'search/getProductDetailsAlias/' + alias)
+    setProductDetails(...data.data)
+    console.log(...data.data);
+  }
 
   const firstSetCardData = [
     { title: 'Card 1', text: 'Some quick example text for Card 1.', img: one },

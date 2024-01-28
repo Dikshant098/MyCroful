@@ -19,32 +19,36 @@ function Location() {
     const fetchData = async () => {
         try {
             const obj = {
-                latitude: location.latitude,
-                longitude: location.longitude
+                latitude: latitude,
+                longitude: longitude
             }
             const response = await axios.post('http://localhost:2023/api/location/getLocation', obj);
-            console.log(response.data);
-            setLocation(response.data[0].components);
+            console.log(response?.data[0]?.formatted);
+            setLocation(response?.data[0]?.formatted);
         } catch (error) {
             console.error('Error fetching location data:', error.message);
             setError('Failed to fetch location data');
         }
     }
-    
+
+    useEffect(() => {
+        // console.log(location);
+    }, [location])
 
     const handleLocation = () => {
         const askForLocationPermission = () => {
             // Check if Geolocation is supported by the browser
             if (navigator.geolocation) {
                 // Clear the previous location and error
-                setLocation(null);
-                setError(null);
+                // setLocation(null);
+                // setError(null);
 
                 // Request location permission
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        setLocation({ latitude, longitude });
+                        setLatitude(latitude)
+                        setLongitude(longitude)
                         fetchData();
                     },
                     (error) => {
@@ -69,8 +73,8 @@ function Location() {
                     <div className="mt-0 d-flex">
                         {location ? (
                             <>
-                                <p className="mb-0 fw-semibold ml-2">{location.school}</p>
-                                <p className="mb-1 fw-semibold"> :{location.postcode}</p>
+                                <p className="mb-0 fw-semibold ml-2">{location}</p>
+                                {/* <p className="mb-1 fw-semibold"> :{location}</p> */}
                             </>
                         ) : (
                             <p className="mb-0">Loading location...</p>

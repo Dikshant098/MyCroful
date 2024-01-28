@@ -24,7 +24,7 @@ const AppRoute = () => {
                 <Route exact={true} path='cart/cart' element={<Cart />} />
                 <Route exact={true} path='home' element={<Home />}></Route>
                 <Route exact={true} path='productListCategory/:search' element={<ProductListCategory />}></Route>
-                <Route exact={true} path='productDetails' element={<ProductDetails />}></Route>
+                <Route exact={true} path='productDetails/:alias' element={<ProductDetails />}></Route>
                 <Route exact={true} path='productShopDetails/:id' element={<ProductShopDetails />}></Route>
                 <Route path='*' element={<RedirectScreen />}></Route>
             </Route>
