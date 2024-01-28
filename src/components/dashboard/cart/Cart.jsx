@@ -67,7 +67,7 @@ function Cart() {
                     </div>
                     <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>2,500</div>
                 </div>
-                <button className='btn btn-dark mt-3 me-auto' style={{ width: '22%' }} > Update Changes</button>
+                <button className='btn btn-dark mt-3 me-0' style={{ width: '22%' }} > Update Changes</button>
             </div>  
 
             {/* Crad Total */}

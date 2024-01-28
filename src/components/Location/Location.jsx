@@ -6,6 +6,7 @@ import { GrLocation } from "react-icons/gr";
 import axios from 'axios'
 import '../Location/location.scss'
 
+
 function Location() {
 
     // const [location, setLocation] = useState(null);
@@ -68,7 +69,7 @@ function Location() {
         <div>
             <div className="d-flex text-center rounded-5" style={{ border: '1px solid black' }} onClick={handleLocation}>
                 <button className="btn d-flex align-items-center justify-content-center" style={{ border: 'none' }}>
-                    <GrLocation className="gap-5" style={{ fontSize: '30px' }} />
+                    <GrLocation className="gap-5 me-2" style={{ fontSize: '25px', fontWeight: '400' }} />
                     <div className="mt-0 d-flex">
                         {location ? (
                             <>

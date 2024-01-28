@@ -223,6 +223,9 @@ function Checkout() {
                   required
                 />
               </div>
+              <button type="submit" className="btn btn-primary">
+                Checkout
+              </button>
             </form>
           </div>
         </div>
@@ -372,7 +375,7 @@ function Checkout() {
                       />
                     </div>
                     <button type="submit" className="btn btn-primary">
-                      Submit
+                      Checkout
                     </button>
                   </form>
                 )}

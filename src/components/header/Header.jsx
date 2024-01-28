@@ -14,9 +14,8 @@ import axios from 'axios';
 
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 </style>
-
 const Header = () => {
   // const axios = require('axios')
 
@@ -70,7 +69,7 @@ const Header = () => {
       <div className="d-flex justify-content-between m-2 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="h1 fw-semibold" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
+          className="h1 fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none" }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -87,7 +86,7 @@ const Header = () => {
                     aria-describedby="search-addon"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    style={{ border: "1px solid gray", marginRight: "3px" }}
+                    style={{ border: "1px solid gray", marginRight: "3px", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}
                   />
                   <div className="rounded-2 border" style={{
                     overflowY: 'scroll', width: '42vw', position: 'absolute',
