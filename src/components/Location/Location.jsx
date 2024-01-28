@@ -9,61 +9,74 @@ import '../Location/location.scss'
 
 function Location() {
 
-    const [locationData, setLocationData] = useState(null);
+    // const [location, setLocation] = useState(null);
+    // const [error, setError] = useState(null);
+    const [location, setLocation] = useState(null);
+    const [latitude, setLatitude] = useState(null);
+    const [longitude, setLongitude] = useState(null);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:2023/api/location/getLocation');
-                console.log(response.data);
-                setLocationData(response.data[0].components);
-            } catch (error) {
-                console.error('Error fetching location data:', error.message);
-                setError('Failed to fetch location data');
+    const fetchData = async () => {
+        try {
+            const obj = {
+                latitude: location.latitude,
+                longitude: location.longitude
             }
+            const response = await axios.post('http://localhost:2023/api/location/getLocation', obj);
+            console.log(response.data);
+            setLocation(response.data[0].components);
+        } catch (error) {
+            console.error('Error fetching location data:', error.message);
+            setError('Failed to fetch location data');
         }
-        fetchData();
-    }, [])
+    }
+    
+
+    const handleLocation = () => {
+        const askForLocationPermission = () => {
+            // Check if Geolocation is supported by the browser
+            if (navigator.geolocation) {
+                // Clear the previous location and error
+                setLocation(null);
+                setError(null);
+
+                // Request location permission
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        setLocation({ latitude, longitude });
+                        fetchData();
+                    },
+                    (error) => {
+                        setError(error.message);
+                    }
+                );
+            } else {
+                setError('Geolocation is not supported by your browser.');
+            }
+        };
+
+        // Ask for location permission every time the button is clicked
+        askForLocationPermission();
+    }
+
 
     return (
         <div>
-            <div className="d-flex text-center rounded-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ border: '0.5px solid gray' }}>
+            <div className="d-flex text-center rounded-5" style={{ border: '1px solid black' }} onClick={handleLocation}>
                 <button className="btn d-flex align-items-center justify-content-center" style={{ border: 'none' }}>
                     <GrLocation className="gap-5 me-2" style={{ fontSize: '25px', fontWeight: '400' }} />
                     <div className="mt-0 d-flex">
-                        {locationData ? (
+                        {location ? (
                             <>
-                                <p className="mb-0  ml-2" style={{ fontWeight: '400' }}>{locationData.school.slice(0, 10) + '..'}</p>
-                                <p className="mb-1 " style={{ fontWeight: '400' }}> : {locationData.postcode}</p>
+                                <p className="mb-0 fw-semibold ml-2">{location.school}</p>
+                                <p className="mb-1 fw-semibold"> :{location.postcode}</p>
                             </>
                         ) : (
                             <p className="mb-0">Loading location...</p>
                         )}
                     </div>
                 </button>
-            </div>
-            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="staticBackdropLabel">Choose Your Location</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="mb-3">
-                                <input type="text" className="form-control" id="searchInput" placeholder="Search for your location.." />
-                            </div>
-                            <div className="mb-3">
-                                <p>Detect current location</p>
-                            </div>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Understood</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );
