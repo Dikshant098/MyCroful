@@ -57,7 +57,7 @@ const ProductListCategory = () => {
                   <div className="card-body p-1 border border-1 ">
                     <div className="product_card rounded-0">
                       <div className="product_card_body " onClick={() => handleProductDetails(p.name)}>
-                        <div className="img_box">
+                        <div className="img_box">0
                           <img src={imgUrl + p.images[0].image} className=' product_img' alt="" />
                         </div>
                         <div className='py-2 px-2'>

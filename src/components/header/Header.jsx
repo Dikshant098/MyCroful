@@ -154,7 +154,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
           <div className="p-2">
             <li className="d-flex">
-              <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold " id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Fashion
               </ul>
               <ul className="fw-semibold" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
