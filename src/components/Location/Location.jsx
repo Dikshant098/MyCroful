@@ -40,7 +40,7 @@ function Location() {
 
     useEffect(() => {
         // console.log(location);
-    }, [location])
+    }, [location, latitude, longitude])
 
     const handleLocation = () => {
         const askForLocationPermission = () => {
@@ -54,9 +54,8 @@ function Location() {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        console.log(latitude, longitude)
-                        setLatitude(latitude)
-                        setLongitude(longitude)
+                        setLatitude(21.364774240243623)
+                        setLongitude(79.12123326018552)
                         fetchData();
                     },
                     (error) => {
