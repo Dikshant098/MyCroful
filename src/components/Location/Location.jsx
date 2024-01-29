@@ -5,6 +5,8 @@ import { GrLocation } from "react-icons/gr";
 // import { geolocated } from "react-geolocated";
 import axios from 'axios'
 import '../Location/location.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import { setLocationDetails } from '../../redux/location/locationAction';
 
 
 function Location() {
@@ -15,6 +17,9 @@ function Location() {
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude] = useState(null);
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+    const locationReducerResponse = useSelector((state) => state.locationReducer);
+    const { loading, success, payload } = locationReducerResponse;
 
     const fetchData = async () => {
         try {
@@ -25,6 +30,8 @@ function Location() {
             const response = await axios.post('http://localhost:2023/api/location/getLocation', obj);
             console.log(response?.data[0]?.formatted);
             setLocation(response?.data[0]?.formatted);
+            dispatch(setLocationDetails(obj))
+
         } catch (error) {
             console.error('Error fetching location data:', error.message);
             setError('Failed to fetch location data');

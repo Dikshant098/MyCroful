@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import "../header/header.scss";
 import { AiOutlineUser } from "react-icons/ai";
+import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
@@ -8,9 +10,8 @@ import { AiOutlineMenuFold } from "react-icons/ai";
 import Sidebar from "../dashboard/sidebar/Sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import Location from "../Location/Location";
-import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { useDispatch, useSelector } from "react-redux";
-import axios from 'axios';
+import { getLocationDetails } from '../../redux/location/locationAction';
 
 
 <style>
@@ -25,6 +26,8 @@ const Header = () => {
   const [searchByCategory, setSearchByCategory] = useState([]);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const locationReducerResponse = useSelector((state) => state.locationReducer);
+  const { loading, success, payload } = locationReducerResponse;
   // const [searchData, setSearchData] = useState()
 
   // const searchResponse = useSelector((state) => state.searchReducer);
@@ -36,6 +39,14 @@ const Header = () => {
     searchList()
 
   }, [search])
+
+  useEffect(() => {
+    dispatch(getLocationDetails())
+  }, [])
+
+  useDispatch(() => {
+      console.log(payload);
+  },[success])
 
 
   const searchList = async () => {
