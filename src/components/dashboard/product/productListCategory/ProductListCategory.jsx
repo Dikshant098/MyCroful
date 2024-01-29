@@ -64,7 +64,7 @@ const ProductListCategory = () => {
                         onClick={() => handleProductDetails(p.alias)}
                       >
                         <div className="img_box">
-                          <img src={imgUrl + p.images[0].image} className=' product_img' alt="" />
+                          <img src={imgUrl + p?.images[0]?.image} className=' product_img' alt="" />
                         </div>
                         <div className='py-2 px-2'>
                           <div className='fw-bold product_title'>{p.name.length < 55 ? p.name : p.name.slice(0, 53) + '....'}</div>

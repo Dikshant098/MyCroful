@@ -35,7 +35,7 @@ const LoginScreen = () => {
   // }
 
   // const onClick = () => {
-  //   setBgColor(!bgColor)
+  //   setBgColor(!bgColor)p
   // }
 
 
