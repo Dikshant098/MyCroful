@@ -28,6 +28,8 @@ const Header = () => {
   const navigate = useNavigate()
   const locationReducerResponse = useSelector((state) => state.locationReducer);
   const { loading, success, payload } = locationReducerResponse;
+
+
   // const [searchData, setSearchData] = useState()
 
   // const searchResponse = useSelector((state) => state.searchReducer);

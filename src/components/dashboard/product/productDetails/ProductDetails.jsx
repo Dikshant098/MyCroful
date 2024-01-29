@@ -11,7 +11,7 @@ import two from '../../../../assets/images/sarees/saree-2.jpeg';
 import three from '../../../../assets/images/sarees/saree-3.jpeg';
 import four from '../../../../assets/images/sarees/saree-4.jpeg';
 import five from '../../../../assets/images/sarees/saree-5.jpeg';
-
+const firebaseURl = 'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/'
 
 function ProductDetails() {
   const param = useParams();
@@ -19,7 +19,8 @@ function ProductDetails() {
   const productDetailsResponse = useSelector((state) => state.productDetailsReducer);
   const { loading, success, payload } = productDetailsResponse;
   const [productDetails, setProductDetails] = useState({})
-  const [imgUrl, setImgUrl] = useState("")
+  const [imgUrl, setImgUrl] = useState('');
+  const [prodName, setProdName] = useState('');
 
   useEffect(() => {
     getProdDetailsByAlias(param?.alias)
@@ -28,12 +29,10 @@ function ProductDetails() {
 
   const getProdDetailsByAlias = async (alias) => {
     const { data } = await axios.get(BASE_URL + 'search/getProductDetailsAlias/' + alias);
-    setProductDetails(data.data[0]);
-    console.log(data.data[0].category);
+    setProductDetails(...data.data);
   };
 
   useEffect(() => {
-
   }, [productDetails])
 
   const firstSetCardData = [
@@ -64,10 +63,10 @@ function ProductDetails() {
           {/* Left Section - Image */}
           <div className="col-md-6">
             <img
-              src={productDetails.images}
+              src={productDetails?.images ? firebaseURl + productDetails?.images[0]?.image : "#"}
               alt="Placeholder Image"
               className="img-fluid"
-              style={{ height: '100%', width: '100%', objectFit: 'cover' }}
+              style={{ height: '80%', width: '100%', objectFit: 'cover', objectPosition: 'center' }}
             />
           </div>
 
@@ -96,7 +95,7 @@ function ProductDetails() {
                 </div>
 
                 {/* Accordian with three sections */}
-                <div className="accordion accordion-flush mt-5" style={{zIndex:'-1'}} id="accordionFlushExample">
+                <div className="accordion accordion-flush mt-5" style={{ zIndex: '-1' }} id="accordionFlushExample">
                   <div className="accordion-item">
                     <h2 className="accordion-header fw-swmibold">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
