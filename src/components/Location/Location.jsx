@@ -27,10 +27,13 @@ function Location() {
                 latitude: latitude,
                 longitude: longitude
             }
-            const response = await axios.post('http://localhost:2023/api/location/getLocation', obj);
-            console.log(response?.data[0]?.formatted);
-            setLocation(response?.data[0]?.formatted);
-            dispatch(setLocationDetails(obj))
+
+
+            axios.post('http://localhost:2023/api/location/getLocation', obj).then((response) => {
+                console.log(response?.data[0]);
+                setLocation(response?.data[0]?.formatted);
+                dispatch(setLocationDetails(obj))
+            })
 
         } catch (error) {
             console.error('Error fetching location data:', error.message);
@@ -40,7 +43,7 @@ function Location() {
 
     useEffect(() => {
         // console.log(location);
-    }, [location])
+    }, [location, latitude, longitude])
 
     const handleLocation = () => {
         const askForLocationPermission = () => {
@@ -54,8 +57,8 @@ function Location() {
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         const { latitude, longitude } = position.coords;
-                        setLatitude(latitude)
-                        setLongitude(longitude)
+                        setLatitude(21.364774240243623)
+                        setLongitude(79.12123326018552)
                         fetchData();
                     },
                     (error) => {
