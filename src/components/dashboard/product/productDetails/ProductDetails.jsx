@@ -27,10 +27,14 @@ function ProductDetails() {
 
 
   const getProdDetailsByAlias = async (alias) => {
-    const { data } = await axios.get(BASE_URL + 'search/getProductDetailsAlias/' + alias)
-    setProductDetails(...data.data)
-    console.log(...data.data);
-  }
+    const { data } = await axios.get(BASE_URL + 'search/getProductDetailsAlias/' + alias);
+    setProductDetails(data.data[0]);
+    console.log(data.data[0].category);
+  };
+
+  useEffect(() => {
+
+  }, [productDetails])
 
   const firstSetCardData = [
     { title: 'Card 1', text: 'Some quick example text for Card 1.', img: one },
@@ -55,11 +59,12 @@ function ProductDetails() {
   return (
     <div>
       <div className="container-fluid mt-5">
+        {/* <h2 className='d-flex justify-content-center'>{productDetails.category}</h2> */}
         <div className="row">
           {/* Left Section - Image */}
           <div className="col-md-6">
             <img
-              src={Madhuri}
+              src={productDetails.images}
               alt="Placeholder Image"
               className="img-fluid"
               style={{ height: '100%', width: '100%', objectFit: 'cover' }}
@@ -70,12 +75,12 @@ function ProductDetails() {
           <div className="col-md-6">
             <div className="card" style={{ border: 'none' }}>
               <div className="card-body">
-                <h5 className="card-title h4">MADHURI DIXIT SAME COLLECTION YEOLA MEENAKARI KALANJALI PAITHANI</h5>
+                <h5 className="card-title h4">{productDetails.name}</h5>
                 <p className="card-text">
-                  ₹3,400.00
+                  <span className='fw-semibold fs-4'>₹ {productDetails.price} </span>
                 </p>
                 <p className="card-text">
-                  Sold By:(Redirect to the shop)
+                  <span className='fw-semibold'>Sold By : </span>{productDetails.seller_name}
                 </p>
 
                 {/* Counting box */}
@@ -91,7 +96,7 @@ function ProductDetails() {
                 </div>
 
                 {/* Accordian with three sections */}
-                <div className="accordion accordion-flush mt-5" id="accordionFlushExample">
+                <div className="accordion accordion-flush mt-5" style={{zIndex:'-1'}} id="accordionFlushExample">
                   <div className="accordion-item">
                     <h2 className="accordion-header fw-swmibold">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -99,7 +104,11 @@ function ProductDetails() {
                       </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div className="accordion-body">Body 1</div>
+                      <div className="accordion-body">
+                        <p>country of Origin : {productDetails.country_of_origin}</p>
+                        <p>Net Quantity : {productDetails.net_quantity}</p>
+                        {/* <p>Contact Details Consumer Care : </p> */}
+                      </div>
                     </div>
                   </div>
                   <div className="accordion-item">
@@ -109,7 +118,7 @@ function ProductDetails() {
                       </button>
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div className="accordion-body">Body 2</div>
+                      <div className="accordion-body">{productDetails.description}</div>
                     </div>
                   </div>
                   <div className="accordion-item">
@@ -119,7 +128,7 @@ function ProductDetails() {
                       </button>
                     </h2>
                     <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div className="accordion-body">Body 3</div>
+                      <div className="accordion-body">Sold By : {productDetails.seller_name}</div>
                     </div>
                   </div>
                 </div>
