@@ -61,12 +61,12 @@ function ProductDetails() {
         {/* <h2 className='d-flex justify-content-center'>{productDetails.category}</h2> */}
         <div className="row">
           {/* Left Section - Image */}
-          <div className="col-md-6">
+          <div className="container col-md-6">
             <img
               src={productDetails?.images ? firebaseURl + productDetails?.images[0]?.image : "#"}
               alt="Placeholder Image"
-              className="img-fluid"
-              style={{ height: '80%', width: '100%', objectFit: 'cover', objectPosition: 'center' }}
+              className="img-fluid mx-auto"
+              style={{objectPosition: 'center' }}
             />
           </div>
 
