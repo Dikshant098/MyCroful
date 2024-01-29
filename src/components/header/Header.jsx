@@ -1,6 +1,8 @@
+import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import "../header/header.scss";
 import { AiOutlineUser } from "react-icons/ai";
+import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
@@ -8,15 +10,13 @@ import { AiOutlineMenuFold } from "react-icons/ai";
 import Sidebar from "../dashboard/sidebar/Sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import Location from "../Location/Location";
-import { searchProduct, searchCategory } from "../../redux/search/searchAction";
 import { useDispatch, useSelector } from "react-redux";
-import axios from 'axios';
+import { getLocationDetails } from '../../redux/location/locationAction';
 
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 </style>
-
 const Header = () => {
   // const axios = require('axios')
 
@@ -26,6 +26,10 @@ const Header = () => {
   const [searchByCategory, setSearchByCategory] = useState([]);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const locationReducerResponse = useSelector((state) => state.locationReducer);
+  const { loading, success, payload } = locationReducerResponse;
+
+
   // const [searchData, setSearchData] = useState()
 
   // const searchResponse = useSelector((state) => state.searchReducer);
@@ -37,6 +41,14 @@ const Header = () => {
     searchList()
 
   }, [search])
+
+  useEffect(() => {
+    dispatch(getLocationDetails())
+  }, [])
+
+  useDispatch(() => {
+      console.log(payload);
+  },[success])
 
 
   const searchList = async () => {
@@ -52,7 +64,6 @@ const Header = () => {
       console.error('Error fetching data:', error);
     };
   }
-
 
   const searchHandler = (id) => {
     navigate('/dashboard/productShopDetails/' + id)
@@ -71,7 +82,7 @@ const Header = () => {
       <div className="d-flex justify-content-between m-2 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="h1 fw-semibold" style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Croful</Link>
+          className="h1 fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none" }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -88,7 +99,7 @@ const Header = () => {
                     aria-describedby="search-addon"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    style={{ border: "1px solid gray", marginRight: "3px" }}
+                    style={{ border: "1px solid gray", marginRight: "3px", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}
                   />
                   <div className="rounded-2 border" style={{
                     overflowY: 'scroll', width: '42vw', position: 'absolute',
@@ -103,7 +114,7 @@ const Header = () => {
 
                         search ? <div className="d-flex ">
                           <span onClick={() => searchHandler(s._id)} className="dropdown-item p-2" href="#" key={key}>{s.title}</span>
-                          <span className='text-success pe-4'>{s?.address?.slice(0,9)} </span>
+                          <span className='text-success pe-4'>{s?.address?.slice(0, 9)} </span>
                           <span className='text-success'>{s?.is_open ? <span className='text-success'>Open </span> : <span className='text-danger'>Closed </span>}</span>
                           <span className='text-success'>{s?.is_deliverable ? <span className='text-success ps-2'> Deliverable</span> : <span className=' ps-2 text-danger'> undeliverable</span>}</span>
                         </div> : ""
@@ -111,8 +122,8 @@ const Header = () => {
                     }
                   </div>
 
-                  
-                  
+
+
 
                   {/* <Link to={'/dashboard/productListCategory/' + search} onClick={searchHandler} className="btn btn-outline-secondary rounded-pill" type="button" id="search-addon">
                     <CiSearch className="gap-1"
@@ -142,7 +153,7 @@ const Header = () => {
           </div> */}
 
           <div className="fw-bold d-flex gap-1">
-            <Link to="/dashboard/cart/Cart" className="text-decoration-none text-dark">
+            <Link to="/dashboard/cart/cart" className="text-decoration-none text-dark">
               <HiOutlineShoppingBag
                 className="gap-1"
                 style={{ fontSize: "28px" }}
@@ -156,7 +167,7 @@ const Header = () => {
         <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
           <div className="p-2">
             <li className="d-flex">
-              <ul className="fw-semibold" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold " id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
                 Fashion
               </ul>
               <ul className="fw-semibold" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -188,7 +199,7 @@ const Header = () => {
         </div>
       </div>
       {/* <Sidebar /> */}
-    </div >
+    </div>
   );
 };
 

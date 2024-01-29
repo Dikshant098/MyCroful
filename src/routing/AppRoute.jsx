@@ -11,6 +11,7 @@ import RedirectScreen from '../screens/Redirect/RedirectScreen'
 import Home from '../components/home/Home'
 import Checkout from '../components/dashboard/cart/Checkout'
 import ProductShopDetails from '../components/dashboard/product/productShopDetails/ProductShopDetails'
+import Cart from '../components/dashboard/cart/Cart'
 
 const AppRoute = () => {
     return (
@@ -20,9 +21,10 @@ const AppRoute = () => {
             <Route exact={true} path='/register' element={<RegisterScreen />}></Route>
             <Route exact={true} path='/dashboard' element={<DashboardScreen />}>
                 <Route exact={true} path='cart/checkout' element={<Checkout />} />
+                <Route exact={true} path='cart/cart' element={<Cart />} />
                 <Route exact={true} path='home' element={<Home />}></Route>
                 <Route exact={true} path='productListCategory/:search' element={<ProductListCategory />}></Route>
-                <Route exact={true} path='productDetails/:id' element={<ProductDetails />}></Route>
+                <Route exact={true} path='productDetails/:alias' element={<ProductDetails />}></Route>
                 <Route exact={true} path='productShopDetails/:id' element={<ProductShopDetails />}></Route>
                 <Route path='*' element={<RedirectScreen />}></Route>
             </Route>

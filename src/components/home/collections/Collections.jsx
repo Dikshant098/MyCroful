@@ -33,9 +33,12 @@ function Collections() {
       <div className='h1 d-flex justify-content-center'>New Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {firstSetCardData.map((card, index) => (
-          <div key={index} className='card' style={{ width: '150px', border: 'none', boxShadow: '2px 0px 10px rgba(210, 208, 255, 1)' }}>
+          <div key={index} className='card' style={{
+            width: '180px', boxShadow: '2px 0px 10px rgba(210, 208, 255, 1)', minHeight: '350px',
+            position: 'relative'
+          }}>
             <img src={card.img} className='card-img-top' alt={`Card ${index + 1}`} />
-            <div className='card-body' style={{height:'100px'}}>
+            <div className='card-body' style={{ height: '120px' }}>
               <h5 className='card-title'>{card.title}</h5>
               <p className='card-text'>{card.text}</p>
               <a href='#' className='btn fw-semibold' style={{ border: '2px solid black', background: 'linear-gradient(to bottom, rgba(152, 210, 236, 1), rgba(0, 0, 0, 0))' }}>
@@ -50,7 +53,10 @@ function Collections() {
       <div className='h1 d-flex justify-content-center mt-5'>Popular Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {secondSetCardData.map((card, index) => (
-          <div key={index} className='card' style={{ width: '180px', border: 'none', boxShadow: '2px 0px 10px rgba(210, 208, 255, 1)' }}>
+          <div key={index} className='card' style={{
+            width: '180px', boxShadow: '2px 0px 10px rgba(210, 208, 255, 1)', minHeight: '350px',
+            position: 'relative'
+          }}>
             <img src={card.img} className='card-img-top' alt={`Card ${index + 6}`} />
             <div className='card-body'>
               <h5 className='card-title'>{card.title}</h5>
@@ -62,7 +68,7 @@ function Collections() {
           </div>
         ))}
       </div>
-    </div>
+    </div >
   );
 }
 
