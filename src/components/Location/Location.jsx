@@ -24,8 +24,8 @@ function Location() {
     const fetchData = async () => {
         try {
             const obj = {
-                latitude: latitude,
-                longitude: longitude
+                latitude: 21.165353392734936,
+                longitude: 79.08082005145951
             }
             const {data} = await axios.post('http://localhost:2023/api/location/getLocation', obj);
             console.log(data);
