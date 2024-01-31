@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import dummy from '../../../assets/images/dummy_img.jpg'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { BASE_URL } from '../../../constants/baseUrl';
 import axios from 'axios'
@@ -15,6 +15,8 @@ function Cart() {
     const [cartDetails, setCartDetails] = useState([])
     const [productDetails, setProductDetails] = useState([])
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate()
+    const [total, setTotal] = useState(0)
 
     // useEffect(() => {
     //     getProdDetailsByAlias(param?.alias)
@@ -41,7 +43,11 @@ function Cart() {
         try {
             const { data } = await axios.get(url)
             setCartDetails(data)
-            console.log(data);
+            let subtotal = 0;
+            data.map(d => {
+                subtotal = d.price + subtotal
+            })
+            setTotal(subtotal)
         } catch (error) {
             console.log(error);
         }
@@ -52,7 +58,7 @@ function Cart() {
         try {
             const data = await axios.delete(url)
             if (data) {
-               getCartDetails()
+                getCartDetails()
             }
         } catch (error) {
             console.log(error);
@@ -80,6 +86,12 @@ function Cart() {
         }
     };
 
+    const goCheckout = () => {
+        navigate('/dashboard/cart/checkout')
+    }
+
+
+
     return (
         <div className='container-fluid'>
             <div className='fw-semibold h1 d-flex justify-content-center mb-5'>Cart</div>
@@ -106,7 +118,7 @@ function Cart() {
                             <div className='col d-flex flex-row align-items-center justify-content-center fw-semibold' style={{ flex: '36%' }}>
                                 <div className="d-flex flex-row align-items-center">
                                     <img src={productDetails?.img} alt="" srcSet="" className='mb-2' style={{ width: '150px' }} />
-                                    <p className="mb-0" style={{ marginLeft: '20px' }}>{productDetails?.productName > 27 ? productDetails?.productName : productDetails?.productName?.slice(0, 26) + '...'}</p>
+                                    <p className="mb-0" style={{ marginLeft: '20px' }}>{productDetails?.productName.length < 20 ? productDetails?.productName : productDetails?.productName?.slice(0, 19) + '...'}</p>
                                 </div>
                             </div>
                             <div className='col d-flex flex-column align-items-center fw-semibold' style={{ flex: '40%' }}>
@@ -122,7 +134,7 @@ function Cart() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>2,500</div>
+                            <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>{productDetails?.quantity * productDetails.price}</div>
                         </div>
                     )
 
@@ -142,10 +154,10 @@ function Cart() {
                             <li className="list-group-item d-flex flex-row">
                                 <span className="me-2 col">Subtotal</span>
                                 <div className='col'>
-                                    ₹999.00
+                                    ₹{total}.00
                                 </div>
                             </li>
-                            <li className="list-group-item d-flex flex-row">
+                            {/* <li className="list-group-item d-flex flex-row">
                                 <span className="me-2 col">Shipping</span>
                                 <div className='col'>
                                     Flat rate
@@ -153,16 +165,16 @@ function Cart() {
 
                                     Change address
                                 </div>
-                            </li>
+                            </li> */}
                             <li className="list-group-item d-flex flex-row">
                                 <span className="me-2 col">Total</span>
                                 <div className='col'>
-                                    ₹999.00
+                                    ₹{total}.00
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <button className='btn btn-dark mt-3' style={{ width: '22%' }} > Proceed To Checkout</button>
+                    <button className='btn btn-dark mt-3' style={{ width: '22%' }} onClick={goCheckout}> Proceed To Checkout</button>
                 </div>
             </div>
 

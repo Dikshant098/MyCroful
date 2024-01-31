@@ -47,8 +47,8 @@ const Header = () => {
   }, [])
 
   useDispatch(() => {
-      console.log(payload);
-  },[success])
+    console.log(payload);
+  }, [success])
 
 
   const searchList = async () => {
@@ -76,6 +76,11 @@ const Header = () => {
     dispatch(searchCategory(value))
     navigate('/dashboard/productListCategory/' + value)
   }
+
+  const logOutHandler = () => {
+    navigate('/login')
+    localStorage.setItem('Croful', '')
+  }   
 
   return (
     <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
@@ -136,13 +141,13 @@ const Header = () => {
         </div>
         <div className="d-flex gap-4 align-items-center">
           <div className="fw-bold d-flex">
-            <Link to="/login" className="text-decoration-none text-dark" >
+            <button className="text-decoration-none btn fw-bold text-dark" onClick={logOutHandler} >
               <AiOutlineUser
                 className="gap-1"
                 style={{ fontSize: "28px" }}
               />
-              Login
-            </Link>
+              Log Out
+            </button>
           </div>
 
           {/* <div className="fw-bold d-flex">

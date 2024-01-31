@@ -44,7 +44,7 @@ function ProductDetails() {
   ];
 
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const increaseCount = () => {
     setCount(count + 1);
   };
@@ -54,6 +54,33 @@ function ProductDetails() {
       setCount(count - 1);
     }
   };
+
+  const addToCart = async (p, imgUrl) => {
+    // dispatch(getProductDetails(id))
+    // navigate('/dashboard/cart/cart/' + alias)
+    const userId = localStorage.getItem('Croful')
+    console.log(userId);
+    let obj = {
+      productName: p.name,
+      price: p.price,
+      quantity: count,
+      userId: userId,
+      img: imgUrl,
+      cId: p._id,
+    }
+    try {
+      const url = BASE_URL + 'cart/addToCart'
+      const data = await axios.post(url, obj)
+      if (data) {
+        alert("Product added successfully !!")
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
+
+  }
 
   return (
     <div>
@@ -66,7 +93,7 @@ function ProductDetails() {
               src={productDetails?.images ? firebaseURl + productDetails?.images[0]?.image : "#"}
               alt="Placeholder Image"
               className="img-fluid mx-auto"
-              style={{objectPosition: 'center' }}
+              style={{ objectPosition: 'center' }}
             />
           </div>
 
@@ -74,12 +101,12 @@ function ProductDetails() {
           <div className="col-md-6">
             <div className="card" style={{ border: 'none' }}>
               <div className="card-body">
-                <h5 className="card-title h4">{productDetails.name}</h5>
+                <h5 className="card-title h4">{productDetails?.name}</h5>
                 <p className="card-text">
-                  <span className='fw-semibold fs-4'>₹ {productDetails.price} </span>
+                  <span className='fw-semibold fs-4'>₹ {productDetails?.price} </span>
                 </p>
                 <p className="card-text">
-                  <span className='fw-semibold'>Sold By : </span>{productDetails.seller_name}
+                  <span className='fw-semibold'>Sold By : </span>{productDetails?.seller_name}
                 </p>
 
                 {/* Counting box */}
@@ -91,7 +118,7 @@ function ProductDetails() {
                       <button className='d-flex align-items-center justify-content-center' onClick={increaseCount} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }} >+</button>
                     </div>
                   </div>
-                  <button className='btn btn-dark ms-3' style={{ width: '10vw' }} > Add to Cart</button>
+                  <button className='btn btn-dark ms-3' style={{ width: '10vw' }} onClick={() => addToCart(productDetails, firebaseURl + productDetails?.images[0]?.image)}> Add to Cart</button>
                 </div>
 
                 {/* Accordian with three sections */}
@@ -104,8 +131,8 @@ function ProductDetails() {
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                       <div className="accordion-body">
-                        <p>country of Origin : {productDetails.country_of_origin}</p>
-                        <p>Net Quantity : {productDetails.net_quantity}</p>
+                        <p>country of Origin : {productDetails?.country_of_origin}</p>
+                        <p>Net Quantity : {productDetails?.net_quantity}</p>
                         {/* <p>Contact Details Consumer Care : </p> */}
                       </div>
                     </div>
@@ -117,7 +144,7 @@ function ProductDetails() {
                       </button>
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div className="accordion-body">{productDetails.description}</div>
+                      <div className="accordion-body">{productDetails?.description}</div>
                     </div>
                   </div>
                   <div className="accordion-item">
@@ -127,7 +154,7 @@ function ProductDetails() {
                       </button>
                     </h2>
                     <div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div className="accordion-body">Sold By : {productDetails.seller_name}</div>
+                      <div className="accordion-body">Sold By : {productDetails?.seller_name}</div>
                     </div>
                   </div>
                 </div>

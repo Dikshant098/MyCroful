@@ -50,6 +50,33 @@ const ProductShopDetails = () => {
 
     }, [payload, address])
 
+    const addToCart = async (p, imgUrl) => {
+        // dispatch(getProductDetails(id))
+        // navigate('/dashboard/cart/cart/' + alias)
+        const userId = localStorage.getItem('Croful')
+        console.log(userId);
+        console.log();
+        let obj = {
+            productName: p.name,
+            price: p.price,
+            quantity: 1,
+            userId: userId,
+            img: imgUrl,
+            cId: p._id,
+        }
+        try {
+            const url = BASE_URL + 'cart/addToCart'
+            const data = await axios.post(url, obj)
+            if (data) {
+                alert("Product added successfully !!")
+            }
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+
+
+    }
 
 
     // const patchShopData = () => {
@@ -86,7 +113,7 @@ const ProductShopDetails = () => {
     // }
 
     const handleProductDetails = (alias) => {
-        navigate('/dashboard/productDetails/'+ alias)
+        navigate('/dashboard/productDetails/' + alias)
     }
 
 
@@ -134,7 +161,7 @@ const ProductShopDetails = () => {
 
                                                 </div>
                                             </div>
-                                            <div className="product_card_footer d-grid p-2 add_to_cart ">
+                                            <div className="product_card_footer d-grid p-2 add_to_cart " onClick={() => addToCart(p, firebaseURl + p?.images[0]?.image)}>
                                                 <button
                                                     // to={`/dashboard/productDetails/${p._id}`}
                                                     type="submit"
