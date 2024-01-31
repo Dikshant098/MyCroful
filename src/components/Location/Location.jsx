@@ -27,13 +27,10 @@ function Location() {
                 latitude: latitude,
                 longitude: longitude
             }
-
-
-            axios.post('http://localhost:2023/api/location/getLocation', obj).then((response) => {
-                console.log(response?.data[0]);
-                setLocation(response?.data[0]?.formatted);
-                dispatch(setLocationDetails(obj))
-            })
+            const {data} = await axios.post('http://localhost:2023/api/location/getLocation', obj);
+            console.log(data);
+            setLocation(data);
+            dispatch(setLocationDetails(obj))
 
         } catch (error) {
             console.error('Error fetching location data:', error.message);
@@ -83,7 +80,8 @@ function Location() {
                     <div className="mt-0 d-flex">
                         {location ? (
                             <>
-                                <p className="mb-0 fw-semibold ml-2">{location}</p>
+                                <p className="mb-0 fw-semibold ml-2">{location?.address.city}</p>
+                                <p className="mb-0 fw-semibold ml-2"> : {location?.address.postcode}</p>
                                 {/* <p className="mb-1 fw-semibold"> :{location}</p> */}
                             </>
                         ) : (
