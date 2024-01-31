@@ -107,7 +107,7 @@ function Cart() {
                     <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>Subtotal</div>
                 </div>
 
-                {/* second block */}
+                {/* second block */} 
 
                 {/* Cross button at the beginning */}
                 {cartDetails?.map(productDetails => {

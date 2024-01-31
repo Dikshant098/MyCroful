@@ -43,7 +43,6 @@ function ProductDetails() {
     { title: 'Card 5', text: 'Some quick example text for Card 5.', img: five },
   ];
 
-
   const [count, setCount] = useState(1);
   const increaseCount = () => {
     setCount(count + 1);
