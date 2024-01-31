@@ -5,6 +5,8 @@ import { Link, useNavigate, useNavigation, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { searchProduct } from '../../../../redux/search/searchAction'
 import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
+import axios from 'axios'
+import { BASE_URL } from '../../../../constants/baseUrl'
 
 const ProductListCategory = () => {
   const [productList, setProductList] = useState([])
@@ -36,8 +38,32 @@ const ProductListCategory = () => {
   }, [])
 
 
-  const addToCart = (id) => {
-    dispatch(getProductDetails(id))
+  const addToCart = async (p, imgUrl) => {
+    // dispatch(getProductDetails(id))
+    // navigate('/dashboard/cart/cart/' + alias)
+    const userId = localStorage.getItem('Croful')
+    console.log(userId);
+    console.log();
+    let obj = {
+      productName: p.name,
+      price: p.price,
+      quantity: 1,
+      userId: userId,
+      img: imgUrl,
+      cId: p._id,
+    }
+    try {
+      const url = BASE_URL + 'cart/addToCart'
+      const data = await axios.post(url,obj)
+      if(data){
+        alert("Product added successfully !!")
+      }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+
+
   }
 
   // const handleProductDetails = (name) => {
@@ -77,15 +103,15 @@ const ProductListCategory = () => {
                         </div>
                       </div>
                       <div className="product_card_footer d-grid p-2 add_to_cart ">
-                        <Link
-                          to={`/dashboard/productDetails`}
+                        <button
+                          // to={`/dashboard/productDetails`}
                           type="submit"
                           className='btn btn-dark rounded-0 add_to_Cart'
-                        // onClick={() => addToCart(p._id)}
+                          onClick={() => addToCart(p, imgUrl + p.images[0].image)}
                         >
                           Add to Cart
 
-                        </Link>
+                        </button>
                         {/* <button onClick={() => addToCart(p)}></button> */}
                       </div>
                     </div>

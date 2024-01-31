@@ -75,6 +75,8 @@ const LoginScreen = () => {
       console.log(data);
       if (data.success) {
         navigate("/dashboard/Home");
+        // console.log(data);
+        localStorage.setItem('Croful', data._id)
         alert('success done login !!')
         setOtp(null)
         setMobile(null)
