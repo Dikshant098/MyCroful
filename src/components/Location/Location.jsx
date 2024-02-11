@@ -24,13 +24,24 @@ function Location() {
     const fetchData = async () => {
         try {
             const obj = {
-                latitude: 21.16534338765214,
-                longitude: 79.08088442337808
+                latitude: 21.165353392734936,
+                longitude: 79.08082005145951
             }
-            const {data} = await axios.post('http://localhost:2023/api/location/getLocation', obj);
-            console.log(data);
-            setLocation(data);
-            dispatch(setLocationDetails(obj))
+            const response = await axios.post('http://localhost:2023/api/location/getLocation', obj);
+            console.log(response);
+
+            // setLocation(data);
+            if (response) {
+                let obj = {
+                    address: {
+                        city: 'Mangalwari Bazar Rd, Sadar, Nagpur',
+                        postcode: '440001'
+
+                    }
+                }
+                setLocation(obj)
+            }
+            // dispatch(setLocationDetails(obj))
 
         } catch (error) {
             console.error('Error fetching location data:', error.message);
@@ -80,7 +91,7 @@ function Location() {
                     <div className="mt-0 d-flex">
                         {location ? (
                             <>
-                                <p className="mb-0 fw-semibold ml-2">{location?.address.city}</p>
+                                <p className="mb-0 fw-semibold ml-2">{location?.address.city.slice(0,17)+ '..'}</p>
                                 <p className="mb-0 fw-semibold ml-2"> : {location?.address.postcode}</p>
                                 {/* <p className="mb-1 fw-semibold"> :{location}</p> */}
                             </>

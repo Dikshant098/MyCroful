@@ -43,7 +43,6 @@ function ProductDetails() {
     { title: 'Card 5', text: 'Some quick example text for Card 5.', img: five },
   ];
 
-
   const [count, setCount] = useState(1);
   const increaseCount = () => {
     setCount(count + 1);
@@ -88,7 +87,7 @@ function ProductDetails() {
         {/* <h2 className='d-flex justify-content-center'>{productDetails.category}</h2> */}
         <div className="row">
           {/* Left Section - Image */}
-          <div className="container col-md-6">
+          <div className="container col-md-6 d-flex justify-content-center align-items-center" style={{marginTop:'83px'}}>
             <img
               src={productDetails?.images ? firebaseURl + productDetails?.images[0]?.image : "#"}
               alt="Placeholder Image"
@@ -98,7 +97,7 @@ function ProductDetails() {
           </div>
 
           {/* Right Section - Description */}
-          <div className="col-md-6">
+          <div className="col-md-6" style={{marginTop:'83px'}}>
             <div className="card" style={{ border: 'none' }}>
               <div className="card-body">
                 <h5 className="card-title h4">{productDetails?.name}</h5>

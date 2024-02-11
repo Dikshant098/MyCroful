@@ -68,7 +68,9 @@ function Collections() {
           </div>
         ))}
       </div>
-    </div >
+
+          
+    </div>
   );
 }
 

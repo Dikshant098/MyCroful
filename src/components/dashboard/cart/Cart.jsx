@@ -107,7 +107,7 @@ function Cart() {
                     <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>Subtotal</div>
                 </div>
 
-                {/* second block */}
+                {/* second block */} 
 
                 {/* Cross button at the beginning */}
                 {cartDetails?.map(productDetails => {
@@ -118,7 +118,7 @@ function Cart() {
                             <div className='col d-flex flex-row align-items-center justify-content-center fw-semibold' style={{ flex: '36%' }}>
                                 <div className="d-flex flex-row align-items-center">
                                     <img src={productDetails?.img} alt="" srcSet="" className='mb-2' style={{ width: '150px' }} />
-                                    <p className="mb-0" style={{ marginLeft: '20px' }}>{productDetails?.productName.length < 20 ? productDetails?.productName : productDetails?.productName?.slice(0, 19) + '...'}</p>
+                                    <p className="mb-0" style={{ marginLeft: '20px' }}>{productDetails?.productName?.length < 20 ? productDetails?.productName : productDetails?.productName?.slice(0, 19) + '...'}</p>
                                 </div>
                             </div>
                             <div className='col d-flex flex-column align-items-center fw-semibold' style={{ flex: '40%' }}>
@@ -152,7 +152,7 @@ function Cart() {
                     }}>
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item d-flex flex-row">
-                                <span className="me-2 col">Subtotal</span>
+                                <span className="me-2 col">Price</span>
                                 <div className='col'>
                                     ₹{total}.00
                                 </div>

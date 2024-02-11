@@ -80,7 +80,7 @@ const Header = () => {
   const logOutHandler = () => {
     navigate('/login')
     localStorage.setItem('Croful', '')
-  }   
+  }
 
   return (
     <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
@@ -171,29 +171,53 @@ const Header = () => {
       <div className="row">
         <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
           <div className="p-2">
-            <li className="d-flex">
-              <ul className="fw-semibold " id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
+            <li className="d-flex mt-1">
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Fashion.svg" class="img-fluid category-icon" />
+                </div>
                 Fashion
               </ul>
-              <ul className="fw-semibold" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Grocery.svg" class="img-fluid category-icon" />
+                </div>
                 Grocery
               </ul>
-              <ul className="fw-semibold" id='inverter-and-stabilizer&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='inverter-and-stabilizer&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Electronics.svg" class="img-fluid category-icon" />
+                </div>
                 Electronics
               </ul>
-              <ul className="fw-semibold" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Food-Beverages.svg" class="img-fluid category-icon" />
+                </div>
                 Food & Beverages
               </ul>
-              <ul className="fw-semibold" id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Home-Decor.svg" class="img-fluid category-icon" />
+                </div>
                 Home & Decor
               </ul>
-              <ul className="fw-semibold" id='health-devices&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='health-devices&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Beauty-Personal-Care.svg" class="img-fluid category-icon" />
+                </div>
                 Beauty & Personal Care
               </ul>
-              <ul className="fw-semibold" id='automotive&filters ' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='automotive&filters ' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Automotive.svg" class="img-fluid category-icon" />
+                </div>
                 Automotive
               </ul>
-              <ul className="fw-semibold" id='health-and-wellness&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+              <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='health-and-wellness&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Health-Wellness.svg" class="img-fluid category-icon" />
+                </div>
                 Health & Wellness
               </ul>
               {/* <ul className="fw-semibold" onClick={searchList}>
