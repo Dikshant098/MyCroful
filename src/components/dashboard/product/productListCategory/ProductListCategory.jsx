@@ -7,6 +7,8 @@ import { searchProduct } from '../../../../redux/search/searchAction'
 import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
 import axios from 'axios'
 import { BASE_URL } from '../../../../constants/baseUrl'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductListCategory = () => {
   const [productList, setProductList] = useState([])
@@ -54,11 +56,13 @@ const ProductListCategory = () => {
     }
     try {
       const url = BASE_URL + 'cart/addToCart'
-      const data = await axios.post(url,obj)
-      if(data){
-        alert("Product added successfully !!")
+      const data = await axios.post(url, obj)
+      if (data) {
+        toast.success("Product successfully added !!", {
+          autoClose: 1000,
+        })
       }
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -79,6 +83,7 @@ const ProductListCategory = () => {
   return (
     <div className='product_list my-3'>
       <div className="container">
+        <ToastContainer />
         <div className="row">
           {
             productList?.map(p => {

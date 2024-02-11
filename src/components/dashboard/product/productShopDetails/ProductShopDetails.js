@@ -6,6 +6,8 @@ import { icons } from 'react-icons';
 import { searchShopDetails } from '../../../../redux/search/searchAction';
 import { useSelector, useDispatch } from 'react-redux'
 import './ProductShopDetails.scss'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductShopDetails = () => {
     const param = useParams();
@@ -68,7 +70,9 @@ const ProductShopDetails = () => {
             const url = BASE_URL + 'cart/addToCart'
             const data = await axios.post(url, obj)
             if (data) {
-                alert("Product added successfully !!")
+                toast.success("Product successfully added !!", {
+                    autoClose: 1000,
+                })
             }
             console.log(data);
         } catch (error) {
@@ -116,12 +120,11 @@ const ProductShopDetails = () => {
         navigate('/dashboard/productDetails/' + alias)
     }
 
-
-
-
     return (
         <div>
             <div className="container">
+                <ToastContainer />
+
                 <div className="row">
                     <div className="col-md-2">
                         <div className="imgBox">

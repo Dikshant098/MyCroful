@@ -5,6 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { BASE_URL } from '../../../constants/baseUrl';
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const firebaseURl = 'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/'
 
 function Cart() {
@@ -58,6 +61,10 @@ function Cart() {
         try {
             const data = await axios.delete(url)
             if (data) {
+                toast.error("Product successfully deleted !!", {
+                    autoClose: 1000,
+                  })
+                console.log(data);
                 getCartDetails()
             }
         } catch (error) {
@@ -93,9 +100,10 @@ function Cart() {
 
 
     return (
-        <div className='container-fluid'>
+        <div className='container'>
+             <ToastContainer />
             <div className='fw-semibold h1 d-flex justify-content-center mb-5'>Cart</div>
-            <div className='' style={{ border: '1px solid gray' }}>
+            <div className='border border-2 rounded-2'>
                 <div className='Product-detail d-flex justify-content-between mt-3'>
                     <div className='col d-flex flex-column align-items-center justify-content-center fw-semibold' style={{ flex: '40%' }}>
                         Product

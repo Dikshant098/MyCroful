@@ -11,6 +11,8 @@ import two from '../../../../assets/images/sarees/saree-2.jpeg';
 import three from '../../../../assets/images/sarees/saree-3.jpeg';
 import four from '../../../../assets/images/sarees/saree-4.jpeg';
 import five from '../../../../assets/images/sarees/saree-5.jpeg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const firebaseURl = 'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/'
 
 function ProductDetails() {
@@ -71,7 +73,9 @@ function ProductDetails() {
       const url = BASE_URL + 'cart/addToCart'
       const data = await axios.post(url, obj)
       if (data) {
-        alert("Product added successfully !!")
+        toast.success("Product successfully added !!", {
+          autoClose: 1000,
+        })
       }
       console.log(data);
     } catch (error) {
@@ -83,7 +87,8 @@ function ProductDetails() {
 
   return (
     <div>
-      <div className="container-fluid mt-5">
+      <div className="container mt-5">
+      <ToastContainer />
         {/* <h2 className='d-flex justify-content-center'>{productDetails.category}</h2> */}
         <div className="row">
           {/* Left Section - Image */}
