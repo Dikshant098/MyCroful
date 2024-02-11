@@ -6,6 +6,8 @@ import { icons } from 'react-icons';
 import { searchShopDetails } from '../../../../redux/search/searchAction';
 import { useSelector, useDispatch } from 'react-redux'
 import './ProductShopDetails.scss'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductShopDetails = () => {
     const param = useParams();
@@ -15,8 +17,9 @@ const ProductShopDetails = () => {
     const [shopData, setShopData] = useState()
     const [sellerName, setSellerName] = useState()
     const [location, setLocation] = useState()
-    const [shopImgUrl, setShopImgUrlImgUrl] = useState()
-    const [prodImgUrl, setProdImgUrlImgUrl] = useState()
+    // const [shopImgUrl, setShopImgUrlImgUrl] = useState()
+    // const [prodImgUrl, setProdImgUrlImgUrl] = useState()
+    const [logo, setLogo] = useState()
     const [address, setAddress] = useState()
     const searchResponse = useSelector((state) => state.searchProductShopDetailsReducer);
     const { loading, success, payload } = searchResponse;
@@ -41,14 +44,17 @@ const ProductShopDetails = () => {
         const address = payload?.data[0].seller_details.address
         console.log(payload?.data[0]?.seller_details.address);
         setAddress(address)
-        const prodImgUrl = firebaseURl + payload?.data[0]?.images[0]?.image
-        console.log(prodImgUrl, "prodImgUrl==========");
-        setProdImgUrlImgUrl(prodImgUrl)
+        const logo = firebaseURl + payload?.data[0]?.seller_details.logo
+        console.log(logo, "logo==========");
+        // setProdImgUrlImgUrl(prodImgUrl)
+        setLogo(logo)
         setSellerName(sellerDetails?.name)
-        setShopImgUrlImgUrl(img)
+        // setShopImgUrlImgUrl(img)
         setLocation(sellerDetails?.short_desc)
 
     }, [payload, address])
+
+    
 
     const addToCart = async (p, imgUrl) => {
         // dispatch(getProductDetails(id))
@@ -68,7 +74,9 @@ const ProductShopDetails = () => {
             const url = BASE_URL + 'cart/addToCart'
             const data = await axios.post(url, obj)
             if (data) {
-                alert("Product added successfully !!")
+                toast.success("Product successfully added !!", {
+                    autoClose: 1000,
+                })
             }
             console.log(data);
         } catch (error) {
@@ -116,23 +124,22 @@ const ProductShopDetails = () => {
         navigate('/dashboard/productDetails/' + alias)
     }
 
-
-
-
     return (
-        <div>
+        <div style={{marginTop:'17%'}}>
             <div className="container">
+                <ToastContainer />
+
                 <div className="row">
                     <div className="col-md-2">
                         <div className="imgBox">
-                            <img src={shopImgUrl ? shopImgUrl : '#'} className='img-fluid' alt="This is an img" />
+                            <img src={logo} className='img-fluid' alt="This is an img" />
                         </div>
                     </div>
                     <div className="col-md-9 d-flex flex-column justify-content-center">
                         <div className="title h1">{sellerName}</div>
 
                         <div className="location text-secondary text-uppercase">{location}</div>
-                        <div className="location text-secondary text-uppercase">{address}</div>
+                        <div className="location text-success fw-bold text-uppercase">{address}</div>
                     </div>
                 </div>
                 <hr />

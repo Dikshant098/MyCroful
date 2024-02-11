@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Location from "../Location/Location";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocationDetails } from '../../redux/location/locationAction';
+import { GrLocation } from 'react-icons/gr';
 
 
 <style>
@@ -19,7 +20,7 @@ import { getLocationDetails } from '../../redux/location/locationAction';
 </style>
 const Header = () => {
   // const axios = require('axios')
-
+  const firebaseURl = 'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/'
   const { BASE_URL } = require('../../constants/baseUrl')
   const [search, setSearch] = useState();
   const [searchListData, setSearchListData] = useState([]);
@@ -99,7 +100,7 @@ const Header = () => {
                   <input
                     type="text"
                     className="form-control rounded-pill"
-                    placeholder="Search..."
+                    placeholder="What are you looking for ?"
                     aria-label="Search"
                     aria-describedby="search-addon"
                     value={search}
@@ -110,18 +111,28 @@ const Header = () => {
                     overflowY: 'scroll', width: '42vw', position: 'absolute',
                     left: '15px',
                     top: '45px',
-                    maxHeight: ' 30vh',
+                    maxHeight: '50vh',
                     backgroundColor: 'rgb(233, 245, 251)'
                   }}>
                     {
                       Array.isArray(searchListData) &&
                       searchListData.map((s, key) => (
 
-                        search ? <div className="d-flex ">
-                          <span onClick={() => searchHandler(s._id)} className="dropdown-item p-2" href="#" key={key}>{s.title}</span>
-                          <span className='text-success pe-4'>{s?.address?.slice(0, 9)} </span>
-                          <span className='text-success'>{s?.is_open ? <span className='text-success'>Open </span> : <span className='text-danger'>Closed </span>}</span>
-                          <span className='text-success'>{s?.is_deliverable ? <span className='text-success ps-2'> Deliverable</span> : <span className=' ps-2 text-danger'> undeliverable</span>}</span>
+                        search ? <div className="d-flex p-2 searchList" onClick={() => searchHandler(s._id)}>
+                          <div>
+                            <img src={firebaseURl + s?.logo} className='rounded-2' width={'50px'} alt="" />
+                          </div>
+                          <div className='ps-3'>
+                            <div className="dropdown-item " href="#" key={key}>{s.title}  </div>
+
+                            <div style={{ fontSize: '13px' }} className='text-secondary'> Seller |<span className='text-success fw-bold'>{s?.is_deliverable ? <span className='text-success ps-2'>Deliverable</span> : <span className='ps-2 text-danger'>Non-Deliverable</span>}</span></div>
+
+                            {/* <span className='text-success'>{s?.is_open ? <span className='text-success'>Open </span> : <span className='text-danger'>Closed </span>}</span> */}
+
+                          </div>
+                          <div className='ms-auto'>
+                            <span className='text-success pe-4'>{s?.address?.slice(0, 9)}  <GrLocation className="gap-5 me-2" style={{ fontSize: '25px', fontWeight: '400' }} /></span>
+                          </div>
                         </div> : ""
                       ))
                     }

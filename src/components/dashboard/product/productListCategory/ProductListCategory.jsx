@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import '../productListCategory/ProductListCategory.scss';
-import dummyImg from '../../../../assets/images/dummy_img.jpg';
-import { Link, useNavigate, useNavigation, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { searchProduct } from '../../../../redux/search/searchAction';
-import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction';
-import axios from 'axios';
-import { BASE_URL } from '../../../../constants/baseUrl';
+import React, { useEffect, useState } from 'react'
+import '../productListCategory/ProductListCategory.scss'
+import dummyImg from '../../../../assets/images/dummy_img.jpg'
+import { Link, useNavigate, useNavigation, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { searchProduct } from '../../../../redux/search/searchAction'
+import { getProductDetails } from '../../../../redux/productDetails/productDetailsAction'
+import axios from 'axios'
+import { BASE_URL } from '../../../../constants/baseUrl'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductListCategory = () => {
   const [productList, setProductList] = useState([]);
@@ -42,11 +44,14 @@ const ProductListCategory = () => {
       cId: p._id,
     };
     try {
-      const url = BASE_URL + 'cart/addToCart';
-      const data = await axios.post(url, obj);
+      const url = BASE_URL + 'cart/addToCart'
+      const data = await axios.post(url, obj)
       if (data) {
-        alert('Product added successfully !!');
+        toast.success("Product successfully added !!", {
+          autoClose: 1000,
+        })
       }
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +64,7 @@ const ProductListCategory = () => {
   return (
     <div className='product_list my-3'>
       <div className='container'  style={{marginTop:'17%'}}>
+      <ToastContainer />
         <div className='row'>
           {loadingImages ? ( // Render a loader while images are loading
             <div className='loader'>Loading...</div>
