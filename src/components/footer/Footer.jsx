@@ -8,7 +8,7 @@ function Footer() {
     <footer className='container-fluid justify-content-between align-items-center' style={{
       width: '100%',
       height: '50%',
-      background: "linear-gradient(to top, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))",
+      background: "linear-gradient(to top, rgba(102,178,178, 1), rgba(0, 0, 0, 0))",
     }}>
       <div className="row" style={{ marginTop: "40px" }}>
         <div className="col-lg-3">

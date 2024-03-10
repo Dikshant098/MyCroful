@@ -132,12 +132,12 @@ const LoginScreen = () => {
 
   return (
     <div class='login' style={{
-      background: "linear-gradient(to top, rgba(195, 192, 255, 1), rgba(0, 0, 0, 0))"
+      background: "linear-gradient(to top, rgba(0,128,128, 1), rgba(0, 0, 0, 0))"
     }}>
       <div className="container">
         <ToastContainer />
         <div className="card rounded-top-5" style={{
-          background: "linear-gradient(to bottom, rgba(220, 221, 222, 0.9), rgba(0, 0, 0, 0))"
+          background: "linear-gradient(to bottom, rgba(102,178,178, 0.9), rgba(0, 0, 0, 0))"
         }}>
           <div className="card-body paddingTopBottom px-5" style={{ paddingTop: "40px", paddingBottom: "50px" }}>
             <div className='d-flex flex-column align-items-center '>

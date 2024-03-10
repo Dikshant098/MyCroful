@@ -30,7 +30,7 @@ function Collections() {
   return (
     <div className='container-fluid mt-5'>
       {/* First Set of Collections */}
-      <div className='h1 d-flex justify-content-center'>New Collections</div>
+      <div className='h1 d-flex justify-content-center' style={{color:'rgb(0,102,102)'}}>New Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {firstSetCardData.map((card, index) => (
           <div key={index} className='card' style={{
@@ -50,7 +50,7 @@ function Collections() {
       </div>
 
       {/* Second Set of Collections */}
-      <div className='h1 d-flex justify-content-center mt-5'>Popular Collections</div>
+      <div className='h1 d-flex justify-content-center mt-5' style={{color:'rgb(0,102,102)'}}>Popular Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {secondSetCardData.map((card, index) => (
           <div key={index} className='card' style={{
