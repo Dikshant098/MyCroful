@@ -63,7 +63,7 @@ function Cart() {
             if (data) {
                 toast.error("Product successfully deleted !!", {
                     autoClose: 1000,
-                  })
+                })
                 console.log(data);
                 getCartDetails()
             }
@@ -100,8 +100,8 @@ function Cart() {
 
 
     return (
-        <div className='container' style={{marginTop:'17%'}}>
-             <ToastContainer />
+        <div className='container' style={{ marginTop: '17%' }}>
+            <ToastContainer />
             <div className='fw-semibold h1 d-flex justify-content-center mb-4'>Cart</div>
             <div className='border border-2 rounded-2'>
                 <div className='Product-detail d-flex justify-content-between mt-3'>
@@ -115,7 +115,7 @@ function Cart() {
                     <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>Subtotal</div>
                 </div>
 
-                {/* second block */} 
+                {/* second block */}
 
                 {/* Cross button at the beginning */}
                 {cartDetails?.map(productDetails => {
@@ -145,7 +145,6 @@ function Cart() {
                             <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>{productDetails?.quantity * productDetails.price}</div>
                         </div>
                     )
-
 
                 })}
 

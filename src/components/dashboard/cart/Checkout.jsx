@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import dummy from '../../../assets/images/dummy_img.jpg';
 import { useState } from 'react';
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import upi from '../../../assets/images/new upi.avif'
+import { BASE_URL } from '../../../constants/baseUrl';
+import axios from 'axios'
+// import { jsPDF } from 'jspdf';
+import { json, useNavigate } from 'react-router-dom';
+
+import ReactToPdf from 'react-to-pdf';
+import { PDFViewer } from '@react-pdf/renderer';
+
+import PDF from './PDF'
+
+
 
 function Checkout() {
   const [formData, setFormData] = useState({
@@ -24,20 +35,48 @@ function Checkout() {
     lastName: '',
     email: '',
   });
+  const [cartDetails, setCartDetails] = useState([])
+  const [total, setTotal] = useState(0)
+
+  const navigate = useNavigate()
+  // const pdfRef = useRef(null);
+
+  // const generatePDF = () => {
+  //   const doc = new jsPDF();
+  //   doc.text(20, 20, 'Billing Details:');
+  //   // Add your form data to the PDF
+  //   // Example:
+  //   doc.text(20, 30, `First Name: ${formData.firstName}`);
+  //   doc.text(20, 40, `Last Name: ${formData.lastName}`);
+  //   // Add more fields as needed
+
+  //   // Save the PDF to the ref
+  //   pdfRef.current = doc;
+  // };
+
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // You can handle form submission logic here
     console.log('Form data submitted:', formData);
+    goCheckout()
   };
+
+  const goCheckout = () => {
+
+    navigate('/invoiceDetails/'+ JSON.stringify(formData))
+  }
 
 
   const handleCheckboxChange = () => {
@@ -58,8 +97,29 @@ function Checkout() {
     console.log('Form data submitted:', formData);
   };
 
+  const getCartDetails = async () => {
+    const userId = localStorage.getItem('Croful')
+    const url = BASE_URL + '/cart/getCartDetails/' + userId
+    try {
+      const { data } = await axios.get(url)
+      console.log(data);
+      setCartDetails(data)
+      let subtotal = 0;
+      data.map(d => {
+        subtotal = d.price + subtotal
+      })
+      setTotal(subtotal)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getCartDetails()
+  }, [])
+
   return (
-    <div className='container-fluid'>
+    <div className='container'>
       <div className='h1 d-flex justify-content-center'>Checkout</div>
       <div className='row mt-5'>
         {/* Left Column */}
@@ -99,15 +159,15 @@ function Checkout() {
                 </div>
               </div>
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="companyName" className="form-label d-flex">
                   Company Name <span style={{ marginLeft: '6px' }}>(optional)</span>
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="companyName"
+                  name="companyName"
+                  value={formData.companyName}
                   onChange={handleChange}
                   required
                 />
@@ -130,15 +190,15 @@ function Checkout() {
               </div>
 
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="streetAddress" className="form-label d-flex">
                   Street address
                 </label>
                 <input
                   type="text"
                   className="form-control mb-2"
-                  id="lastName"
-                  name="lastName"
-                  value='House Number and street name'
+                  id="streetAddress"
+                  name="streetAddress"
+                  value={formData.streetAddress}
                   onChange={handleChange}
                   required
                   style={{ color: 'gray', fontSize: '15px' }}
@@ -155,71 +215,71 @@ function Checkout() {
                 />
               </div>
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="townCity" className="form-label d-flex">
                   Town / City
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="townCity"
+                  name="townCity"
+                  value={formData.townCity}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="state" className="form-label d-flex">
                   State
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="state"
+                  name="state"
+                  value={formData.state}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="pinCode" className="form-label d-flex">
                   PIN code
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="pinCode"
+                  name="pinCode"
+                  value={formData.pinCode}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="phone" className="form-label d-flex">
                   Phone
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="col-md-12 mb-3">
-                <label htmlFor="lastName" className="form-label d-flex">
+                <label htmlFor="email" className="form-label d-flex">
                   Email address
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  id="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
                 />
@@ -322,7 +382,7 @@ function Checkout() {
                         required
                         style={{ color: 'gray', fontSize: '15px' }}
                       />
-                      <input
+                      {/* <input
                         type="text"
                         className="form-control"
                         id="lastName"
@@ -331,7 +391,7 @@ function Checkout() {
                         onChange={handleChange}
                         required
                         style={{ color: 'gray', fontSize: '15px' }}
-                      />
+                      /> */}
                     </div>
                     <div className="col-md-12 mb-3">
                       <label htmlFor="lastName" className="form-label d-flex">
@@ -356,7 +416,7 @@ function Checkout() {
                         className="form-control"
                         id="lastName"
                         name="lastName"
-                        value={formData.lastName}
+                        value={formData.state}
                         onChange={handleChange}
                         required
                       />
@@ -417,7 +477,7 @@ function Checkout() {
               <div className="modal-body d-flex flex-row align-items-center justify-content-around">
                 <div className="d-flex flex-column">
                   <span className='fw-bold' style={{ fontSize: '22px' }}>Enter UPI ID</span>
-                  <input className='mt-1' type="text" name="" id="" placeholder='Enter Your UPI Id..' style={{ width: '100%', border: '1px solid gray', borderRadius: '5px', padding:'6px'}} />
+                  <input className='mt-1' type="text" name="" id="" placeholder='Enter Your UPI Id..' style={{ width: '100%', border: '1px solid gray', borderRadius: '5px', padding: '6px' }} />
                 </div>
                 <div className="ml-auto">
                   <img src={upi} style={{ width: '130px', marginRight: '0' }} alt="" />
@@ -430,6 +490,8 @@ function Checkout() {
             </div>
           </div>
         </div>
+       
+        
 
       </div>
     </div>

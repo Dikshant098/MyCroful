@@ -12,6 +12,7 @@ import Home from '../components/home/Home'
 import Checkout from '../components/dashboard/cart/Checkout'
 import ProductShopDetails from '../components/dashboard/product/productShopDetails/ProductShopDetails'
 import Cart from '../components/dashboard/cart/Cart'
+import PDF from '../components/dashboard/cart/PDF'
 
 const AppRoute = () => {
     return (
@@ -28,6 +29,7 @@ const AppRoute = () => {
                 <Route exact={true} path='productShopDetails/:id' element={<ProductShopDetails />}></Route>
                 <Route path='*' element={<RedirectScreen />}></Route>
             </Route>
+            <Route exact={true} path='invoiceDetails/:formData' element={<PDF />}></Route>
             <Route path='*' element={<RedirectScreen />}></Route>
         </Routes>
     )
