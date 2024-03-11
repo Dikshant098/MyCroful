@@ -172,7 +172,8 @@ const ProductShopDetails = () => {
                                                 <button
                                                     // to={`/dashboard/productDetails/${p._id}`}
                                                     type="submit"
-                                                    className='btn btn-dark rounded-0 add_to_Cart'
+                                                    className='btn btn-dark rounded-5 add_to_Cart'
+                                                    style={{backgroundColor:'rgb(0,128,128)'}}
                                                 // onClick={() => addToCart(p._id)}
                                                 >
                                                     Add to Cart

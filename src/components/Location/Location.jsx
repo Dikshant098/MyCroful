@@ -85,7 +85,7 @@ function Location() {
 
     return (
         <div>
-            <div className="d-flex text-center rounded-5" style={{ border: '1px solid black' }} onClick={handleLocation}>
+            <div className="d-flex text-center rounded-5" style={{ border: '1px solid black',  background: "linear-gradient(to bottom, rgba(178,216,216, 1), rgba(0, 0, 0, 0))" }} onClick={handleLocation}>
                 <button className="btn d-flex align-items-center justify-content-center" style={{ border: 'none' }}>
                     <GrLocation className="gap-5 me-2" style={{ fontSize: '25px', fontWeight: '400' }} />
                     <div className="mt-0 d-flex">

@@ -115,14 +115,14 @@ function ProductDetails() {
 
                 {/* Counting box */}
                 <div className='d-flex flex-row ' style={{}}>
-                  <div style={{ width: '120px', padding: '10px', border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
+                  <div className='rounded-5' style={{ width: '120px', padding: '10px', border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
                       <button className='d-flex align-items-center justify-content-center' onClick={decreaseCount} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }} >-</button>
                       <span style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{count}</span>
                       <button className='d-flex align-items-center justify-content-center' onClick={increaseCount} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }} >+</button>
                     </div>
                   </div>
-                  <button className='btn btn-dark ms-3' style={{ width: '10vw' }} onClick={() => addToCart(productDetails, firebaseURl + productDetails?.images[0]?.image)}> Add to Cart</button>
+                  <button className='btn btn-dark ms-3 fw-bold rounded-5' style={{ width: '10vw', backgroundColor:'rgb(0,128,128)' }} onClick={() => addToCart(productDetails, firebaseURl + productDetails?.images[0]?.image)}> Add to Cart</button>
                 </div>
 
                 {/* Accordian with three sections */}
@@ -180,7 +180,7 @@ function ProductDetails() {
                 <div className='card-body' style={{ height: '120px' }}>
                   <h5 className='card-title'>{card.title}</h5>
                   <p className='card-text'>{card.text}</p>
-                  <a href='#' className='btn fw-semibold' style={{ border: '2px solid black', background: 'linear-gradient(to bottom, rgba(152, 210, 236, 1), rgba(0, 0, 0, 0))' }}>
+                  <a href='#' className='btn fw-semibold rounded-5' style={{ border: '1px solid black',backgroundColor:'rgb(0,128,128)', color:'white' }}>
                     Go somewhere
                   </a>
                 </div>
