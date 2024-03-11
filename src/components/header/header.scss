@@ -42,3 +42,14 @@ option {
 .searchList{
     cursor: pointer;
 }
+
+.icon-cont:hover {
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Change this to your desired hover background color */
+  }
+  
+  /* Apply hover effect on the div and image tags */
+ ul div img:hover {
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Change this to your desired hover background color */
+  }

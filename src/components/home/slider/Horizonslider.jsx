@@ -21,7 +21,7 @@ function Horizonslider() {
           marginTop:'18%',
           overflow: 'hidden',
           background:
-            'linear-gradient(to bottom, rgba(210, 208, 255, 2), rgba(210, 208, 255, 0.8))',
+            'linear-gradient(to bottom, rgba(0,102,102, 0.8), rgba(0,102,102, 0.8))',
         }}
         data-bs-ride="carousel"
         data-bs-interval="3000" // Set the sliding time to 3 seconds per image (3000 milliseconds)
@@ -31,7 +31,7 @@ function Horizonslider() {
             <div key={index} className={`carousel-item${index === 0 ? ' active' : ''}`}>
               <img
                 src={image}
-                className="dummy-img d-block w-100 h-100 p-1"
+                className="dummy-img d-block w-100 h-100"
                 alt={`Hori image ${index + 1}`}
                 style={{
                   objectFit: 'cover', // Ensure the image covers the entire container

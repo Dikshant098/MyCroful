@@ -30,7 +30,7 @@ function Collections() {
   return (
     <div className='container-fluid mt-5'>
       {/* First Set of Collections */}
-      <div className='h1 d-flex justify-content-center'>New Collections</div>
+      <div className='h1 d-flex justify-content-center' style={{ color: 'rgb(0,102,102)' }}>New Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {firstSetCardData.map((card, index) => (
           <div key={index} className='card' style={{
@@ -41,7 +41,7 @@ function Collections() {
             <div className='card-body' style={{ height: '120px' }}>
               <h5 className='card-title'>{card.title}</h5>
               <p className='card-text'>{card.text}</p>
-              <a href='#' className='btn fw-semibold' style={{ border: '2px solid black', background: 'linear-gradient(to bottom, rgba(152, 210, 236, 1), rgba(0, 0, 0, 0))' }}>
+              <a href='#' className='btn fw-semibold rounded-5' style={{ border: '2px solid black', background: "linear-gradient(to top, rgba(102,178,178,1), rgba(0, 0, 0, 0))" }}>
                 Go somewhere
               </a>
             </div>
@@ -50,7 +50,7 @@ function Collections() {
       </div>
 
       {/* Second Set of Collections */}
-      <div className='h1 d-flex justify-content-center mt-5'>Popular Collections</div>
+      <div className='h1 d-flex justify-content-center mt-5' style={{ color: 'rgb(0,102,102)' }}>Popular Collections</div>
       <div className='d-flex justify-content-around mt-5'>
         {secondSetCardData.map((card, index) => (
           <div key={index} className='card' style={{
@@ -61,7 +61,7 @@ function Collections() {
             <div className='card-body'>
               <h5 className='card-title'>{card.title}</h5>
               <p className='card-text'>{card.text}</p>
-              <a href='#' className='btn fw-semibold' style={{ border: '2px solid black', background: 'linear-gradient(to bottom, rgba(152, 210, 236, 1), rgba(0, 0, 0, 0))' }}>
+              <a href='#' className='btn fw-semibold rounded-5' style={{ border: '2px solid black', background: "linear-gradient(to top, rgba(102,178,178,1), rgba(0, 0, 0, 0))" }}>
                 Go somewhere
               </a>
             </div>
@@ -69,7 +69,7 @@ function Collections() {
         ))}
       </div>
 
-          
+
     </div>
   );
 }

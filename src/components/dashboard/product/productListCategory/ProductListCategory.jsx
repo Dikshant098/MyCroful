@@ -96,8 +96,9 @@ const ProductListCategory = () => {
                     <div className='product_card_footer d-grid p-2 add_to_cart '>
                       <button
                         type='submit'
-                        className='btn btn-dark rounded-0 add_to_Cart'
+                        className='btn btn-dark rounded-5 add_to_Cart'
                         onClick={() => addToCart(p, imgUrl + p.images[0].image)}
+                        style={{backgroundColor:'rgb(0,128,128)'}}
                       >
                         Add to Cart
                       </button>

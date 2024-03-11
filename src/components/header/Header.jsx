@@ -17,6 +17,7 @@ import { GrLocation } from 'react-icons/gr';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
 </style>
 const Header = () => {
   // const axios = require('axios')
@@ -84,11 +85,11 @@ const Header = () => {
   }
 
   return (
-    <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary rounded" style={{ maxWidth: "100vw", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}>
-      <div className="d-flex justify-content-between m-2 align-items-center">
+    <div className="container header mx-0 ps-0 bg-white shadow pt-0 pb-0 mb-0 bg-body-tertiary" style={{ maxWidth: "100vw", background: "linear-gradient(to top, rgba(102,178,178,1), rgba(0, 0, 0, 0))" }}>
+      <div className="d-flex justify-content-between m-1 mb-0 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="h1 fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none" }}>Croful</Link>
+          className="fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none", color: 'rgb(0,102,102)', fontSize:'60px' }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -105,14 +106,18 @@ const Header = () => {
                     aria-describedby="search-addon"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    style={{ border: "1px solid gray", marginRight: "3px", background: "linear-gradient(to bottom, rgba(210, 208, 255, 1), rgba(0, 0, 0, 0))" }}
+                    style={{ border: "1px solid gray", marginRight: "3px", background: "linear-gradient(to bottom, rgba(178,216,216, 1), rgba(0, 0, 0, 0))" }}
                   />
                   <div className="rounded-2 border" style={{
-                    overflowY: 'scroll', width: '42vw', position: 'absolute',
+                    overflowY: 'auto', /* Change from 'scroll' to 'auto' */
+                    width: '42vw',
+                    position: 'absolute',
                     left: '15px',
                     top: '45px',
                     maxHeight: '50vh',
-                    backgroundColor: 'rgb(233, 245, 251)'
+                    backgroundColor: 'rgb(178,216,216)',
+                    scrollbarWidth: 'thin', /* For Firefox */
+                    scrollbarColor: 'transparent transparent' /* For Firefox */
                   }}>
                     {
                       Array.isArray(searchListData) &&
@@ -181,53 +186,54 @@ const Header = () => {
       </div>
       <div className="row">
         <div className="d-flex align-items-center justify-content-center" style={{ cursor: "pointer" }}>
-          <div className="p-2">
+          <div className="pt-2 pb-0">
             <li className="d-flex mt-1">
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='fashion' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Fashion.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Fashion.svg" className="img-fluid category-icon" id="fashion" onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
+
                 Fashion
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Grocery.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Grocery.svg" class="img-fluid category-icon" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Grocery
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='inverter-and-stabilizer&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Electronics.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Electronics.svg" class="img-fluid category-icon" id='inverter-and-stabilizer&filters' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Electronics
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Food-Beverages.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Food-Beverages.svg" class="img-fluid category-icon" id='food-and-beverages' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Food & Beverages
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Home-Decor.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Home-Decor.svg" class="img-fluid category-icon" id='storage-and-organisation&filters' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Home & Decor
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='health-devices&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Beauty-Personal-Care.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Beauty-Personal-Care.svg" class="img-fluid category-icon" id='health-devices&filters' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Beauty & Personal Care
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='automotive&filters ' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Automotive.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Automotive.svg" class="img-fluid category-icon" id='automotive&filters ' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Automotive
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='health-and-wellness&filters' onClick={(e) => searchCategoryHandler(e.target.id)}>
-                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: '#ffebf0' }}>
-                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Health-Wellness.svg" class="img-fluid category-icon" />
+                <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
+                  <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Health-Wellness.svg" class="img-fluid category-icon" id='health-and-wellness&filters' onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
                 Health & Wellness
               </ul>
