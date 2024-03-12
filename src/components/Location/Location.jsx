@@ -91,7 +91,7 @@ function Location() {
                     <div className="mt-0 d-flex">
                         {location ? (
                             <>
-                                <p className="mb-0 fw-semibold ml-2">{location?.address.city.slice(0,17)+ '..'}</p>
+                                <p className="mb-0 fw-semibold ml-2">{location?.address.city.slice(0,17)+ ''}</p>
                                 <p className="mb-0 fw-semibold ml-2"> : {location?.address.postcode}</p>
                                 {/* <p className="mb-1 fw-semibold"> :{location}</p> */}
                             </>

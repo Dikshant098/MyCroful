@@ -1,18 +1,15 @@
-import React from 'react'
-import { AiOutlineDashboard } from 'react-icons/ai'
-import { BsHouse, BsTable, BsGrid, BsPeople, BsPersonCircle } from 'react-icons/bs'
-import '../sidebar/sidebar.scss'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { AiOutlineDashboard } from 'react-icons/ai';
+import { BsHouse, BsTable, BsGrid, BsPeople, BsPersonCircle } from 'react-icons/bs';
+import { Link } from "react-router-dom";
+import '../sidebar/sidebar.scss';
 
 function Sidebar() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    // const [toggleProfile, settoggleProfile] = useState(false)
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
-
 
     useEffect(() => {
         const profile = document.querySelector('#Profile');
@@ -20,7 +17,6 @@ function Sidebar() {
             profile.addEventListener('click', toggleSidebar);
         }
 
-        // Clean up the event listener when the component unmounts
         return () => {
             if (profile) {
                 profile.removeEventListener('click', toggleSidebar);
@@ -28,63 +24,55 @@ function Sidebar() {
         };
     }, [isSidebarOpen]);
 
-    const sidebarTransform = isSidebarOpen ? 'translateX(0%)' : 'translateX(110%)';
+    const sidebarTransform = isSidebarOpen ? 'translateX(0%)' : 'translateX(120%)';
 
     return (
         <div className='sidebar' style={{ transform: sidebarTransform }}>
-            <div className="row">
-                <div className='bg-dark col-auto min-vh-100 d-flex justify-content-between flex-column' style={{ width: '100%' }}>
-                    <div>
-                        <a href="#" className='text-decoration-none text-white d-flex align-items-center ms-3 mt-2  ' aria-current="page">
-                            <span className='ms-1 fs-4'>Your Profile</span>
-                        </a>
-                        <hr className='text-secondary' />
-                        <ul className='nav nav-pills flex-column'>
-                            <li className='nav-item text-white fs-4 my-1'>
-                                <a href="#" className='nav-link text-white fs-5 d-flex align-items-center' aria-current="page">
-                                    <AiOutlineDashboard className='fs-5' />
-                                    <span className='ms-2'>Dashboard</span>
-                                </a>
-                            </li>
-                            <li className='nav-item text-white fs-4 my-1'>
-                                <a href="#" className='nav-link text-white fs-5 d-flex align-items-center' aria-current="page">
-                                    <BsHouse className='fs-5' />
-                                    <span className='ms-2'>Home</span>
-                                </a>
-                            </li>
-                            <li className='nav-item text-white fs-4 my-1'>
-                                <a href="#" className='nav-link text-white fs-5 d-flex align-items-center' aria-current="page">
-                                    <BsTable className='fs-5' />
-                                    <span className='ms-2'>Orders</span>
-                                </a>
-                            </li>
-                            <li className='nav-item text-white fs-4 my-1'>
-                                <a href="#" className='nav-link text-white fs-5 d-flex align-items-center' aria-current="page">
-                                    <BsGrid className='fs-5' />
-                                    <span className='ms-2'>Products</span>
-                                </a>
-                            </li>
-                            <li className='nav-item text-white fs-4 my-1'>
-                                <a href="#" className='nav-link text-white fs-5 d-flex align-items-center' aria-current="page">
-                                    <BsPeople className='fs-5' />
-                                    <span className='ms-2'>Customer</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="Yourself dropdown open">
-                        <a className="text-decoration-none text-white dropdown-toggle fs-5 p-3 d-flex align-items-center" type="button" id="triggerid" data-bs-toggle="dropdown" aria-expanded="false">
-                            <BsPersonCircle className='fs-5' />
-                            <span className='ms-2'>YourSelf</span>
-                        </a>
-                        <div className="dropdown-menu bg-white" aria-labelledby="triggerid">
-                            <a className="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </div>
+            <div className='col-auto min-vh-100 d-flex flex-column' style={{ background: "linear-gradient(to top, rgba(0,128,128,1), rgba(0, 0, 0, 0))" }}>
+                <div className='pt-3'>
+                    <a href="#" className='text-decoration-none text-white d-flex align-items-center justify-content-center' id='Profile'>
+                        <span className='h3'>Your Profile</span>
+                    </a>
+                    <hr className='text-secondary' />
+                    <ul className='nav flex-column h5'>
+                        <NavItem icon={<BsHouse />} text="Home" link="/dashboard/Home" />
+                        <NavItem icon={<AiOutlineDashboard />} text="Profile"  />
+                        <NavItem icon={<BsTable />} text="My Orders" />
+                        <NavItem icon={<BsGrid />} text="Logout" />
+                    </ul>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Sidebar
+const NavItem = ({ icon, text, link }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleHover = () => {
+        setIsHovered(!isHovered);
+    };
+
+    const navItemStyle = {
+        transition: 'background-color 0.3s ease',
+        backgroundColor: isHovered ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+    };
+
+    return (
+        <li className='nav-item text-white my-1' onMouseEnter={handleHover} onMouseLeave={handleHover} style={navItemStyle}>
+            {link ? (
+                <Link to={link} className='nav-link text-white d-flex align-items-center'>
+                    {icon}
+                    <span className='ms-2'>{text}</span>
+                </Link>
+            ) : (
+                <a href="#" className='nav-link text-white d-flex align-items-center'>
+                    {icon}
+                    <span className='ms-2'>{text}</span>
+                </a>
+            )}
+        </li>
+    );
+};
+
+export default Sidebar;

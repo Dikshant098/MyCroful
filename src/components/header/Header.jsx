@@ -89,7 +89,7 @@ const Header = () => {
       <div className="d-flex justify-content-between m-1 mb-0 align-items-center">
         <Link
           to='/dashboard/Home'
-          className="fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none", color: 'rgb(0,102,102)', fontSize:'60px' }}>Croful</Link>
+          className="fw-semibold" style={{ fontFamily: 'Roboto Slab', textDecoration: "none", color: 'rgb(0,102,102)', fontSize:'50px' }}>Croful</Link>
         <div className="d-flex">
           <Location />
         </div>
@@ -166,12 +166,12 @@ const Header = () => {
             </button>
           </div>
 
-          {/* <div className="fw-bold d-flex">
+          <div className="fw-bold d-flex">
             <div id="Profile" className="text-decoration-none right-2 text-dark" >
               <AiOutlineMenuFold className="gap-2" style={{ fontSize: "28px" }} />
               Profile
             </div>
-          </div> */}
+          </div>
 
           <div className="fw-bold d-flex gap-1">
             <Link to="/dashboard/cart/cart" className="text-decoration-none text-dark">
@@ -192,7 +192,6 @@ const Header = () => {
                 <div className="icon-cont shadow-sm rounded-circle d-flex justify-content-center align-items-center mb-2" style={{ width: '80px', height: '80px', padding: '11px', backgroundColor: 'rgb(214,235,255)' }}>
                   <img loading="lazy" onerror="ms._imageError(this)" src="//d2pyicwmjx3wii.cloudfront.net/s/62ea2c599d1398fa16dbae0a/ms.files/navicons/Fashion.svg" className="img-fluid category-icon" id="fashion" onClick={(e) => searchCategoryHandler(e.target.id)} />
                 </div>
-
                 Fashion
               </ul>
               <ul className="fw-semibold d-flex flex-column justify-content-center align-items-center" id='fruits-and-vegetables' onClick={(e) => searchCategoryHandler(e.target.id)}>
@@ -244,7 +243,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {/* <Sidebar /> */}
+      <Sidebar />
     </div>
   );
 };
