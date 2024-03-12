@@ -13,6 +13,8 @@ import Checkout from '../components/dashboard/cart/Checkout'
 import ProductShopDetails from '../components/dashboard/product/productShopDetails/ProductShopDetails'
 import Cart from '../components/dashboard/cart/Cart'
 import PDF from '../components/dashboard/cart/PDF'
+import Profile from '../components/dashboard/profile/Profile'
+import MyOrder from '../components/dashboard/myOrder/MyOrder'
 
 const AppRoute = () => {
     return (
@@ -27,6 +29,8 @@ const AppRoute = () => {
                 <Route exact={true} path='productListCategory/:search' element={<ProductListCategory />}></Route>
                 <Route exact={true} path='productDetails/:alias' element={<ProductDetails />}></Route>
                 <Route exact={true} path='productShopDetails/:id' element={<ProductShopDetails />}></Route>
+                <Route exact={true} path='profile/:id' element={<Profile />}></Route>
+                <Route exact={true} path='myOrder/:id' element={<MyOrder />}></Route>
                 <Route path='*' element={<RedirectScreen />}></Route>
             </Route>
             <Route exact={true} path='invoiceDetails/:formData' element={<PDF />}></Route>

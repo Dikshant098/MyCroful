@@ -36,8 +36,8 @@ function Sidebar() {
                     <hr className='text-secondary' />
                     <ul className='nav flex-column h5'>
                         <NavItem icon={<BsHouse />} text="Home" link="/dashboard/Home" />
-                        <NavItem icon={<AiOutlineDashboard />} text="Profile"  />
-                        <NavItem icon={<BsTable />} text="My Orders" />
+                        <NavItem icon={<AiOutlineDashboard />} text="Profile" link="/dashboard/profile/true" />
+                        <NavItem icon={<BsTable />} text="My Orders" link="/dashboard/myOrder/true" />
                         <NavItem icon={<BsGrid />} text="Logout" />
                     </ul>
                 </div>
