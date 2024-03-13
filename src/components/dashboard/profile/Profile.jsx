@@ -78,7 +78,7 @@ const Profile = () => {
 
 
     return (
-        <div className="container">
+        <div className="container" style={{height:'auto'}}>
             <ToastContainer />
             <div
                 className="container-fluid pb-5"
