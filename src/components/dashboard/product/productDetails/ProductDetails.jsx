@@ -81,8 +81,6 @@ function ProductDetails() {
     } catch (error) {
       console.log(error);
     }
-
-
   }
 
   return (
@@ -126,9 +124,9 @@ function ProductDetails() {
                 </div>
 
                 {/* Accordian with three sections */}
-                <div className="accordion accordion-flush mt-5" style={{ zIndex: '-1' }} id="accordionFlushExample">
+                <div className="accordion accordion-flush mt-5"  id="accordionFlushExample">
                   <div className="accordion-item">
-                    <h2 className="accordion-header fw-swmibold">
+                    <h2 className="accordion-header fw-swmibold"> 
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                         Product Details
                       </button>

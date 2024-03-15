@@ -7,12 +7,22 @@ import { BASE_URL } from '../../../constants/baseUrl';
 import axios from 'axios'
 // import { jsPDF } from 'jspdf';
 import { json, useNavigate } from 'react-router-dom';
+import qr from '../../../assets/images/Products/images.png'
 
 import ReactToPdf from 'react-to-pdf';
 import { PDFViewer } from '@react-pdf/renderer';
 
+import { FaRupiahSign } from "react-icons/fa6";
+import { CiCreditCard1, CiBank, CiWallet } from "react-icons/ci";
 import PDF from './PDF'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+</style>
 
 
 function Checkout() {
@@ -37,6 +47,7 @@ function Checkout() {
   });
   const [cartDetails, setCartDetails] = useState([])
   const [total, setTotal] = useState(0)
+  const [upi, setUPI] = useState('');
 
   const navigate = useNavigate()
   // const pdfRef = useRef(null);
@@ -74,8 +85,16 @@ function Checkout() {
   };
 
   const goCheckout = () => {
-
-    navigate('/invoiceDetails/'+ JSON.stringify(formData))
+    // console.log(formData);
+    // console.log(upi);
+    if (upi == '') {
+      toast.error("Please enter UPI !!", {
+        autoClose: 1000,
+      })
+      return
+    } else {
+      navigate('/invoiceDetails/' + JSON.stringify(formData))
+    }
   }
 
 
@@ -120,6 +139,7 @@ function Checkout() {
 
   return (
     <div className='container'>
+      <ToastContainer />
       <div className='h1 d-flex justify-content-center'>Checkout</div>
       <div className='row mt-5'>
         {/* Left Column */}
@@ -284,8 +304,8 @@ function Checkout() {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
-                Checkout
+              <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Use this address
               </button>
             </form>
           </div>
@@ -435,8 +455,8 @@ function Checkout() {
                         required
                       />
                     </div>
-                    <button type="submit" className="btn btn-primary">
-                      Checkout
+                    <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Use This Address
                     </button>
                   </form>
                 )}
@@ -447,51 +467,82 @@ function Checkout() {
 
         {/* Modal box for prosceed to payment */}
         <div className='container-fluid mt-3 d-flex flex-column justify-content-center p-2' style={{ border: '1px solid black', width: '30%', borderRadius: '20px' }}>
-          <div className="form-check mx-3">
+          <div className="form-check mx-3 mb-3">
             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
             <label className="form-check-label" for="flexRadioDefault1">
-              Cash On Delivery
-            </label>
-          </div>
-          <hr />
-          <div className="form-check mx-3 mb-3">
-            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-            <label className="form-check-label" for="flexRadioDefault2">
-              Pay via UPI
+              Digital Payments
             </label>
           </div>
 
+
           {/* New pop up modal for upi */}
           <div className="text-center"> {/* Added text-center class */}
-            <button type="button" style={{ width: '40%' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Placed Order
             </button>
           </div>
         </div>
-        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ height: '100%' }}>
           <div className="modal-dialog">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header d-flex justify-content-around" style={{ fontFamily: 'Roboto Slab', textDecoration: "none", background: "linear-gradient(to top, rgba(102,178,178, 1), rgba(0, 0, 0, 0))", width: '100%', color: 'rgb(0,102,102)' }}>
+                <div className='container-fluid h1 fw-bold'>
+                  Croful
+                </div>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div className="modal-body d-flex flex-row align-items-center justify-content-around">
-                <div className="d-flex flex-column">
-                  <span className='fw-bold' style={{ fontSize: '22px' }}>Enter UPI ID</span>
-                  <input className='mt-1' type="text" name="" id="" placeholder='Enter Your UPI Id..' style={{ width: '100%', border: '1px solid gray', borderRadius: '5px', padding: '6px' }} />
-                </div>
-                <div className="ml-auto">
-                  <img src={upi} style={{ width: '130px', marginRight: '0' }} alt="" />
-                </div>
-              </div>
+              <div className="modal-body d-flex flex-column align-items-center justify-content-around">
+                {/* QR code section */}
+                <div className='container-fluid d-flex flex-column align-items-center justify-content-around'>
+                  <div className='h5 mb-3'>Pay with UPI QR</div>
+                  <div className="mb-3 d-flex p-2" style={{ width: '90%', border: '1px solid gray', borderRadius: '8px' }}>
+                    <img src={qr} style={{ width: '130px', marginRight: '10px' }} alt="QR Code" />
+                    <span>Scan the QR using any UPI app on your phone.</span>
+                  </div>
 
-              <div className="modal-footer justify-content-center"> {/* Center the button */}
-                <button type="button" className="btn btn-primary">Verify & Pay</button>
+                  {/* Other UPI Options */}
+                  <div className='h5 mb-3'>UPI, Cards & More</div>
+                  <div className="card mb-3" style={{ width: '90%', minHeight: 'auto' }}>
+                    <ul className="list-group list-group-flush">
+                      <li className="list-group-item">
+                        <FaRupiahSign className='h3' style={{ marginRight: '10px' }} />
+                        UPI / QR
+                      </li>
+                      <li className="list-group-item">
+                        <CiCreditCard1 className='h3' style={{ marginRight: '10px' }} />
+                        Card</li>
+                      <li className="list-group-item">
+                        <CiBank className='h3' style={{ marginRight: '10px' }} />
+                        Netbanking</li>
+                      <li className="list-group-item">
+                        <CiWallet className='h3' style={{ marginRight: '10px' }} />
+                        Wallet</li>
+                    </ul>
+                  </div>
+
+                  {/* UPi Id section */}
+                  <div className='d-flex justify-content-around' style={{ width: '90%' }}>
+                    <div className="d-flex flex-column mr-3" style={{ flex: '1', marginRight: '40px' }}>
+                      <span className='fw-bold h5'>Enter UPI ID</span>
+                      <input className='mt-1' type="text" value={upi} onChange={(e) => setUPI(e.target.value)} name="" id="" placeholder='Enter Your UPI Id..' style={{ width: '100%', border: '1px solid gray', borderRadius: '5px', padding: '6px' }} />
+                    </div>
+                    <div className="ml-auto">
+                      <img src={upi} style={{ width: '130px', marginRight: '0' }} alt="" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div className="modal-footer justify-content-around p-2" style={{ width: '100%' }}>
+                <div className='h5'>Subtotal</div>
+                <button onClick={goCheckout} type="button" className="btn btn-primary" style={{ backgroundColor: 'rgb(0,128,128)' }}>Verify & Pay</button>
               </div>
             </div>
           </div>
         </div>
-       
-        
+
+
+
 
       </div>
     </div>

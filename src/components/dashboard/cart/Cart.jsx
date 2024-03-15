@@ -36,16 +36,20 @@ function Cart() {
         const url = BASE_URL + '/cart/getCartDetails/' + userId
         try {
             const { data } = await axios.get(url)
+            console.log(data);
             setCartDetails(data)
             let totalPrice = 0;
             data.forEach(item => {
-                totalPrice += item.price; // Calculate total price by summing up prices of all items
+                totalPrice += item.price * item.quantity; // Calculate total price by summing up prices of all items
             });
             setTotal(totalPrice);
         } catch (error) {
             console.log(error);
         }
     }
+    useEffect(()=>{
+
+    },[total])
 
     const deleteProductDetails = async (_id) => {
         const url = BASE_URL + 'cart/deleteCartDetails/' + _id
@@ -63,52 +67,77 @@ function Cart() {
         }
     }
 
-    const increaseCount = (_id) => {
-        setQuantity(prevQuantity => ({
-            ...prevQuantity,
-            [_id]: (prevQuantity[_id] || 0) + 1 // Increment quantity for specific product
-        }));
+
+    const increaseCount = async(prod, idx) => {
+        console.log(prod);
+        console.log(idx);
+        
+
+        cartDetails[idx].quantity = prod.quantity + 1
+        const url = BASE_URL + 'cart/updateCartDetails/' + prod._id
+        try {
+            const { data } = await axios.put(url, cartDetails[idx])
+            getCartDetails()
+        } catch (error) {
+            console.log(error);
+        }
+        
     };
 
-    const decreaseCount = (_id) => {
-        if (quantity[_id] && quantity[_id] > 0) {
-            setQuantity(prevQuantity => ({
-                ...prevQuantity,
-                [_id]: prevQuantity[_id] - 1 // Decrement quantity for specific product
-            }));
+    const decreaseCount = async (prod, idx) => {
+        console.log(prod);
+        console.log(idx);
+        
+        if(prod.quantity == 1){
+            return
         }
+        cartDetails[idx].quantity = prod.quantity - 1
+        const url = BASE_URL + 'cart/updateCartDetails/' + prod._id
+        try {
+            const { data } = await axios.put(url, cartDetails[idx])
+            getCartDetails()
+        } catch (error) {
+            console.log(error);
+        }
+
     };
+
+
 
     const updateChanges = async () => {
         // Update quantity for each product in the cart
-        for (const item of cartDetails) {
-            try {
-                await axios.put(BASE_URL + '/cart/updateQuantity/' + item._id, {
-                    quantity: quantity[item._id] || 1
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        // Fetch updated cart details
-        getCartDetails();
-        // Calculate updated total
-        let updatedTotal = 0;
-        cartDetails.forEach(item => {
-            updatedTotal += item.price * (quantity[item._id] || 1);
-        });
-        setUpdatedTotal(updatedTotal);
+        toast.success("Product updated successfully !!", {
+            autoClose: 1000,
+        })
+
+        // for (const item of cartDetails) {
+        //     try {
+        //         await axios.put(BASE_URL + '/cart/updateQuantity/' + item._id, {
+        //             quantity: quantity[item._id] || 1
+        //         });
+        //     } catch (error) {
+        //         console.log(error);
+        //     }
+        // }
+        // // Fetch updated cart details
+        // getCartDetails();
+        // // Calculate updated total
+        // let updatedTotal = 0;
+        // cartDetails.forEach(item => {
+        //     updatedTotal += item.price * (quantity[item._id] || 1);
+        // });
+        // setUpdatedTotal(updatedTotal);
     };
 
     const goCheckout = () => {
-        navigate('/dashboard/cart/checkout')
+        navigate('/dashboard/cart/checkout/'+ true)
     }
 
     return (
         <div className='container' style={{ marginTop: '17%' }}>
             <ToastContainer />
             <div className='fw-semibold h1 d-flex justify-content-center mb-4'>Cart</div>
-            <div className='border border-2 rounded-2' style={{background: "linear-gradient(to top, rgba(178,216,216,1), rgba(0, 0, 0, 0))"}}>
+            <div className='border border-2 rounded-2' style={{ background: "linear-gradient(to top, rgba(178,216,216,1), rgba(0, 0, 0, 0))" }}>
                 <div className='Product-detail d-flex justify-content-between mt-3'>
                     <div className='col d-flex flex-column align-items-center justify-content-center fw-semibold' style={{ flex: '40%' }}>
                         Product
@@ -121,7 +150,7 @@ function Cart() {
                 </div>
 
                 {/* Product Details */}
-                {cartDetails?.map(productDetails => {
+                {cartDetails?.map((productDetails, i) => {
                     return (
                         <div className='Product-detail2 d-flex justify-content-between align-items-center' style={{ marginTop: '5%' }} key={productDetails._id}>
                             <button type="button" onClick={() => deleteProductDetails(productDetails._id)} className="btn-close" aria-label="Close" style={{ marginLeft: '20px' }}>
@@ -139,19 +168,19 @@ function Cart() {
                                 {/* Counting box */}
                                 <div className='rounded-5' style={{ width: '120px', padding: '10px', border: '2px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                                        <button className='d-flex align-items-center justify-content-center' onClick={() => decreaseCount(productDetails._id)} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }}>-</button>
-                                        <span style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{quantity[productDetails._id] || 1}</span>
-                                        <button className='d-flex align-items-center justify-content-center' onClick={() => increaseCount(productDetails._id)} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }}>+</button>
+                                        <button className='d-flex align-items-center justify-content-center' onClick={() => decreaseCount(productDetails, i)} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }}>-</button>
+                                        <span style={{ fontSize: '1.1em', fontWeight: 'bold' }}>{productDetails.quantity}</span>
+                                        <button className='d-flex align-items-center justify-content-center' onClick={() => increaseCount(productDetails, i)} style={{ background: 'transparent', height: '20px', width: '20px', border: 'none' }}>+</button>
                                     </div>
                                 </div>
                             </div>
-                            <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>{(quantity[productDetails._id] || 1) * productDetails.price}</div>
+                            <div className='col d-flex justify-content-center fw-semibold' style={{ flex: '20%' }}>{(quantity[productDetails._id] || 1) * productDetails.price * productDetails.quantity}</div>
                         </div>
                     )
                 })}
 
                 {/* Update Changes Button */}
-                <button className='btn btn-dark m-3 me-0 rounded-5' style={{ width: '22%', backgroundColor:'rgb(0,128,128)' }} onClick={updateChanges}> Update Changes</button>
+                <button className='btn btn-dark m-3 me-0 rounded-5' style={{ width: '22%', backgroundColor: 'rgb(0,128,128)' }} onClick={updateChanges}> Update Changes</button>
 
                 {/* Cart Totals */}
                 <div className='container-fluid my-5'>
@@ -170,12 +199,12 @@ function Cart() {
                             <li className="list-group-item d-flex flex-row">
                                 <span className="me-2 col">Total</span>
                                 <div className='col'>
-                                    {updatedTotal !== null ? updatedTotal : total}
+                                    { total}
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <button className='btn btn-dark mt-3 rounded-5' style={{ width: '22%', backgroundColor:'rgb(0,128,128)' }} onClick={goCheckout}> Proceed To Checkout</button>
+                    <button className='btn btn-dark mt-3 rounded-5' style={{ width: '22%', backgroundColor: 'rgb(0,128,128)' }} onClick={goCheckout}> Proceed To Checkout</button>
                 </div>
             </div>
         </div>
