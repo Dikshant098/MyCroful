@@ -78,12 +78,12 @@ const Profile = () => {
 
 
     return (
-        <div className="container" style={{height:'49.4vh'}}>
+        <div className="container">
             <ToastContainer />
             <div
                 className="container-fluid pb-5"
                 style={{
-                    height: '70%',
+                    height: '40%',
                     width: '100%',
                     border: '1px solid black',
                     borderRadius: '6px',
