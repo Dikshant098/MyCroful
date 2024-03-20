@@ -1,16 +1,12 @@
-import React from 'react'
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300&display=swap');
-</style>
+import React from 'react';
 
 function Footer() {
   return (
-    <footer className='container-fluid justify-content-between align-items-center ' style={{
+    <footer className='container-fluid justify-content-between align-items-center' style={{
       width: '100%',
       height: '30%',
       background: "linear-gradient(to top, rgba(102,178,178, 1), rgba(0, 0, 0, 0))",
-      position: 'relative',
-      bottom: '0'
+      position:'sticky',
     }}>
       <div className="row" style={{ marginTop: "40px" }}>
         <div className="col-lg-3">
@@ -50,4 +46,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer;

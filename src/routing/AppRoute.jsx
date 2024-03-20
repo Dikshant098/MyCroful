@@ -23,7 +23,7 @@ const AppRoute = () => {
             <Route exact={true} path='/login' element={<LoginScreen />}></Route>
             <Route exact={true} path='/register' element={<RegisterScreen />}></Route>
             <Route exact={true} path='/dashboard' element={<DashboardScreen />}>
-                <Route exact={true} path='cart/checkout' element={<Checkout />} />
+                <Route exact={true} path='cart/checkout/:id' element={<Checkout />} />
                 <Route exact={true} path='cart/cart' element={<Cart />} />
                 <Route exact={true} path='home' element={<Home />}></Route>
                 <Route exact={true} path='productListCategory/:search' element={<ProductListCategory />}></Route>

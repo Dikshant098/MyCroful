@@ -120,12 +120,13 @@ const Header = () => {
                     onChange={(e) => setSearch(e.target.value)}
                     style={{ border: "1px solid gray", marginRight: "3px", background: "linear-gradient(to bottom, rgba(178,216,216, 1), rgba(0, 0, 0, 0))" }}
                   />
-                  <div className="rounded-2 border" style={{
+                  <div className="rounded-2 ps-2" style={{
                     overflowY: 'auto', /* Change from 'scroll' to 'auto' */
                     width: '42vw',
                     position: 'absolute',
                     left: '15px',
                     top: '45px',
+                    border: 'none',
                     maxHeight: '50vh',
                     backgroundColor: 'rgb(178,216,216)',
                     scrollbarWidth: 'thin', /* For Firefox */

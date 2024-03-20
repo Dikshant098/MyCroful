@@ -130,7 +130,7 @@ function Cart() {
     };
 
     const goCheckout = () => {
-        navigate('/dashboard/cart/checkout')
+        navigate('/dashboard/cart/checkout/'+ true)
     }
 
     return (

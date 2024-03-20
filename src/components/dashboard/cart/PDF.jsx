@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E4E4E4'
   },
   section: {
-    margin: 10,
+    marginTop: 450,
     padding: 10,
     flexGrow: 1
   },
@@ -36,9 +36,7 @@ const PDF = () => {
   const [cartDetails, setCartDetails] = useState([])
   const [total, setTotal] = useState(0)
 
-
   useEffect(() => {
-
     getCartDetails()
     setFormData(JSON.parse(param?.formData))
 
@@ -51,26 +49,29 @@ const PDF = () => {
     try {
       const { data } = await axios.get(url)
       setCartDetails(data)
-      console.log(data);
       let subtotal = 0;
       data.map(d => {
-        subtotal = d.price + subtotal
+        subtotal = (d.price * d.quantity) + subtotal
       })
       setTotal(subtotal)
     } catch (error) {
       console.log(error);
     }
   }
+  useEffect(() => {
+
+  },[formData])
 
   return (
     <div>
-      <PDFViewer style={{ width: '100%', height: '100vh' }}>
+      <PDFViewer style={{ width: '100%', height: '200vh' }}>
         <Document>
           <Page size="A4" style={styles.page}>
             <View style={styles.section}>
               <Text style={styles.title}>Invoice</Text>
               <Text style={styles.subtitle}>Details</Text>
               <View>
+                
                 <Text style={styles.text}>First Name: {formData?.firstName}</Text>
                 <Text style={styles.text}>Last Name: {formData?.lastName}</Text>
                 <Text style={styles.text}>companyName: {formData?.companyName}</Text>

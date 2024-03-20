@@ -16,7 +16,7 @@ import { FaRupiahSign } from "react-icons/fa6";
 import { CiCreditCard1, CiBank, CiWallet } from "react-icons/ci";
 import PDF from './PDF'
 import useRazorpay from "react-razorpay";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
@@ -46,6 +46,7 @@ function Checkout() {
   });
   const [cartDetails, setCartDetails] = useState([])
   const [total, setTotal] = useState(0)
+  const [upi, setUPI] = useState('');
 
   const navigate = useNavigate()
   // const pdfRef = useRef(null);
@@ -83,8 +84,16 @@ function Checkout() {
   };
 
   const goCheckout = () => {
-
-    navigate('/invoiceDetails/' + JSON.stringify(formData))
+    // console.log(formData);
+    // console.log(upi);
+    if (upi == '') {
+      toast.error("Please enter UPI !!", {
+        autoClose: 1000,
+      })
+      return
+    } else {
+      navigate('/invoiceDetails/' + JSON.stringify(formData))
+    }
   }
 
 
@@ -192,6 +201,7 @@ function Checkout() {
 
   return (
     <div className='container'>
+      <ToastContainer />
       <div className='h1 d-flex justify-content-center'>Checkout</div>
       <div className='row mt-5'>
         {/* Left Column */}
@@ -579,7 +589,7 @@ function Checkout() {
                   <div className='d-flex justify-content-around' style={{ width: '90%' }}>
                     <div className="d-flex flex-column mr-3" style={{ flex: '1', marginRight: '40px' }}>
                       <span className='fw-bold h5'>Enter UPI ID</span>
-                      <input className='mt-1' type="text" name="" id="" placeholder='Enter Your UPI Id..' style={{ width: '100%', border: '1px solid gray', borderRadius: '5px', padding: '6px' }} />
+                      <input className='mt-1' type="text" value={upi} onChange={(e) => setUPI(e.target.value)} name="" id="" placeholder='Enter Your UPI Id..' style={{ width: '100%', border: '1px solid gray', borderRadius: '5px', padding: '6px' }} />
                     </div>
                     <div className="ml-auto">
                       <img src={upi} style={{ width: '130px', marginRight: '0' }} alt="" />
@@ -590,7 +600,7 @@ function Checkout() {
               </div>
               <div className="modal-footer justify-content-around p-2" style={{ width: '100%' }}>
                 <div className='h5'>Subtotal</div>
-                <button type="button" className="btn btn-primary" style={{ backgroundColor: 'rgb(0,128,128)' }}>Verify & Pay</button>
+                <button onClick={goCheckout} type="button" className="btn btn-primary" style={{ backgroundColor: 'rgb(0,128,128)' }}>Verify & Pay</button>
               </div>
             </div>
           </div>
