@@ -15,9 +15,8 @@ import { PDFViewer } from '@react-pdf/renderer';
 import { FaRupiahSign } from "react-icons/fa6";
 import { CiCreditCard1, CiBank, CiWallet } from "react-icons/ci";
 import PDF from './PDF'
+import useRazorpay from "react-razorpay";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
@@ -132,6 +131,69 @@ function Checkout() {
       console.log(error);
     }
   }
+
+  const [Razorpay] = useRazorpay();
+
+  const handlePayment = async (params) => {
+
+    const url = BASE_URL + 'payment/createOrder'
+    let obj = {
+      amount: total
+    }
+
+    try {
+      const { data } = await axios.post(url, obj); //  Create order on your backend
+      console.log(data);
+      const options = {
+        key: "rzp_test_KGt4mkfNDVtrpD", // Enter the Key ID generated from the Dashboard
+        amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: "INR",
+        name: "Croful ONDC",
+        description: "Test Transaction",
+        image: "https://croful.com/wp-content/uploads/2023/10/croful-logo-small-e1696921738135.png",
+        order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
+        handler: function (response) {
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature);
+          alert("Good job! congrats !! Payment successful !!")
+        },
+        prefill: {
+          name: "",
+          email: "",
+          contact: "",
+        },
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      const rzp1 = new Razorpay(options);
+
+      rzp1.on("payment.failed", function (response) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+      });
+
+      rzp1.open();
+
+    } catch (error) {
+      console.log(error);
+    }
+
+
+
+  };
+
+
 
   useEffect(() => {
     getCartDetails()
@@ -477,9 +539,12 @@ function Checkout() {
 
           {/* New pop up modal for upi */}
           <div className="text-center"> {/* Added text-center class */}
-            <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" onClick={handlePayment}>
               Placed Order
             </button>
+            {/* <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Placed Order
+            </button> */}
           </div>
         </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ height: '100%' }}>
