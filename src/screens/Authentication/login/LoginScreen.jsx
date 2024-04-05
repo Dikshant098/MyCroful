@@ -131,38 +131,51 @@ const LoginScreen = () => {
 
 
   return (
-    <div class='login' style={{
-      background: "linear-gradient(to top, rgba(0,128,128, 1), rgba(0, 0, 0, 0))"
-    }}>
+    <div class='login' style={{ background: "linear-gradient(to top, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0))" }}>
       <div className="container">
         <ToastContainer />
-        <div className="card rounded-top-5" style={{
-          background: "linear-gradient(to bottom, rgba(102,178,178, 0.9), rgba(0, 0, 0, 0))"
+        <div className="card rounded-5 row d-flex justify-content-center align-items-center h-80" style={{
+          background: "linear-gradient(to bottom, rgba(255, 215, 0, 0.4), rgba(225, 175, 209,0.8))",
+          width: '60%',
+          boxShadow: '0 0 30px rgba(0,0,0,0.2)' // adding shadow from right side
         }}>
-          <div className="card-body paddingTopBottom px-5" style={{ paddingTop: "40px", paddingBottom: "50px" }}>
-            <div className='d-flex flex-column align-items-center '>
-              <div className='fw-bold h1' style={{ fontFamily: "Ubuntu", textDecoration: "none", textShadow: "4px 0 4px rgba(255, 255, 255, 0.7)" }}>Croful</div>
-              <div className='fw-semibold h4' style={{ fontFamily: "Ubuntu", textDecoration: "none" }}>Please enter your details</div>
-            </div>
+
+          <div className="card-body px-5 d-flex align-items-center justify-content-between">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              className="img-fluid mr-5" alt="Sample image" style={{ maxWidth: "50%", }} />
             <div>
-              <div className='my-2'>
-                <label className='mb-1 fw-semibold' htmlFor="mobile">Mobile Number</label>
-                <input type="number" className='form-control' value={mobile} placeholder='Enter Mobile Number' onChange={(e) => setMobile(e.target.value)} />
+              <div className='d-flex flex-column align-items-center '>
+                <div className='fw-bold' style={{ fontFamily: "Ubuntu", textDecoration: "none", fontSize: '70px', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Croful</div>
+                <div className='fw-semibold h4' style={{ textDecoration: "none" }}>Please enter your details</div>
               </div>
-              <div className='d-grid mb-2'>
-                {isButtonDisabled && (
-                  <div className='text-sm text-success ms-auto'>
-                    {countdown}s
-                  </div>
-                )}
-                <button className='btn btn-dark' onClick={sendOtpHandler} disabled={isButtonDisabled}>Send OTP</button>
-              </div>
-              <div className='mt-3'>
-                <label className='mb-1 fw-semibold' htmlFor="otp">Enter OTP</label>
-                <input type="number" className='form-control' placeholder='Enter OTP' value={otp} onChange={(e) => setOtp(e.target.value)} />
-              </div>
-              <div className='d-grid mt-2'>
-                <button className='btn btn-dark' onClick={verifyOtpHandler} disabled={!isButtonDisabled}>Sign in</button>
+              <div>
+                <div className='my-2'>
+                  <label className='mb-1 fw-semibold' htmlFor="mobile">Mobile Number</label>
+                  <input
+                    type="number"
+                    className='form-control'
+                    value={mobile}
+                    placeholder='Enter Mobile Number'
+                    onChange={(e) => setMobile(e.target.value)}
+                    inputMode="numeric"
+                  />
+
+                </div>
+                <div className='d-grid mb-2'>
+                  {isButtonDisabled && (
+                    <div className='text-sm text-success ms-auto'>
+                      {countdown}s
+                    </div>
+                  )}
+                  <button className='btn btn-dark' onClick={sendOtpHandler} disabled={isButtonDisabled}>Send OTP</button>
+                </div>
+                <div className='mt-3'>
+                  <label className='mb-1 fw-semibold' htmlFor="otp">Enter OTP</label>
+                  <input type="number" className='form-control' placeholder='Enter OTP' value={otp} onChange={(e) => setOtp(e.target.value)} />
+                </div>
+                <div className='d-grid mt-2'>
+                  <button className='btn btn-dark' onClick={verifyOtpHandler} disabled={!isButtonDisabled}>Sign in</button>
+                </div>
               </div>
             </div>
           </div>

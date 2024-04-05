@@ -5,7 +5,7 @@ function Footer() {
     <footer className='container-fluid justify-content-between align-items-center' style={{
       width: '100%',
       height: '30%',
-      background: "linear-gradient(to top, rgba(102,178,178, 1), rgba(0, 0, 0, 0))",
+      background: "linear-gradient(to bottom, rgba(255, 215, 0, 0.4), rgba(225, 175, 209,1))",
       position:'sticky',
     }}>
       <div className="row" style={{ marginTop: "40px" }}>

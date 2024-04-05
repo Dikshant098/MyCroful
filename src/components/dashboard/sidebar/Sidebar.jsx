@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { AiOutlineDashboard } from 'react-icons/ai';
-import { BsHouse, BsTable, BsGrid, BsPeople, BsPersonCircle } from 'react-icons/bs';
-import { Link } from "react-router-dom";
+import { AiOutlineDashboard, AiOutlineClose } from 'react-icons/ai'; // Import AiOutlineClose icon
+import { BsHouse, BsTable, BsGrid } from 'react-icons/bs';
+import { Link, useNavigate } from "react-router-dom";
 import '../sidebar/sidebar.scss';
 
 function Sidebar() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    // const navigate = useNavigate()
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    const closeSidebar = () => {
+        setIsSidebarOpen(false); // Close the sidebar
+    };
+
+    // const logOutHandler = () => {
+    //     navigate('/login')
+    //     localStorage.setItem('Croful', '')
+    //   }
 
     useEffect(() => {
         const profile = document.querySelector('#Profile');
@@ -27,18 +37,23 @@ function Sidebar() {
     const sidebarTransform = isSidebarOpen ? 'translateX(0%)' : 'translateX(120%)';
 
     return (
-        <div className='sidebar' style={{ transform: sidebarTransform }}>
-            <div className='col-auto min-vh-100 d-flex flex-column' style={{ background: "linear-gradient(to top, rgba(0,128,128,1), rgba(0, 0, 0, 0))" }}>
-                <div className='pt-3'>
-                    <a href="#" className='text-decoration-none text-white d-flex align-items-center justify-content-center' id='Profile'>
-                        <span className='h3'>Your Profile</span>
-                    </a>
+        <div className='sidebar bg-white' style={{ transform: sidebarTransform }}>
+            <div className='col-auto min-vh-100 d-flex flex-column' style={{ background: "linear-gradient(to top, rgba(255, 215, 0, 0.8), rgba(225, 175, 209,1))" }}>
+                <div className='pt-2'>
+                    <div className='d-flex justify-content-center align-items-center m-3'>
+                        <a href="#" className='text-decoration-none text-black d-flex align-items-center' id='Profile'>
+                            <span className='h3'>Your Profile</span>
+                        </a>
+                        <button className="btn btn-link text-black" onClick={closeSidebar}>
+                            <AiOutlineClose className='h3'/>
+                        </button>
+                    </div>
                     <hr className='text-secondary' />
                     <ul className='nav flex-column h5'>
                         <NavItem icon={<BsHouse />} text="Home" link="/dashboard/Home" />
                         <NavItem icon={<AiOutlineDashboard />} text="Profile" link="/dashboard/profile/true" />
                         <NavItem icon={<BsTable />} text="My Orders" link="/dashboard/myOrder/true" />
-                        <NavItem icon={<BsGrid />} text="Logout" />
+                        {/* <NavItem icon={<BsGrid />} onClick= text="Logout" /> */}
                     </ul>
                 </div>
             </div>
@@ -59,14 +74,14 @@ const NavItem = ({ icon, text, link }) => {
     };
 
     return (
-        <li className='nav-item text-white my-1' onMouseEnter={handleHover} onMouseLeave={handleHover} style={navItemStyle}>
+        <li className='nav-item text-black my-1' onMouseEnter={handleHover} onMouseLeave={handleHover} style={navItemStyle}>
             {link ? (
-                <Link to={link} className='nav-link text-white d-flex align-items-center'>
+                <Link to={link} className='nav-link text-black d-flex align-items-center'>
                     {icon}
                     <span className='ms-2'>{text}</span>
                 </Link>
             ) : (
-                <a href="#" className='nav-link text-white d-flex align-items-center'>
+                <a href="#" className='nav-link text-black d-flex align-items-center'>
                     {icon}
                     <span className='ms-2'>{text}</span>
                 </a>

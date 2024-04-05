@@ -18,10 +18,9 @@ function Horizonslider() {
         style={{
           width: '100%',
           margin: 'auto',
-          marginTop:'18%',
+          marginTop: '18%',
           overflow: 'hidden',
-          background:
-            'linear-gradient(to bottom, rgba(0,102,102, 0.8), rgba(0,102,102, 0.8))',
+          background: "linear-gradient(to top, rgba(255, 215, 0, 0.4), rgba(225, 175, 209,1))",
         }}
         data-bs-ride="carousel"
         data-bs-interval="3000" // Set the sliding time to 3 seconds per image (3000 milliseconds)

@@ -137,7 +137,7 @@ function Cart() {
         <div className='container' style={{ marginTop: '17%' }}>
             <ToastContainer />
             <div className='fw-semibold h1 d-flex justify-content-center mb-4'>Cart</div>
-            <div className='border border-2 rounded-2' style={{ background: "linear-gradient(to top, rgba(178,216,216,1), rgba(0, 0, 0, 0))" }}>
+            <div className='border border-2 rounded-2' style={{ background: "rgb(250,250,250)" }}>
                 <div className='Product-detail d-flex justify-content-between mt-3'>
                     <div className='col d-flex flex-column align-items-center justify-content-center fw-semibold' style={{ flex: '40%' }}>
                         Product
@@ -180,7 +180,7 @@ function Cart() {
                 })}
 
                 {/* Update Changes Button */}
-                <button className='btn btn-dark m-3 me-0 rounded-5' style={{ width: '22%', backgroundColor: 'rgb(0,128,128)' }} onClick={updateChanges}> Update Changes</button>
+                {/* <button className='btn btn-dark m-3 me-0 rounded-5' style={{ width: '22%', backgroundColor: 'rgb(0,128,128)' }} onClick={updateChanges}> Update Changes</button> */}
 
                 {/* Cart Totals */}
                 <div className='container-fluid my-5'>

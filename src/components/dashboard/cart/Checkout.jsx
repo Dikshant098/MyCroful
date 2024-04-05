@@ -109,11 +109,20 @@ function Checkout() {
     }));
   };
 
+  const updateChanges = async () => {
+    // Update quantity for each product in the cart
+    toast.success("This address will be use !!", {
+      autoClose: 1000,
+    })
+  };
+
   const handleSubmit2 = (e) => {
     e.preventDefault();
     // Handle form submission logic here
     console.log('Form data submitted:', formData);
   };
+
+
 
   const getCartDetails = async () => {
     const userId = localStorage.getItem('Croful')
@@ -366,7 +375,7 @@ function Checkout() {
                   required
                 />
               </div>
-              <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} onClick={updateChanges} className="btn btn-primary">
                 Use this address
               </button>
             </form>
@@ -517,7 +526,7 @@ function Checkout() {
                         required
                       />
                     </div>
-                    <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" style={{ width: '40%', backgroundColor: 'rgb(0,128,128)' }} onClick={updateChanges} className="btn btn-primary" >
                       Use This Address
                     </button>
                   </form>
@@ -547,7 +556,7 @@ function Checkout() {
             </button> */}
           </div>
         </div>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ height: '100%' }}>
+        {/* <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ height: '100%' }}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header d-flex justify-content-around" style={{ fontFamily: 'Roboto Slab', textDecoration: "none", background: "linear-gradient(to top, rgba(102,178,178, 1), rgba(0, 0, 0, 0))", width: '100%', color: 'rgb(0,102,102)' }}>
@@ -557,7 +566,6 @@ function Checkout() {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body d-flex flex-column align-items-center justify-content-around">
-                {/* QR code section */}
                 <div className='container-fluid d-flex flex-column align-items-center justify-content-around'>
                   <div className='h5 mb-3'>Pay with UPI QR</div>
                   <div className="mb-3 d-flex p-2" style={{ width: '90%', border: '1px solid gray', borderRadius: '8px' }}>
@@ -565,7 +573,6 @@ function Checkout() {
                     <span>Scan the QR using any UPI app on your phone.</span>
                   </div>
 
-                  {/* Other UPI Options */}
                   <div className='h5 mb-3'>UPI, Cards & More</div>
                   <div className="card mb-3" style={{ width: '90%', minHeight: 'auto' }}>
                     <ul className="list-group list-group-flush">
@@ -585,7 +592,6 @@ function Checkout() {
                     </ul>
                   </div>
 
-                  {/* UPi Id section */}
                   <div className='d-flex justify-content-around' style={{ width: '90%' }}>
                     <div className="d-flex flex-column mr-3" style={{ flex: '1', marginRight: '40px' }}>
                       <span className='fw-bold h5'>Enter UPI ID</span>
@@ -604,10 +610,7 @@ function Checkout() {
               </div>
             </div>
           </div>
-        </div>
-
-
-
+        </div> */}
 
       </div>
     </div>
