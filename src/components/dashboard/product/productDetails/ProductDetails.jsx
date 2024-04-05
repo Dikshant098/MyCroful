@@ -61,7 +61,9 @@ function ProductDetails() {
     // navigate('/dashboard/cart/cart/' + alias)
     const userId = localStorage.getItem('Croful')
     console.log(userId);
+    // console.log(p.seller_name);
     let obj = {
+      sellerName: p.seller_name,
       productName: p.name,
       price: p.price,
       quantity: count,
@@ -123,7 +125,7 @@ function ProductDetails() {
                   <button className='btn btn-dark ms-3 fw-bold rounded-5' style={{ width: '10vw', backgroundColor:'rgb(0,128,128)' }} onClick={() => addToCart(productDetails, firebaseURl + productDetails?.images[0]?.image)}> Add to Cart</button>
                 </div>
 
-                {/* Accordian with three sections */}
+                {/* Accordian with three sections */}z
                 <div className="accordion accordion-flush mt-5"  id="accordionFlushExample">
                   <div className="accordion-item">
                     <h2 className="accordion-header fw-swmibold"> 

@@ -26,7 +26,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function Checkout() {
   const [formData, setFormData] = useState({
-    firstName: '',
+    firstName: '  ',
     lastName: '',
     companyName: '',
     country: '',
@@ -143,6 +143,20 @@ function Checkout() {
 
   const [Razorpay] = useRazorpay();
 
+  const createOrder = async () => {
+    const userId = localStorage.getItem('Croful')
+    console.log(userId);
+
+    console.log(cartDetails);
+
+    const { data } = await axios.post(BASE_URL + 'order/createOrder', cartDetails);
+    if (data) {
+      console.log(data);
+    }
+
+    navigate('/dashboard/Home')
+  }
+
   const handlePayment = async (params) => {
 
     const url = BASE_URL + 'payment/createOrder'
@@ -166,6 +180,8 @@ function Checkout() {
           alert(response.razorpay_order_id);
           alert(response.razorpay_signature);
           alert("Good job! congrats !! Payment successful !!")
+          createOrder()
+
         },
         prefill: {
           name: "",

@@ -63,6 +63,7 @@ const ProductShopDetails = () => {
         console.log(userId);
         console.log();
         let obj = {
+            sellerName: p.seller_name,
             productName: p.name,
             price: p.price,
             quantity: 1,

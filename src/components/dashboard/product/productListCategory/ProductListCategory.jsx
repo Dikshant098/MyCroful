@@ -36,6 +36,7 @@ const ProductListCategory = () => {
   const addToCart = async (p, imgUrl) => {
     const userId = localStorage.getItem('Croful');
     let obj = {
+      sellerName: p.seller_name,
       productName: p.name,
       price: p.price,
       quantity: 1,
